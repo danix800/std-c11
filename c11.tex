@@ -1,0 +1,88 @@
+\documentclass[cn,11pt,fancy,hide,pad]{elegantbook}
+
+\title{ISO/IEC 9899:2011[E] }
+\subtitle{信息技术 - 编程语言 - C}
+
+\author{danix800}
+\institute{ISO/IEC}
+\date{5/23/2012}
+\version{c11}
+
+\equote{Victory won\rq t come to us unless we go to it. --- M. Moore}
+
+\logo{logo.png}
+\cover{cover.jpg}
+
+% footnote counter is interrupted by chapter (start over from 1 in new chapters)
+% remove this feature, so the counter increases throughout the whole document.
+\usepackage{chngcntr}
+\counterwithout{footnote}{chapter}
+
+\setlist[itemize,1]{label={---}}
+
+\setcounter{tocdepth}{3}
+
+\renewcommand{\theparagraph}{\arabic{paragraph}}
+
+\newcommand{\chptr}[2]{\chapter{#1\label{#2}}}
+\newcommand{\sect}[2]{\section{#1\label{#2}}}
+\newcommand{\ssect}[2]{\subsection{#1\label{#2}}}
+
+\newcounter{ssssectcntr} % create new counter for \subsubsubsection
+\newcommand{\sssect}[2]{
+  \subsubsection{#1\label{#2}}
+  \setcounter{ssssectcntr}{0} % start from 0
+}
+
+% use paragraph as the next level section
+\newcommand{\ssssect}[2]{{ % two level nesting
+  \titleformat{\paragraph}[hang]{\bfseries}
+    {\hspace{-2.45em}\bfseries\color{structurecolor}\theparagraph\enspace}
+    {1pt}{\color{structurecolor}\bfseries\filright}
+  % label = subsubsection + ssssectcntr
+  \renewcommand{\theparagraph}{\thesubsubsection.\thessssectcntr}
+  \stepcounter{ssssectcntr} % step \ssssectcntr
+  \paragraph{#1\label{#2}}  % the \subsubsubsection
+  \setcounter{paragraph}{0} % restart paragraph
+}}
+
+\newcommand{\synsym}[2][]{\parindent0pt\mbox{\qquad\textit{#2:} #1}\linebreak}
+\newcommand{\synprd}[2][\linebreak]{\mbox{\qquad\qquad #2}#1}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+% \thispagestyle{empty}
+
+\mainmatter
+\hypersetup{pageanchor=true}
+
+\include{chapters/foreword}
+\include{chapters/intro}
+\include{chapters/1.scope}
+\include{chapters/2.refs}
+\include{chapters/3.terms}
+\include{chapters/4.conform}
+\include{chapters/5.env}
+\include{chapters/6.lang}
+\include{chapters/7.lib}
+
+\renewcommand{\thechapter}{\Alph{chapter}}
+\setcounter{chapter}{0}
+\renewcommand{\chaptername}{附录 \thechapter\;}
+
+\include{chapters/a.synsum}
+\include{chapters/b.libsum}
+\include{chapters/c.seq}
+\include{chapters/d.uchar}
+\include{chapters/e.limit}
+\include{chapters/f.fparith}
+\include{chapters/g.comparith}
+\include{chapters/h.indeparith}
+\include{chapters/i.warn}
+\include{chapters/j.port}
+\include{chapters/k.bound}
+\include{chapters/l.analyze}
+
+\end{document}
