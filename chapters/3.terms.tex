@@ -1,2 +1,338 @@
 \chptr{术语、定义和符号}{defns}
+
 \paragraph{}
+在本文件中，以下术语和定义适用。其他术语在\textit{斜体}类型或语法规则左侧出现时
+定义。本国际标准中明确定义的术语不得推定为暗指其他地方定义的类似术语。本国际标准
+中未定义的术语应根据ISO/IEC 2382-1进行解释。本国际标准中未定义的数学符号应根据
+ISO 80000-2进行解释。
+
+\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
+
+\sect{访问}{defns.access}
+\paragraph{}
+\texttt{access}
+\begin{itemize}
+  \item[]{「执行时行为」读或写对象的值}
+\end{itemize}
+
+\paragraph{}
+\notes 如果只有这两个操作中的一个则用``读''或``修改''。
+
+\paragraph{}
+\notes ``修改''包括所存的值与之前的值相同的情形。
+
+\paragraph{}
+\notes 不求值的表达式不访问对象。
+
+\sect{对齐}{defns.align}
+\paragraph{}
+\texttt{alignment}
+\begin{itemize}
+  \item[]{特定类型的对象位于具有特定倍数字节地址的存储边界上的要求}
+\end{itemize}
+
+\sect{实参}{defns.arg}
+\paragraph{}
+\texttt{argument}
+\begin{itemize}
+  \item[]{实际参数}
+  \item[]{实际参数（parameter）（弃用）}
+  \item[]{以逗号分隔的列表中的表达式，以函数调用表达式中的括号为界，或以逗号分隔
+    的列表中的一系列预处理标记，以类似函数的宏调用中的括号为界}
+\end{itemize}
+
+\sect{行为}{defns.behav}
+\paragraph{}
+\texttt{behavior}
+\begin{itemize}
+  \item[]{外部表现或动作}
+\end{itemize}
+
+\ssect{实现定义行为}{defns.impldef}
+\paragraph{}
+\texttt{implementation-defined behavior}
+\begin{itemize}
+  \item[]{未指定的行为，由实现文档记录如何进行选择}
+\end{itemize}
+
+\paragraph{}
+\ex* 实现定义行为的一个例子是当有符号整数右移时高阶位的传播。
+
+\ssect{语言环境特定行为}{defns.locale}
+\paragraph{}
+\texttt{locale-specific behavior}
+\begin{itemize}
+  \item[]{取决于实现文档所记录的当地民族、文化和语言惯例的行为}
+\end{itemize}
+
+\paragraph{}
+\ex* 语言环境特定行为的一个示例是\tm{islower}函数是否为除26个小写拉丁字母之外的
+字符返回真。
+
+\ssect{未定义行为}{defns.undef}
+\paragraph{}
+\texttt{undefined behavior}
+\begin{itemize}
+  \item[]{使用不可移植或错误程序结构或数据时的行为，本国际标准对此不作要求。}
+\end{itemize}
+
+\paragraph{}
+\notes* 可能的未定义行为包括从完全忽略具有不可预知结果的情况，到在翻译或程序执行
+过程中以文件化的方式表现环境特征（有或无诊断消息）的行为，到终止翻译或执行（有诊
+断消息）。
+
+\paragraph{}
+\ex* 未定义行为的一个例子是整数溢出时的行为。
+
+\ssect{未明确行为}{defns.unspec}
+\paragraph{}
+\texttt{unspecified behavior}
+\begin{itemize}
+  \item[]{使用未指明的数值，或本国际标准提供两种或两种以上可能性，且在任何情况下
+    均未对其提出进一步要求的其他行为。}
+\end{itemize}
+
+\paragraph{}
+\ex* 未明确行为的一个例子是函数参数求值顺序。
+
+\sect{位}{defns.bit}
+\paragraph{}
+\texttt{bit}
+\begin{itemize}
+  \item[]{执行环境中的数据存储单元，其大小足以容纳可能具有两个值之一的对象}
+\end{itemize}
+
+\paragraph{}
+\notes* 不需要表示对象的每个独立的位地址。
+
+\sect{字节}{defns.byte}
+\paragraph{}
+\texttt{byte}
+\begin{itemize}
+  \item[]{可寻址的数据存储单元，其大小足以容纳执行环境的基本字符集的任何成员。}
+\end{itemize}
+
+\paragraph{}
+\notes 对象的每个独立字节的地址可以唯一地表示。
+
+\paragraph{}
+\notes 字节由一个连续的位序列组成，其数目由实现定义。最低有效位称为\textit{低阶
+位}；最高有效位称为\textit{高阶位}。
+
+\sect{字符}{defns.achar}
+\paragraph{}
+\texttt{character}
+\begin{itemize}
+  \item[]{「抽象」用于组织、控制或表示数据的一组元素的成员}
+\end{itemize}
+
+\ssect{字符}{defns.bchar}
+\paragraph{}
+\texttt{character}
+\begin{itemize}
+  \item[]{「C」适合字节的位表示法}
+\end{itemize}
+
+\ssect{多字节字符}{defns.mbchar}
+\paragraph{}
+\texttt{multibyte character}
+\begin{itemize}
+  \item[]{表示源或执行环境扩展字符集成员的一个或多个字节的序列}
+\end{itemize}
+
+\paragraph{}
+\notes* 扩展字符集是基本字符集的超集。
+
+\ssect{宽字符}{defns.wchar}
+\paragraph{}
+\texttt{wide character}
+\begin{itemize}
+  \item[]{可由\tm{wchar\_t}类型对象表示的值，能够表示当前区域设置中的任何字符}
+\end{itemize}
+
+\sect{约束}{defns.constr}
+\paragraph{}
+\texttt{constraint}
+\begin{itemize}
+  \item[]{语法或语义上的解释语言要素的限制}
+\end{itemize}
+
+\sect{恰当舍入结果}{defns.rnd}
+\paragraph{}
+\texttt{correctly rounded result}
+\begin{itemize}
+  \item[]{取决于当前的舍入模式，结果格式中最接近值的表示，该表示下的结果将给出无
+    限范围和精度}
+\end{itemize}
+
+\sect{诊断消息}{defns.diag}
+\paragraph{}
+\texttt{diagnostic message}
+\begin{itemize}
+  \item[]{属于实现定义的实现消息输出子集的消息}
+\end{itemize}
+
+\sect{前身引用}{defns.fwdref}
+\paragraph{}
+\texttt{forward reference}
+\begin{itemize}
+  \item[]{引用本国际标准的后续子章节，其中包含与本章节相关的其他信息}
+\end{itemize}
+
+\sect{实现}{defns.impl}
+\paragraph{}
+\texttt{implementation}
+\begin{itemize}
+  \item[]{在特定控制选项下的特定转换环境中运行的特定软件集，用于执行特定执行环境
+    中的程序转换并支持其中的函数执行}
+\end{itemize}
+
+\sect{实现限制}{defns.limit}
+\paragraph{}
+\texttt{implementation limit}
+\begin{itemize}
+  \item[]{实现对程序施加的限制}
+\end{itemize}
+
+\sect{内存地址}{defns.loc}
+\paragraph{}
+\texttt{memory location}
+\begin{itemize}
+  \item[]{标量类型对象或具有非零宽度相邻位域的最大序列}
+\end{itemize}
+
+\paragraph{}
+\notes 两个执行线程可以更新和访问单独的内存位置，而不会相互干扰。
+
+\paragraph{}
+\notes 位字段和相邻的非位字段成员位于不同的内存位置。这同样适用于两个位字段，如
+果一个字段在嵌套结构声明中声明而另一个不是，或者两个字段由零长度位字段声明分隔，
+或者它们由非位字段成员声明分隔。如果在同一结构中同时更新两个非原子位字段，且它们
+之间声明的所有成员也是（非零长度）位字段，则无论这些中间位字段的大小如何都是不安
+全的。
+
+\paragraph{}
+\ex* 结构声明为
+\begin{lstlisting}
+    struct {
+      char a;
+      int b:5, c:11, :0, d:8;
+      struct { int ee:8; } e;
+    }
+\end{lstlisting}
+包括4个不同内存地址：成员\texttt{a}，位域\texttt{d}和\texttt{e.ee}每一个都不同内
+存地址，且可以并发修改而彼此不会相互影响。位域\texttt{b}和\texttt{c}一起构成第4
+个内存地址。位域\texttt{b}和\texttt{c}不能并发修改，但是\texttt{b}和\texttt{a}可
+以。
+
+\sect{对象}{defns.object}
+\paragraph{}
+\texttt{object}
+\begin{itemize}
+  \item[]{执行环境中的数据存储区域，其内容可以表示值}
+\end{itemize}
+
+\paragraph{}
+\notes* 引用对象时，可以将其解释为具有特定类型；见\ref{lang.conv.other.desig}。
+
+\sect{形参}{defns.param}
+\paragraph{}
+\texttt{parameter}
+\begin{itemize}
+  \item[]{形式参数}
+  \item[]{形式参数（argument）（弃用）}
+  \item[]{作为函数声明或定义的一部分声明的对象，该函数声明或定义在函数的条目中获
+    取值，或从逗号分隔列表中获取标识符，该列表由类似宏定义的函数中宏名称后面的括
+    号所限定。}
+\end{itemize}
+
+\sect{推荐实践}{defns.recprac}
+\paragraph{}
+\texttt{recommended practice}
+\begin{itemize}
+  \item[]{强烈建议符合标准意图的规范，但对于某些实现来说可能不实用。}
+\end{itemize}
+
+\sect{运行时约束}{defns.rtconstr}
+\paragraph{}
+\texttt{runtime-constraint}
+\begin{itemize}
+  \item[]{调用库函数时对程序的要求}
+\end{itemize}
+
+\paragraph{}
+\notes 尽管术语类似，运行时约束不是第\ref{defns.constr}节所定义的约束种类，且在
+翻译时不需要诊断。
+
+\paragraph{}
+\notes 支持附录\ref{bound}中扩展的实现需要确认程序是否违反库函数的运行时约束；
+见K.3.1.4。
+
+\sect{值}{defns.value}
+\paragraph{}
+\texttt{value}
+\begin{itemize}
+  \item[]{当解释为特定类型时的对象内容确切涵义}
+\end{itemize}
+
+\ssect{实现定义值}{defns.implval}
+\paragraph{}
+\texttt{implementation-defined value}
+\begin{itemize}
+  \item[]{未指明值，由实现文档说明如果选择}
+\end{itemize}
+
+\ssect{不确定值}{defns.indeterval}
+\paragraph{}
+\texttt{indeterminate value}
+\begin{itemize}
+  \item[]{未指明值或陷阱值}
+\end{itemize}
+
+\ssect{未指明值}{defns.unspecval}
+\paragraph{}
+\texttt{unspecified value}
+\begin{itemize}
+  \item[]{相关类型的有效值，本国际标准在任何情况下对选择哪个值不作要求}
+\end{itemize}
+
+\sect{陷阱表示}{defns.traprepr}
+\paragraph{}
+\texttt{trap representation}
+\begin{itemize}
+  \item[]{不一定表示对象类型值的一种对象表示}
+\end{itemize}
+
+\ssect{执行陷阱}{defns.trap}
+\paragraph{}
+\texttt{perform a trap}
+\begin{itemize}
+  \item[]{中断程序的执行，使不再执行进一步的操作。}
+\end{itemize}
+
+\paragraph{}
+\notes* 在本国际标准中，当``陷阱''一词后面不紧跟``表示''时，这是预期用途。
+\footnote{例如，``捕获或停止（如果支持）被禁用...''（F.8.2）。请注意，获取陷阱表
+示可能会执行陷阱，但不是必须执行（请参见\ref{lang.concept.repr.general}）。}
+
+\sect{\textit{x}上取整}{defns.ceil}
+\paragraph{}
+\texttt{$\lceil x\rceil$}
+\begin{itemize}
+  \item[]{$x$向上取整：大于等于$x$的最小整数}
+\end{itemize}
+
+\paragraph{}
+\ex* $\lceil 2.4 \rceil = 3$，$\lceil -2.4 \rceil = -2$
+
+\sect{\textit{x}下取整}{defns.floor}
+\paragraph{}
+\texttt{$\lfloor x\rfloor$}
+\begin{itemize}
+  \item[]{$x$向下取整：小于等于$x$的最大整数}
+\end{itemize}
+
+\paragraph{}
+\ex* $\lfloor 2.4 \rfloor = 2$，$\lfloor -2.4 \rfloor = -3$
+
+\addtocontents{toc}{\protect\setcounter{tocdepth}{3}}
