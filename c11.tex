@@ -1,4 +1,4 @@
-\documentclass[cn,11pt,fancy,hide,pad]{elegantbook}
+\documentclass[cn,11pt,fancy,hide,normal]{elegantbook}
 
 \title{ISO/IEC 9899:2011[E] }
 \subtitle{信息技术 - 编程语言 - C}
@@ -18,20 +18,72 @@
 \usepackage{chngcntr}
 \counterwithout{footnote}{chapter}
 
+% list style
+\setlist[enumerate,1]{label={\arabic*. }}
 \setlist[itemize,1]{label={---}}
 
 \setcounter{tocdepth}{3}
 
+% numbering style
 \renewcommand{\theparagraph}{\arabic{paragraph}}
+\renewcommand{\thefootnote}{\arabic{footnote}) }
 
-\newcommand{\chptr}[2]{\chapter{#1\label{#2}}}
-\newcommand{\sect}[2]{\section{#1\label{#2}}}
-\newcommand{\ssect}[2]{\subsection{#1\label{#2}}}
+% forward reference
+\newcommand{\fwdref}[1]{\vspace{2em}\parindent0pt{\bfseries 前向引用}：#1。}
+
+% recommended practice
+\newcommand{\recprac}{\subsubsection*{推荐实践}}
+
+\usepackage{ifthen}
+
+% item key value with optional comment
+\newcommand{\itemkv}[3][]{
+  \item[]{
+    \makebox[20em]{\tm{#2 \hfill #3}}
+    \ifthenelse{\equal{#1}{}}{}{\quad\tm{//} \textit{#1}}
+  }
+}
+
+% example
+\newcounter{excntr}
+\makeatletter
+\newcommand{\ex}{\@ifstar\exnocntr\exwithcntr}
+\makeatother
+\newcommand{\exnocntr}{{\bfseries 例}\quad}
+\newcommand{\exwithcntr}{\stepcounter{excntr}{\bfseries 例 \theexcntr}\quad}
+
+% note
+\newcounter{notescntr}
+\makeatletter
+\newcommand{\notes}{\@ifstar\notesnocntr\noteswithcntr}
+\makeatother
+\newcommand{\notesnocntr}{{\bfseries 注}\quad}
+\newcommand{\noteswithcntr}{\stepcounter{notescntr}{\bfseries 注
+\thenotescntr}\quad}
+
+% doc structure, add labels
+\newcommand{\chptr}[2]{
+  \chapter{#1\label{#2}}
+  \setcounter{excntr}{0}
+  \setcounter{notescntr}{0}
+}
+\newcommand{\sect}[2]{
+  \section{#1\label{#2}}
+  \setcounter{excntr}{0}
+  \setcounter{notescntr}{0}
+}
+\newcommand{\ssect}[2]{
+  \subsection{#1\label{#2}}
+  \setcounter{excntr}{0}
+  \setcounter{notescntr}{0}
+}
 
 \newcounter{ssssectcntr} % create new counter for \subsubsubsection
 \newcommand{\sssect}[2]{
   \subsubsection{#1\label{#2}}
   \setcounter{ssssectcntr}{0} % start from 0
+  \setcounter{excntr}{0}
+  \setcounter{notescntr}{0}
 }
 
 % use paragraph as the next level section
@@ -44,9 +96,20 @@
   \stepcounter{ssssectcntr} % step \ssssectcntr
   \paragraph{#1\label{#2}}  % the \subsubsubsection
   \setcounter{paragraph}{0} % restart paragraph
+  \setcounter{excntr}{0}
+  \setcounter{notescntr}{0}
 }}
 
-\newcommand{\synsym}[2][]{\parindent0pt\mbox{\qquad\textit{#2:} #1}\linebreak}
+% text style shortcuts
+\newcommand{\bs}{\textbackslash}
+\newcommand{\dq}{\textquotedbl}
+\newcommand{\sq}{\textquotesingle}
+
+% syntax command
+\newcommand{\tm}[1]{\texttt{#1}}
+\newcommand{\nt}[1]{\textit{#1}}
+
+\newcommand{\synsym}[2][]{\parindent0pt\mbox{\qquad\nt{#2:} #1}\linebreak}
 \newcommand{\synprd}[2][\linebreak]{\mbox{\qquad\qquad #2}#1}
 
 \begin{document}
