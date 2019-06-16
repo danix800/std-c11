@@ -21,6 +21,7 @@
 % list style
 \setlist[enumerate,1]{label={\arabic*. }}
 \setlist[itemize,1]{label={---}}
+\setlist[itemize,2]{label=$\bullet$}
 
 \setcounter{tocdepth}{3}
 
@@ -67,8 +68,11 @@
   \setcounter{excntr}{0}
   \setcounter{notescntr}{0}
 }
-\newcommand{\sect}[2]{
-  \section{#1\label{#2}}
+\newcommand{\sect}[3][newpage]{
+  \ifthenelse{\equal{\arabic{section}}{0}}{}{
+    \ifthenelse{\equal{#1}{newpage}}{\newpage}{}
+  }
+  \section{#2\label{#3}}
   \setcounter{excntr}{0}
   \setcounter{notescntr}{0}
 }
