@@ -18,8 +18,11 @@
 \usepackage{chngcntr}
 \counterwithout{footnote}{chapter}
 
+% for lstlisting, mainly for examples
+\lstset{language=C}
+
 % list style
-\setlist[enumerate,1]{label={\arabic*. }}
+\setlist[enumerate,1]{label={\arabic*. },ref={\arabic*}}
 \setlist[itemize,1]{label={---}}
 \setlist[itemize,2]{label=$\bullet$}
 
@@ -33,7 +36,22 @@
 \newcommand{\fwdref}[1]{\vspace{2em}\parindent0pt{\bfseries 前向引用}：#1。}
 
 % recommended practice
-\newcommand{\recprac}{\subsubsection*{推荐实践}}
+\newcommand{\recprac}{\vspace{2em}\parindent0pt{\bfseries 推荐实践}}
+
+% syntax
+\newcommand{\syntax}{\vspace{2em}\parindent0pt{\bfseries 语法}}
+
+% constraint
+\newcommand{\constraint}{\vspace{2em}\parindent0pt{\bfseries 约束}}
+
+% description
+\newcommand{\desc}{\vspace{2em}\parindent0pt{\bfseries 描述}}
+
+% semantics
+\newcommand{\semantic}{\vspace{2em}\parindent0pt{\bfseries 语义}}
+
+% semantics
+\newcommand{\implimit}{\vspace{2em}\parindent0pt{\bfseries 实现限制}}
 
 \usepackage{ifthen}
 
@@ -108,13 +126,16 @@
 \newcommand{\bs}{\textbackslash}
 \newcommand{\dq}{\textquotedbl}
 \newcommand{\sq}{\textquotesingle}
+\newcommand{\tg}{\textgreater}
+\newcommand{\tl}{\textless}
 
 % syntax command
 \newcommand{\tm}[1]{\texttt{#1}}
 \newcommand{\nt}[1]{\textit{#1}}
 
-\newcommand{\synsym}[2][]{\parindent0pt\mbox{\qquad\nt{#2:} #1}\linebreak}
-\newcommand{\synprd}[2][\linebreak]{\mbox{\qquad\qquad #2}#1}
+\newcommand{\synsym}[2][]{\hspace{-2.5em}\parindent0pt\mbox{\qquad\nt{#2:} #1}
+                          \linebreak}
+\newcommand{\synprd}[2][\linebreak]{\mbox{\qquad\qquad\quad #2}#1}
 
 \begin{document}
 \maketitle
