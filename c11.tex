@@ -18,6 +18,12 @@
 \usepackage{chngcntr}
 \counterwithout{footnote}{chapter}
 
+% space btw footnotes
+\setlength{\footnotesep}{0.5cm}
+
+% space btw text body and 1st footnote
+\setlength{\skip\footins}{0.6cm}
+
 % for lstlisting, mainly for examples
 \lstset{language=C}
 
@@ -128,6 +134,11 @@
 \newcommand{\sq}{\textquotesingle}
 \newcommand{\tg}{\textgreater}
 \newcommand{\tl}{\textless}
+
+\newcommand{\dsh}{\textendash}
+\newcommand{\ttim}{\texttimes}
+\newcommand{\tsup}{\textsuperscript}
+\newcommand{\tsub}{\textsubscript}
 
 % syntax command
 \newcommand{\tm}[1]{\texttt{#1}}

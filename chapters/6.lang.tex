@@ -427,8 +427,8 @@ $N$个值位，则$M \le N$）。如果符号位为零，则不会影响结果�
 \paragraph{}
 如果实现支持负零，其应该仅能通过以下生成：
 \begin{itemize}
-  \item{运算符\tm{\&，|，\^，~，\textless{}\textless{}}和
-    \tm{\textgreater{}\textgreater{}}，具有产生该值的操作数；}
+  \item{运算符\tm{\&，|，\^，~，\tl{}\tl{}}和\tm{\tg{}\tg{}}，具有产生该值的操作
+    数；}
   \item{运算符\tm{+，-，*，/}和\tm{\%}，其中一个操作数为负零，结果为零；}
   \item{基于以上情形的复合赋值运算符；}
 \end{itemize}
@@ -436,7 +436,7 @@ $N$个值位，则$M \le N$）。如果符号位为零，则不会影响结果�
 
 \paragraph{}
 如果实现不支持负零，具有产生该值的操作数的运算符\tm{\&，|，\^，~，
-\textless{}\textless{}}和\tm{\textgreater{}\textgreater{}}的行为未定义。
+\tl{}\tl{}}和\tm{\tg{}\tg{}}的行为未定义。
 
 \paragraph{}
 填充位的值未指定。\footnote{填充位的某些组合可能会生成陷阱表示，例如填充位是
@@ -735,7 +735,7 @@ $N$个值位，则$M \le N$）。如果符号位为零，则不会影响结果�
 
 \paragraph{}
 值为$0$的整型常量表达式或转换为\tm{void *}类型的这种表达式，称为\textit{空指针常
-量}。\footnote{\tm{stddef.h}（或其他头）中的宏\tm{NULL}定义为零指针常量；见
+量}。\footnote{\tm{<stddef.h>}（或其他头）中的宏\tm{NULL}定义为零指针常量；见
 \ref{lib.def}。} 如果将零指针常量转换为指针类型，则结果指针，称为\textit{零指针}
 ，与指向任何对象或函数的指针进行比较将保证不等。
 
@@ -1401,7 +1401,7 @@ $N$个值位，则$M \le N$）。如果符号位为零，则不会影响结果�
 \paragraph{}
 \synsym[one of]{punctuator}
   \synprd{\tm{[ ] ( ) \{ \} .\ ->}}
-  \synprd{\tm{++ \textendash\textendash\ \& * + - \~\ !}}
+  \synprd{\tm{++ -\dsh\ \& * + - \~\ !}}
   \synprd{\tm{/ \% \tl{}\tl\ \tg{}\tg\ < > <= >= == != \^\ | \&\& ||}}
   \synprd{\tm{?\ :\ ; ...}}
   \synprd{\tm{= *= /= \%= += -= \tl{}\tl{}= \tg{}\tg{}= \&= \^{}= |=}}
@@ -1529,129 +1529,2290 @@ $N$个值位，则$M \le N$）。如果符号位为零，则不会影响结果�
 \end{lstlisting}
 
 \sect{表达式}{lang.expr}
-\paragraph{}<++>
-\paragraph{}<++>
-\paragraph{}<++>
-\paragraph{}<++>
-\paragraph{}<++>
-\paragraph{}<++>
-\paragraph{}<++>
-\paragraph{}<++>
-\fwdref{}<++>
+\paragraph{}
+\textit{表达式}指一系列运算符和操作数，用于指定值的计算，或指定对象或函数，或生
+成副作用，或执行其组合。对运算符的操作数的值计算前序于运算符结果进行值计算。
+
+\paragraph{}
+如果一个标量对象的副作用相对于同一个标量对象的另一个副作用或使用同一个标量对象的
+值进行的值计算无序，则行为未定义。如果一个表达式的子表达式有多个允许的顺序，那么
+如果在任何顺序中出现这样一个无序的副作用，那么该行为未定义。\footnote{该段落说明
+未定义语句表达式如                                                            \\
+\mbox{\hspace{4em}\tm{i = ++i + 1;}}                                          \\
+\mbox{\hspace{4em}\tm{a[i++] = i;}}                                           \\
+而允许                                                                        \\
+\mbox{\hspace{4em}\tm{i = i + 1;}}                                            \\
+\mbox{\hspace{4em}\tm{a[i] = i;}}}
+
+\paragraph{}
+运算符和操作数的分组由语法指示。\footnote{该语法指定表达式计算中运算符的优先级，
+该优先级与该章节的主要子章节顺序相同，首先是最高优先级。因此，例如，允许作为二元
+\tm{+}运算符（\ref{lang.expr.add}）的操作数的表达式是\ref{lang.expr.prim}到
+\ref{lang.expr.add}中定义的表达式。例外情况是将表达式（\ref{lang.expr.cast}）转
+换为一元运算符（\ref{lang.expr.unary}）的操作数，以及包含在以下任意一对运算符之
+间的操作数：分组括号\tm{()}（\ref{lang.expr.prim}）、下标括号\tm{[]}
+（\ref{lang.expr.post.sub}）、函数调用括号\tm{()}（\ref{lang.expr.post.call}）和
+条件运算符\tm{?:}（\ref{lang.expr.cond}）。\vspace{0.2cm}
+
+\ \ 在每个主要子章节中，运算符具有相同的优先级。在每个子章节中，通过其中讨论的表
+达式的语法来表示左关联性或右关联性。} 除非后面另有规定，否则子表达式的副作用和值
+计算是无序的。\footnote{在程序执行期间多次计算的表达式中，不必在不同的计算中一致
+地执行其子表达式的无序和不确定性有序的计算。}
+
+\paragraph{}
+某些运算符（一元运算符\tm{\~}和二元运算符\tm{\tl{}\tl}，\tm{\tg{}\tg}，\tm{\&}，
+\tm{\^}和\tm{|}统称为\textit{位运算符}）需要具有整型操作数。这些运算符产生的值依
+赖于整数的内部表示，并实现定义和未定义的有符号类型。
+
+\paragraph{}
+如果在表达式的计算过程中出现\textit{异常情况}（即，如果结果没有数学定义或不在其
+类型的可表示值范围内），则行为未定义。
+
+\paragraph{}
+用于访问存储值的对象\textit{有效类型}是声明的对象类型（如果有）。\footnote{分配
+对象无类型。} 如果通过具有非字符类型的左值将值存储到没有声明类型的对象中，则左值
+的类型将成为该访问和不修改存储值的后续访问的对象的有效类型。如果使用\tm{memcpy}
+或\tm{memmove}将某个值复制到没有声明类型的对象中，或将该值复制为字符类型的数组，
+则对于该访问和不修改该值的后续访问，被修改对象的有效类型是从中复制该值的对象的有
+效类型（如果它有）。对于没有声明类型的对象的所有其他访问，对象的有效类型只是用于
+访问的左值的类型。
+
+\paragraph{}
+对象的存储值只能由具有以下类型之一的左值表达式访问：\footnote{此列表的目的是指定
+对象可能有别名，也可能没有别名的情况。}
+\begin{itemize}
+  \item{对象有效类型的兼容类型，}
+  \item{对象有效类型的兼容类型的限定版本，}
+  \item{对象有效类型对应的有符号或无符号类型，}
+  \item{对象有效类型限定版本对应的有符号或无符号类型，}
+  \item{聚合或联合类型，在其成员中包含上述类型之一（递归地包括子聚合或包含的联合
+    的成员）。}
+  \item{字符类型。}
+\end{itemize}
+
+\paragraph{}
+浮动表达式可以\textit{压缩}，也就是说，像单个操作一样对其进行计算，从而省略源代
+码和表达式计算方法所隐含的舍入错误。\footnote{压缩表达式中的中间操作的计算范围和
+精度都是无限的，而最终操作的计算格式则由表达式计算方法确定。压缩表达式还可以省略
+引发浮点异常。} \tm{<math.h>}中的\tm{FP\_CONTRACT} pragma提供了一种禁止压缩表达
+式的方法。否则，表达式是否压缩以及如何压缩由实现定义。\footnote{此许可专门用于允
+许实现利用结合多个C运算符的快速机器指令。由于压缩可能会破坏可预测性，甚至会降低
+包含表达式的准确性，因此需要对其使用进行明确定义并清楚地记录。}
+
+\fwdref{7.12.2，7.24.2}
 
 \ssect{主表达式}{lang.expr.prim}
 \syntax
-\paragraph{}<++>
+\paragraph{}
+\synsym{primary-expression}
+  \synprd{\nt{identifier}}
+  \synprd{\nt{constant}}
+  \synprd{\nt{string-literal}}
+  \synprd{\tm{(} \nt{expression} \tm{)}}
+  \synprd[]{\nt{generic-selection}}
+
+\semantic
+\paragraph{}
+标识符是主表达式，前提是它已声明为指定对象（在这种情况下它是左值）或函数（在这种
+情况下它是函数指示符）。\footnote{因此，未声明的标识符违反语法。}
+
+\paragraph{}
+常量是主表达式。其类型取决于其形式和值，如\ref{lang.lex.const}所述。
+
+\paragraph{}
+字符串文字是主表达式。它是一个左值，类型如\ref{lang.lex.str}所述。
+
+\paragraph{}
+带圆括号的表达式是主表达式。它的类型和值与未加括号表达式的类型和值相同。如果未加
+括号的表达式分别是左值、函数指示符或\tm{void}表达式，则它是左值、函数指示符或
+\tm{void}表达式。
+
+\paragraph{}
+泛型选择是主表达式。它的类型和值取决于所选的泛型关联，后文详述。
+
+\fwdref{6.7}
 
 \sssect{泛型选择}{lang.expr.prim.generic}
+\syntax
+\paragraph{}
+\synsym{generic-selection}
+  \synprd{\tm{\_Generic (} \nt{assignment-expression} \tm{,}
+    \nt{generic-assoc-list} \tm{)}}
+\synsym{generic-assoc-list}
+  \synprd{\nt{generic-association}}
+  \synprd{\nt{generic-assoc-list} \tm{,} \nt{generic-association}}
+\synsym{generic-association}
+  \synprd{\nt{generic-association} \tm{:} \nt{association-expression}}
+  \synprd[]{\tm{default} \tm{:} \nt{assignment-expression}}
+
+\constraint
+\paragraph{}
+一个泛型选择应具有不超过一个\tm{default}泛型关联。泛型关联中的类型名应指定一个完
+整的对象类型，而不是可变修改类型。同一个泛型选择中两个泛型关联不得指定兼容类型。
+泛型选择的控制表达式的类型应至少与其泛型关联列表中指定的一种类型兼容。如果泛型选
+择没有\tm{default}泛型关联，则其控制表达式的类型应仅与泛型关联列表中指定的类型之
+一兼容。
+
+\semantic
+\paragraph{}
+不计算泛型选择的控制表达式。如果泛型选择具有与控制表达式的类型兼容的类型名的泛型
+关联，则泛型选择的结果表达式就是该泛型关联中的表达式。否则，泛型选择的结果表达式
+是\tm{default}泛型关联中的表达式。不计算来自泛型选择的任何其他泛型关联的表达式。
+
+\paragraph{}
+泛型选择的类型和值与其结果表达式的类型和值相同。如果结果表达式分别是左值、函数指
+示符或\tm{void}表达式，则它是左值、函数指示符或\tm{void}表达式。
+
+\paragraph{}
+\ex* \tm{cbrt}泛类型宏可能按如下实现：
+\begin{lstlisting}
+    #define cbrt(X) _Generic((X)),                \
+                            long double: cbrtl, \
+                            default: cbrt,        \
+                            float: cbrtf          \
+                            )(X)
+\end{lstlisting}
 
 \ssect{后缀运算符}{lang.expr.post}
+\syntax
+\paragraph{}
+\synsym{postfix-expression}
+  \synprd{\nt{primary-expression}}
+  \synprd{\nt{postfix-expression} \tm{[} \nt{expression} \tm{]}}
+  \synprd{\nt{postfix-expression} \tm{(} \nt{argument-expression-list$_{opt}$}
+    \tm{)}}
+  \synprd{\nt{postfix-expression} \tm{.} \nt{identifier}}
+  \synprd{\nt{postfix-expression} \tm{->} \nt{identifier}}
+  \synprd{\nt{postfix-expression} \tm{++}}
+  \synprd{\nt{postfix-expression} \tm{-\dsh}}
+  \synprd{\tm{(} \nt{type-name} \tm{) \{} \nt{initializer-list} \tm{\}}}
+  \synprd{\tm{(} \nt{type-name} \tm{) \{} \nt{initializer-list} \tm{, \}}}
+\synsym{argument-expression-list}
+  \synprd{\nt{argument-expression}}
+  \synprd[]{\nt{argument-expression-list} \tm{,} \nt{argument-expression}}
+
 \sssect{数组下标}{lang.expr.post.sub}
+\constraint
+\paragraph{}
+其中一个表达式的类型应为``指向完整对象\nt{type}的指针''，另一个表达式的类型应为
+整数，结果的类型应为``\nt{type}''。
+
+\semantic
+\paragraph{}
+后缀表达式后跟方括号\tm{[]}中的表达式是数组对象元素的下标指定。下标运算符\tm{[]}
+的定义是\tm{E1[E2]}与\tm{(*((E1)+(e2)))}相同。由于应用于二元\tm{+}运算符的转换规
+则，如果\tm{E1}是数组对象（相当于数组对象的初始元素的指针），\tm{E2}是整数，
+\tm{E1[E2]}指定\tm{E1}的第\tm{E2}个元素（从零开始计数）。
+
+\paragraph{}
+连续的下标运算符指定多维数组对象的元素。如果\tm{E}是大小为$i\times j\times\cdots
+\times k$的$n$维数组（$n\ge 2$），那么将\tm{E}（用作左值以外的值）转换为指向大小
+为$j\times\cdots\times k$的$(n-1)$维数组的指针。如果一元\tm{*}运算符显式或由于下
+标隐式应用于此指针，则结果是引用的$(n-1)$维数组，如果将其用作除左值外，则该数组
+本身会转换为指针。由此可知数组按行主顺序存储（最后一个下标变化最快）。
+
+\paragraph{}
+\ex 考虑由以下声明定义的数组对象
+\begin{lstlisting}
+    int x[3][5];
+\end{lstlisting}
+这里\tm{x}是一个$3\times 5$的\tm{int}数组；准确地说，\tm{x}是由三个元素对象组成
+的数组，每个元素对象都是一个由五个\tm{int}组成的数组。在表达式\tm{x[i]}中，相当
+于\tm{(*((x)+(i)))}，\tm{x}首先被转换为指向初始$5$个\tm{int}数组的指针。然后根据
+\tm{x}的类型来调整\tm{i}，概念上需要将\tm{i}乘以指针指向的对象的大小，即一个由五
+个\tm{int}对象组成的数组。将结果相加，并应用间接取值生成一个五个\tm{int}的数组。
+当在表达式\tm{x[i][j]}中使用时，该数组转换为指向第一个\tm{int}的指针，因此
+\tm{x[i][j]}生成一个\tm{int}。
+
+\fwdref{6.5.6，6.5.3.2，6.7.6.2}
+
 \sssect{函数调用}{lang.expr.post.call}
+\constraint
+\paragraph{}
+表示被调用函数\footnote{通常情况下是转换作为函数指示符的标识符的结果。}的表达式
+的类型应该是指向返回\tm{void}的函数的指针，或指向返回除数组类型以外的完整对象类
+型的函数指针。
+
+\paragraph{}
+如果表示被调用函数的表达式具有包含原型的类型，则实参的数量应与形参的数量一致。每
+个实参的类型应使其值可以赋给具有相应形参类型的非限定版本的对象。
+
+\semantic
+\paragraph{}
+后缀表达式后跟括号\tm{()}，其中包含可能为空的逗号分隔的表达式列表，是一个函数调
+用。后缀表达式表示被调用的函数。表达式列表指定函数的实参。
+
+\paragraph{}
+实参可以是任何完整对象类型的表达式。在准备对函数的调用时，将计算实参值，并将实参
+的值赋给每个对应的形参。\footnote{函数可以更改其形参的值，但这些更改不会影响实参
+的值。另一方面，可以将指针传递给对象，并且函数可以更改所指向对象的值。声明为具有
+数组或函数类型的参数被调整为具有如\ref{lang.extn.fct}所述的指针类型。}
+
+\paragraph{}
+如果表示被调用函数的表达式具有指向返回对象类型的函数指针类型，则该函数调用表达式
+与该对象类型具有相同的类型，并且具有\ref{lang.stmt.jmp.ret}中指定的值。否则，函
+数调用的类型为\tm{void}。
+
+\paragraph{}
+如果表示被调用函数的表达式具有不包含原型的类型，则对每个参数执行整数提升，并且将
+具有\tm{float}类型的实参提升为\tm{double}。这些被称为\textit{缺省参数提升}。如果
+实数个数不等于形参个数，则行为未定义。如果函数是用包含原型的类型定义的，并且原型
+以省略号\tm{(, \ldots)}结尾，或者提升后的实参类型与形参类型不兼容，则行为未定义。
+如果函数是用不包含原型的类型定义的，并且提升后实参的类型与形参的类型不兼容，则行
+为未定义，但以下情况除外：
+\begin{itemize}
+  \item{其中一个提升后类型为有符号整型，另一个提升后的类型为对应的无符号整型，且
+    值均可用两个类型表示；}
+  \item{两个类型均为指向字符类型或\tm{void}类型的限定或未限定版本的指针。}
+\end{itemize}
+
+\paragraph{}
+如果表示被调用函数的表达式具有包含原型的类型，则实参将隐式转换为相应形参的类型，
+如同通过赋值一样，将每个形参的类型作为其声明类型的非限定版本。函数原型声明符中的
+省略号表示法导致参数类型转换在最后一个声明的参数之后停止。缺省参数提升对随后的参
+数执行。
+
+\paragraph{}
+不会隐式执行其他转换；特别是，实参的数量和类型不会与不包含函数原型声明符的函数定
+义中的形参进行比较。
+
+\paragraph{}
+如果函数定义的类型与表示被调用函数的表达式所指向的类型（表达式的类型）不兼容，则
+行为未定义。
+
+\paragraph{}
+在函数指示符和实参的计算之后，但在实际调用之前有一个序列点。调用函数（包括其他函
+数调用）中的每个计算，如在被调用函数体执行之前或之后没有以其他方式进行特殊排序，
+则相对被调用函数的执行是不确定性有序的。\footnote{换句话说函数执行不会彼此
+``交错''。}
+
+\paragraph{}
+允许通过任何其他函数链直接或间接进行递归函数调用。
+
+\paragraph{}
+\ex* 函数调用
+\begin{lstlisting}
+    (*pf[f1()]) (f2(), f3() + f4())
+\end{lstlisting}
+函数\tm{f1}，\tm{f2}，\tm{f3}和\tm{f4}可能以任何顺序调用。所有副作用必须在由
+\tm{pf[f1()]}所指向的函数调用之前完成。
+
+\fwdref{6.7.6.3，6.9.1，6.8.6.4，6.5.16.1}
+
 \sssect{结构与联合成员}{lang.expr.post.mem}
+\constraint
+\paragraph{}
+运算符\tm{.}的第一操作数应具有原子、限定或未限定的结构或联合类型，第二操作数应命
+名该类型的成员。
+
+\paragraph{}
+运算符\tm{->}的第一操作数应具有``指向原子、限定或未限定结构的指针''或``指向原子
+、限定或未限定联合的指针''类型，第二操作数应命名指向的类型的成员。
+
+\semantic
+\paragraph{}
+后缀表达式后跟\tm{.}运算符和标识符指定结构或联合对象成员。其值是所命名成员的值，
+\footnote{如果用于读取联合对象内容的成员与上次用于在对象中存储值的成员不同，则该
+值的对象表示的适当部分将重新解释为\ref{lang.concept.repr}中所述的新类型中的对象
+表示（有时称为``类型双关''）。这可能是一个陷阱表示。} 如果第一个表达式是左值，则
+该值是左值。如果第一个表达式具有限定类型，则结果具有指定成员类型的限定版本。
+
+\paragraph{}
+后缀表达式后跟\tm{->}运算符和标识符指定结构或联合对象的成员。其值是第一个表达式
+指向的对象的命名成员的值，并且是左值。\footnote{如果\tm{\&E}是有效的指针表达式
+（其中\tm{\&}是``取地址''运算符，该运算符生成指向其操作数的指针），则表达式
+\tm{(\&E)->MOS}与\tm{E.MOS}相同。} 如果第一个表达式是指向限定类型的指针，则结果
+具有指定成员类型的限定版本。
+
+\paragraph{}
+访问原子结构或联合对象的成员会导致未定义行为。\footnote{例如，如果对一个线程中的
+整个结构或联合的访问与对另一个线程中的成员的访问发生冲突，则会发生数据争用，其中
+至少有一个访问是修改。可以使用分配给原子对象或从原子对象分配的非原子对象安全地访
+问成员。}
+
+\paragraph{}
+为了简化联合的使用，有一个特殊保证：如果联合包含多个共享公共初始序列的结构（见下
+文），并且如果联合对象当前包含这些结构中的一个，则允许访问任何联合完全类型的声明
+可见的地方其中任何一个结构的公共初始部分。如果对应成员对一个或多个初始成员的序列
+具有兼容类型（对于位字段，宽度相同），则两个结构共享一个\textit{公共的初始序列}。
+
+\paragraph{}
+\ex 如果\tm{f}是返回结构或联合的函数，而\tm{x}是该结构或联合的成员，则\tm{f{}.x}
+是有效的后缀表达式，但不是左值。
+
+\paragraph{}
+\ex 以下代码中
+\begin{lstlisting}
+    struct s { int i; const int ci; };
+    struct s s;
+    const struct s cs;
+    volatile struct s vs;
+\end{lstlisting}
+多个成员的类型为：
+\begin{lstlisting}
+    s.i     int
+    s.ci    const int
+    cs.i    const int
+    cs.ci   const int
+    vs.i    volatile int
+    vs.ci   volatile const int
+\end{lstlisting}
+
+\paragraph{}
+\ex 以下为合法片断：
+\begin{lstlisting}
+    union {
+      struct {
+        int alltypes;
+      } n;
+      struct {
+        int type;
+        int intnode;
+      } ni;
+      struct {
+        int type;
+        double doublenode;
+      } nf;
+    } u;
+    u.nf.type = 1;
+    u.nf.doublenode = 3.14;
+    /* ... */
+    if (u.n.alltypes == 1)
+      if (sin(u.nf.doublenode) == 0.0)
+        /* ... */
+\end{lstlisting}
+以下片断不合法（因为在函数\tm{f}内联合类型不可见）：
+\begin{lstlisting}
+    struct t1 { int m; };
+    struct t2 { int m; };
+    int f(struct t1 *p1, struct t2 *p2)
+    {
+      if (p1->m < 0)
+      p2->m = -p2->m;
+      return p1->m;
+    }
+    int g()
+    {
+      union {
+        struct t1 s1;
+        struct t2 s2;
+      } u;
+      /* ... */
+      return f(&u.s1, &u.s2);
+    }
+\end{lstlisting}
+
+\fwdref{6.5.3.2，6.7.2.1}
+
 \sssect{后自增与自减}{lang.expr.post.incr}
+\constraint
+\paragraph{}
+后缀递增或递减运算符的操作数应具有原子、限定或不限定的实数或指针类型，并且应为可
+修改的左值。
+
+\semantic
+\paragraph{}
+后缀\tm{++}运算符的结果是操作数的值。作为副作用，操作数对象的值递增（即，将适当
+类型的值\tm{1}添加到该对象中）。有关约束、类型和转换以及操作对指针的影响的信息见
+加法运算符和复合赋值的讨论。结果的值计算前序于更新操作数存储值的副作用。对于不确
+定有序的函数调用，后缀\tm{++}的操作是单个计算。原子类型对象的后缀\tm{++}是一个读
+-修改-写操作，具有\tm{memory\_order\_seq\_cst}语义。\footnote{如果可以形成指向原
+子对象的指针，并且\tm{E}具为整型，则\tm{E++}相当于以下代码序列，其中\tm{T}是
+\tm{E}的类型：                                                                \\
+  \newcommand{\mbx}[2][4em]{\mbox{\hspace{#1}\tm{#2}}}
+  \mbx{T *addr = \&E;}                                                        \\
+  \mbx{T old = *addr;}                                                        \\
+  \mbx{T new;}                                                                \\
+  \mbx{do \{;}                                                                \\
+  \mbx[6em]{new = old + 1;}                                                   \\
+  \mbx{\} while (!atomic\_compare\_exchange\_strong(addr, \&old, new));}      \\
+\tm{old}为操作结果。                                                          \\
+如果\tm{E}为浮点类型则必须进行特别处理；见\ref{lang.expr.assign.cmpd}。}
+
+\paragraph{}
+后缀\tm{-\dsh}运算符类似于后缀\tm{++}运算符，只是操作数的值是递减的（即从
+中减去相应类型的值$1$）。
+
+\fwdref{6.5.6，6.5.12.2}
+
 \sssect{复合字面值}{lang.expr.post.cmpd}
+\constraint
+\paragraph{}
+类型名应指定完整的对象类型或未知大小的数组，但不能指定可变长度的数组类型。
+
+\paragraph{}
+\ref{lang.dcl.init}中初始化列表的所有约束也适用于复合字面值。
+
+\semantic
+\paragraph{}
+由带圆括号的类型名后跟括号的初始值设定项列表组成的后缀表达式是\textit{复合字面
+值}。它提供一个未命名的对象，其值由初始化列表给定。\footnote{注意这与强制转换表
+达式不同。例如，强制转换仅指定到标量类型或\tm{void}的转换，并且强制转换表达式的
+结果不是左值。}
+
+\paragraph{}
+如果类型名指定了一个大小未知的数组，则该大小由初始化列表确定，如
+\ref{lang.dcl.init}中所指定，并且复合字面值的类型是完整数组类型的类型。否则（当
+类型名指定对象类型时），复合字面值的类型是由类型名指定的类型。在这两种情况下，结
+果都是左值。
+
+\paragraph{}
+复合字面值的值为初始化列表初始化的未命名对象的值。如复合字面值出现在函数体外部，
+则对象具有静态存储期；否则，它具有与包含块关联的自动存储期。
+
+\paragraph{}
+\ref{lang.dcl.init}中初始化列表的所有语义规则也适用于复合字面值。\footnote{比如
+无显式初始化的子对象初始化成零。}
+
+\paragraph{}
+字符串文本和具有常限定类型的复合字面值不需要指定不同的对象。\footnote{这允许实现
+共享具有相同或重叠表示形式的字符串文本和常复合字面值的存储。}
+
+\paragraph{}
+\ex 文件作用域定义
+\begin{lstlisting}
+    int *p = (int []){2, 4};
+\end{lstlisting}
+初始化\tm{p}指向两个\tm{int}数组的第一个元素，第一个元素的值为$2$，第二个元素的
+值为$4$。此复合字面值中的表达式必须是常量。未命名对象具有静态存储持续时间。
+
+\paragraph{}
+\ex 相比之下，以下片断中
+\begin{lstlisting}
+    void f(void)
+    {
+      int *p;
+      /*...*/
+      p = (int [2]){*p};
+      /*...*/
+    }
+\end{lstlisting}
+\tm{p}被赋以两个\tm{int}数组的第一个元素的地址，第一个元素的值以前被\tm{p}指向，
+第二个元素的值为零。此复合字面值中的表达式不必是常量。未命名对象具有自动存储期。
+
+\paragraph{}
+\ex 指定初始化可以与复合字面值组合。使用复合字面值创建的结构对象可以传递给函数，
+而不依赖于成员顺序：
+\begin{lstlisting}
+    drawline((struct point){.x=1, .y=1},
+             (struct point){.x=3, .y=4});
+\end{lstlisting}
+或者如果\tm{drawline}期望的是\tm{struct point}的指针：
+\begin{lstlisting}
+    drawline(&(struct point){.x=1, .y=1},
+             &(struct point){.x=3, .y=4});
+\end{lstlisting}
+
+\paragraph{}
+\ex 只读复合字面值可通过以下结构指定：
+\begin{lstlisting}
+    (const float []){1e0, 1e1, 1e2, 1e3, 1e4, 1e5, 1e6}
+\end{lstlisting}
+
+\paragraph{}
+\ex 以下三个表达式具有不同语义：
+\begin{lstlisting}
+    "/tmp/fileXXXXXX"
+    (char []){"/tmp/fileXXXXXX"}
+    (const char []){"/tmp/fileXXXXXX"}
+\end{lstlisting}
+第一个始终具有静态存储期，并且具有\tm{char}类型数组，但不需要可修改；最后两个在
+函数体中时具有自动存储期，两个中的第一个可修改。
+
+\paragraph{}
+\ex 与字符串文本一样，常限定的复合字面值可以放置在只读内存中，甚至可以共享。如，
+\begin{lstlisting}
+    (const char []){"abc"} == "abc"
+\end{lstlisting}
+如果字面值共享存储则可能产生$1$。
+
+\paragraph{}
+\ex 由于复合字面值未命名，单个复合字面值不能指定循环链接的对象。例如，无法编写可
+用作函数参数的自引用复合字面值，而不是下面的命名对象\tm{endless\_zeros}：
+\begin{lstlisting}
+    struct int_list { int car; struct int_list *cdr; };
+    struct int_list endless_zeros = {0, &endless_zeros};
+    eval(endless_zeros);
+\end{lstlisting}
+
+\paragraph{}
+\ex 每一个复合字面值在给定作用域中仅创建一个对象：
+\begin{lstlisting}
+    struct s { int i; };
+    int f (void)
+    {
+      struct s *p = 0, *q;
+      int j = 0;
+    again:
+      q = p, p = &((struct s){ j++ });
+      if (j < 2) goto again;
+      return p == q && q->i == 1;
+    }
+\end{lstlisting}
+函数\tm{f()}总是返回$1$。
+
+\paragraph{}
+\notes* 如果使用迭代语句而不是显式\tm{goto}和带标签的语句，则未命名对象的生存期
+将仅为循环体，并且在下次进入时\tm{p}将有一个不确定的值，将导致未定义的行为。
+
+\fwdref{6.7.7，6.7.9}
 
 \ssect{一元运算符}{lang.expr.unary}
-\sssect{前自增与自减}{lang.expr.unary.incr}
-\sssect{地址与取值}{lang.expr.unary.addr}
+\syntax
+\paragraph{}
+\synsym{unary-expression}
+  \synprd{\nt{postfix-expression}}
+  \synprd{\tm{++} \nt{unary-expression}}
+  \synprd{\tm{-\dsh{}} \nt{unary-expression}}
+  \synprd{\nt{unary-operator cast-expression}}
+  \synprd{\tm{sizeof} \nt{unary-expression}}
+  \synprd{\tm{sizeof (} \nt{type-name} \tm{)}}
+  \synprd{\tm{\_Alignof (} \nt{type-name} \tm{)}}
+\synsym[one of]{unary-operator}
+  \synprd[]{\tm{\&\ \ *\ \ +\ \ -\ \ \~\ \ !}}
+
+\sssect{前缀自增与自减}{lang.expr.unary.incr}
+\constraint
+\paragraph{}
+前缀自增或自减运算符的操作数应为原子、限定或不限定的实类型或指针类型，并且应为可
+修改左值。
+
+\semantic
+\paragraph{}
+前缀\tm{++}运算符的操作数的值递增。结果是递增后操作数的新值。表达式\tm{++E}等价于
+\tm{(E+=1)}。有关约束、类型、副作用和转换以及操作对指针的影响的信息，请参阅加法
+运算符和复合赋值的讨论。
+
+\paragraph{}
+前缀\tm{-\dsh}运算符类似于\tm{++}运算符，只是操作数的值是递减的。
+
+\fwdref{6.5.6，6.5.16.2}
+
+\sssect{地址与间接寻址}{lang.expr.unary.addr}
+\constraint
+\paragraph{}
+一元运算符\tm{\&}的操作数应为函数、\tm{[]}或一元\tm{*}运算符的结果，或指代非位字
+段且未用\tm{register}存储类说明符声明的对象的左值。
+
+\paragraph{}
+一元\tm{*}运算符的操作数应为指针类型。
+
+\semantic
+\paragraph{}
+一元运算符\tm{\&}产生其操作数的地址。如果操作数的类型为``\nt{type}''，则结果的类
+型为``指向\nt{type}的指针''。如果操作数是一元\tm{*}运算符的结果，则既不计算该运
+算符，也不计算\tm{\&}运算符，并且结果就像两者都被省略一样，除对运算符的约束仍然
+适用且结果不是左值。同样，如果操作数是\tm{[]}运算符的结果，则不计算\tm{[]}所隐含
+的一元\tm{\&}或\tm{*}运算符，结果就像删除了\tm{\&}运算符而将\tm{[]}运算符更改为
+\tm{+}运算符一样。否则，结果是指向由其操作数指定的对象或函数的指针。
+
+\paragraph{}
+一元\tm{*}运算符表示间接寻址。如果操作数指向函数，则结果为函数指示符；如果指向对
+象，则结果为指定对象的左值。如果操作数的类型为``指向\nt{type}的指针''，则结果的
+类型为``\nt{type}''。如果为指针分配了无效值，则一元\tm{*}运算符的行为未定义。
+\footnote{因此，\tm{\&*E}等于\tm{E}（即使\tm{E}是零指针），\tm{\&(E1[E2])}等于
+\tm{((E1)+(E2))}。如\tm{E}是作为一元\tm{\&}运算符有效操作数的函数指示符或左值，
+\tm{*\&E}是一个等于\tm{E}的函数指示符或左值则总是正确的。如果\tm{*P}是左值，
+\tm{T}是对象指针类型的名称，\tm{*(T)P}是一个左值，其类型与\tm{T}指向的类型兼容。
+
+一元\tm{*}运算符解指针引用的无效值包括零指针、所指对象类型不适当对齐的地址，以及
+对象生存期结束后的地址。}
+
+\fwdref{6.7.1，6.7.2.1}
+
 \sssect{一元算术运算符}{lang.expr.unary.arith}
-\sssect{sizeof和alignof}{lang.expr.unary.sizeof}
+\constraint
+\paragraph{}
+一元\tm{+}或\tm{-}运算符的操作数应具有算术类型；\tm{\~}运算符的操作数应为整型；
+\tm{!}运算符操作数应为标量类型。
+
+\semantic
+\paragraph{}
+一元\tm{+}运算符的结果是其（提升后）操作数的值。对操作数执行整型提升，结果具有提
+升后的类型。
+
+\paragraph{}
+一元\tm{-}运算符的结果是其（提升后）操作数的负数。对操作数执行整型提升，结果具有
+提升后的类型。
+
+\paragraph{}
+\tm{\~}运算符的结果是其（提升后）操作数的按位补（当且仅当转换操作数中的相应位未
+设置的情况下才会设置对应位）。对操作数执行整型提升，结果具有提升后的类型。如果提
+升后的类型是无符号类型，则表达式\tm{\~E}等于该类型中可表示的最大值减去\tm{E}.
+
+\paragraph{}
+如果逻辑取反运算符\tm{!}的操作数值不等于0，则结果为0；如果操作数值等于0，则结果
+为1。结果的类型为\tm{int}。表达式\tm{!E}等于\tm{(0==E)}。
+
+\sssect{sizeof和\_Alignof}{lang.expr.unary.sizeof}
+\constraint
+\paragraph{}
+\tm{sizeof}运算符不应用于具有函数类型或不完整类型的表达式、此类类型的带圆括号的
+名称或指代位域成员的表达式。\tm{\_Alignof}运算符不应用于函数类型或不完整类型。
+
+\semantic
+\paragraph{}
+\tm{sizeof}运算符生成其操作数的大小（以字节为单位），该大小可以是表达式或类型的
+带括号名称。大小由操作数的类型决定。结果是一个整数。如果操作数的类型是可变长度数
+组类型，则计算该操作数；否则，不计算该操作数，结果为整数常量。
+
+\paragraph{}
+\tm{\_Alignof}运算符生成其操作数类型的对齐要求。不计算操作数，结果为整数常量。当
+用于数组类型时，结果是元素类型的对齐要求。
+
+\paragraph{}
+当\tm{sizeof}应用于类型为\tm{char}、\tm{unsigned char}或\tm{signed char}（或其限
+定版本）的操作数时，结果为1。当用于具有数组类型的操作数时，结果是数组中的字节总
+数。\footnote{当用于声明为数组或函数类型的参数时，\tm{sizeof}运算符生成调整（指
+针）类型的大小（见\ref{lang.extn.fct}）。} 当用于具有结构或联合类型的操作数时，
+结果是此类对象中的字节总数，包括内部填充和尾部填充。
+
+\paragraph{}
+这两个运算符的结果值都是实现定义的，其类型（无符号整型）是\tm{size\_t}，在
+\tm{<stddef.h>}（和其他头）中定义。
+
+\paragraph{}
+\ex \tm{sizeof}运算符的主要用途是与存储分配器和I/O系统等例程通信。存储分配函数可
+以接受待分配对象的大小（以字节为单位），并返回指向\tm{void}的指针。例如：
+\begin{lstlisting}
+    extern void *alloc(size_t);
+    double *dp = alloc(sizeof *dp);
+\end{lstlisting}
+\tm{alloc}函数的实现应确保其返回值适当对齐，以便转换为指向\tm{double}的指针。
+
+\paragraph{}
+\ex \tm{sizeof}运算符的另一个用途是计算数组中的元素个数：
+\begin{lstlisting}
+    sizeof array / sizeof array[0]
+\end{lstlisting}
+
+\paragraph{}
+\ex 本例中，计算可变长度数组的大小并从函数返回：
+\begin{lstlisting}
+    #include <stddef.h>
+    size_t fsize3(int n)
+    {
+      char b[n+3];
+      return sizeof b;
+    }
+    // variable length array
+    // execution time sizeof
+    int main()
+    {
+      size_t size;
+      size = fsize3(10); // fsize3 returns 13
+      return 0;
+    }
+\end{lstlisting}
+
+\fwdref{7.19，6.7，6.7.2.1，6.7.7，6.7.6.2}
 
 \ssect{转换运算符}{lang.expr.cast}
+\syntax
+\paragraph{}
+\synsym{cast-expression}
+  \synprd{unary-expression}
+  \synprd[]{\tm{(} \nt{type-name} \tm{)} \nt{cast-expression}}
+
+\constraint
+\paragraph{}
+除非类型名指定了\tm{void}类型，否则类型名应指定原子、限定或非限定的标量类型，且
+操作数应具有标量类型。
+
+\paragraph{}
+涉及指针的转换（\ref{lang.expr.assign.simple}的约束允许的除外）应通过显式强制转
+换进行。
+
+\paragraph{}
+指针类型不应转换为任何浮点类型。浮点类型不应转换为任何指针类型。
+
+\semantic
+\paragraph{}
+在表达式前面加上带括号的类型名，可以将表达式的值转换为命名类型。这种结构称做
+\textit{强制转换}（\textit{cast}）。\footnote{强制转换不产生左值。因此，对限定类
+型的强制转换与对该类型的非限定版本的强制转换具有相同的效果。} 不指定转换
+（conversion）的强制转换对表达式的类型或值没有影响。
+
+\paragraph{}
+如果表达式的值表示的范围或精度大于由强制转换命名的类型
+（\ref{lang.conv.arith.usualarith}）所要求的范围或精度，则强制转换将指定转换，
+即使表达式的类型与命名的类型相同，并删除任何额外的范围和精度。
+
+\fwdref{6.5.9，6.7.6.3，6.5.16.1，6.7.7}
+
 \ssect{乘法运算符}{lang.expr.mul}
+\syntax
+\paragraph{}
+\synsym{multiplicative-expression}
+  \synprd{\nt{cast-expression}}
+  \synprd{\nt{multiplicative-expression} \tm{*} \nt{cast-expression}}
+  \synprd{\nt{multiplicative-expression} \tm{/} \nt{cast-expression}}
+  \synprd[]{\nt{multiplicative-expression} \tm{\%} \nt{cast-expression}}
+
+\constraint
+\paragraph{}
+每个操作数应具有算术类型。\tm{\%}运算符的操作数应为整数类型。
+
+\semantic
+\paragraph{}
+常规算术转换作用于操作数。
+
+\paragraph{}
+二元\tm{*}运算符的结果是操作数的乘积。
+
+\paragraph{}
+运算符\tm{/}的结果是第一个操作数除以第二个操作数所得的商；运算符tm{\%}的结果是余
+数。在这两个操作中，如果第二个操作数的值为零，则行为未定义。
+
+\paragraph{}
+当整数相除时，\tm{/}运算符的结果是代数商，去掉任何小数部分。\footnote{这通常被称
+为``向零截断''。} 如果商\tm{a/b}是可表示的，则表达式\tm{(a/b)*b+a\%b}应等于
+\tm{a}；否则，\tm{a/b}和\tm{a\%b}的行为均未定义。
+
 \ssect{加法运算符}{lang.expr.add}
+\syntax
+\paragraph{}
+\synsym{additive-expression}
+  \synprd{\nt{multiplicative-expression}}
+  \synprd{\nt{additive-expression} \tm{+} \nt{multiplicative-expression}}
+  \synprd[]{\nt{additive-expression} \tm{-} \nt{multiplicative-expression}}
+
+\constraint
+\paragraph{}
+对于加法，两个操作数都应具有算术类型，或者一个操作数应为指向完整对象类型的指针，
+另一个操作数应为整型。（递增等价于加1。）
+
+\paragraph{}
+对于减法，以下之一应该成立：
+\begin{itemize}
+  \item{两个操作数均具有算术类型；}
+  \item{两个操作数均为指向完整对象类型的限定或未限定版本；或}
+  \item{左操作数为指向完整对象类型的指针，右操作数具有整型。}
+\end{itemize}
+（递减等价于减1。）
+
+\semantic
+\paragraph{}
+如果两个操作数都有算术类型，则通常对它们执行常规算术转换。
+
+\paragraph{}
+二元\tm{+}运算符的结果为操作数的和。
+
+\paragraph{}
+二元\tm{-}运算符的结果是第一个操作数减去第二个操作数所得的差。
+
+\paragraph{}
+就这些运算符而言，指向不是数组元素的对象的指针的行为与指向长度为一的数组的第一个
+元素的指针的行为相同，对象的类型作为其元素类型。
+
+\paragraph{}
+当一个整型表达式被加到指针或从指针中减去时，结果具有指针操作数的类型。如果指针操
+作数指向数组对象的元素，并且数组足够大，则结果指向元素与起始元素的偏移量，使得结
+果元素和起始数组元素的下标的差等于整数表达式。换句话说，如果表达式\tm{P}指向数组
+对象的第$i$个元素，则表达式\tm{(P)+N}（等价地，\tm{N+(P)}）和\tm{(P)-N}（其中
+\tm{N}的值为$n$）分别指向数组对象的第$i+n$个元素和第$i-n$个元素，前提是它们存在。
+此外，如果表达式\tm{P}指向数组对象的最后一个元素，则表达式\tm{(P)+1}指向数组对象
+的最后一个元素之后的第一个元素，如果表达式\tm{Q}指向数组对象的最后一个元素之后的
+第一个元素，则表达式\tm{(Q)-1}指向数组对象的最后一个元素。如果指针操作数和结果都
+指向同一数组对象的元素，或指向数组对象的最后一个元素之后的第一个元素，则计算结果
+不应产生溢出；否则行为未定义。如果结果指向数组对象最后一个元素之后的第一个元素，
+则不应将其用作被计算的一元\tm{*}运算符的操作数。
+
+\paragraph{}
+当两个指针相减时，两个指针都应指向同一数组对象的元素，或指向数组对象最后一个元素
+之后的第一个元素；结果是两个数组元素下标的差。结果大小由实现定义，其类型（有符号
+整型）是在\tm{<stddef.h>}头中定义的\tm{ptrdiff\_t}。如果结果在该类型的对象中不可
+表示，则行为未定义。换句话说，如果表达式\tm{P}和\tm{Q}分别指向数组对象的第$i$和
+第$j$个元素，则表达式\tm{(P)-(Q)}的值为${i-j}$，前提是该值可由\tm{ptrdiff\_t}类
+型的对象表示。此外，如果表达式\tm{P}指向数组对象的元素或数组
+对象最后一个元素之后的第一个元素，且表达式\tm{Q}指向同一数组对象的最后一个元素，
+表达式\tm{((Q+1)-(P)}的值与\tm{((Q)-(P))+1}和\tm{-((P)-((Q+1))}的值相同，如果表
+达式\tm{P}指向数组对象最后一个元素之后的第一个元素，则该表达式的值为零，即使表达
+式\tm{(Q)+1}没有指向数组对象的元素。\footnote{另一种处理指针算术的方法是首先将指
+针转换为字符指针：在此方案中，对转换后的指针进行加法或减法运算的整数表达式首先乘
+以最初指向的对象的大小，然后将得到的指针转换回原始类型。对于指针减法，字符指针之
+间的差异的结果同样除以最初指向的对象的大小。\\
+当以这种方式看时，实现只需要在对象结束后提供一个额外的字节（可能与程序中的另一个
+对象重叠），以满足``最后一个元素之后的第一个''要求。}
+
+\paragraph{}
+\ex 变长数组类型指针算术定义明确。
+\begin{lstlisting}
+    {
+      int n = 4, m = 3;
+      int a[n][m];
+      int (*p)[m] = a;  // p == &a[0]
+      p += 1;            // p == &a[1]
+      (*p)[2] = 99;      // a[1][2] == 99
+      n = p - a;         // n == 1
+    }
+\end{lstlisting}
+
+\paragraph{}
+如果上述示例中的数组\tm{a}声明为已知常大小的数组，而指针\tm{p}声明为指向相同已知
+常大小的数组（指向\tm{a}）的指针，则结果将相同。
+
+\fwdref{6.7.6.2，7.19}
+
+\pagebreak
 \ssect{位移运算符}{lang.expr.shift}
+\syntax
+\paragraph{}
+\synsym{shift-expression}
+  \synprd{\nt{additive-expression}}
+  \synprd{\nt{shift-expression} \tm{\tl{}\tl} \nt{additive-expression}}
+  \synprd[]{\nt{shift-expression} \tm{\tg{}\tg} \nt{additive-expression}}
+
+\constraint
+\paragraph{}
+每一个操作数都应为整型。
+
+\semantic
+\paragraph{}
+对每个操作数执行整型提升。结果的类型是提升后的左操作数的类型。如果右操作数的值为
+负或大于等于提升后的左操作数的宽度，则行为未定义。
+
+\paragraph{}
+\tm{E1 \tl{}\tl{} E2}的结果是\tm{E1}左移\tm{E2}位；空出的位用零填充。如果\tm{E1}
+为无符号类型，则结果的值为\tm{E1\ttim 2\tsup{E2}}，按结果类型中可表示的最大值加
+一取模。如果\tm{E1}具有有符号类型和非负值，且\tm{E1\ttim 2\tsup{E2}}在结果类型中
+是可表示的，那么这就是结果值；否则行为未定义。
+
+\paragraph{}
+\tm{E1\tg{}\tg E2}的结果是\tm{E1}右移\tm{E2}位。如果\tm{E1}为无符号类型，或者
+\tm{E1}为有符号类型和非负值，则结果值是\tm{E1/2\tsup{E2}}商的整数部分。如果
+\tm{E1}为有符号类型和负值，则结果值由实现定义。
+
 \ssect{关系运算符}{lang.expr.rel}
+\syntax
+\paragraph{}
+\synsym{relational-expression}
+  \synprd{\nt{shift-expression}}
+  \synprd{\nt{relational-expression} \tm{\tl} \nt{shift-expression}}
+  \synprd{\nt{relational-expression} \tm{\tg} \nt{shift-expression}}
+  \synprd{\nt{relational-expression} \tm{\tl=} \nt{shift-expression}}
+  \synprd[]{\nt{relational-expression} \tm{\tg=} \nt{shift-expression}}
+
+\constraint
+\paragraph{}
+以下之一应该成立：
+\begin{itemize}
+  \item{两个操作数均为实类型；或}
+  \item{两个操作数均为指向兼容对象类型的限定或未限定版本的指针。}
+\end{itemize}
+
+\semantic
+\paragraph{}
+如果两操作数均为算术类型，则进行常规算术转换。
+
+\paragraph{}
+就这些运算符而言，指向不是数组元素对象的指针的行为与指向长度为一的数组的第一个
+元素的指针的行为相同，对象的类型作为其元素类型。
+
+\paragraph{}
+当比较两个指针时，结果取决于所指向对象的地址空间中的相对位置。如果指向对象类型的
+两个指针都指向同一对象，或者都指向同一数组对象的最后一个元素之后的第一个元素，则
+它们相等。如果指向的对象是同一聚合对象的成员，则指向稍后声明的结构成员的指针比指
+向结构中较早声明的成员的指针大，指向下标值较大的数组元素的指针比指向下标值较低的
+同一数组元素的指针大。指向同一联合对象成员的所有指针相等。如果表达式\tm{P}指向数
+组对象的元素，而表达式\tm{Q}指向同一数组对象的最后一个元素，则指针表达式\tm{Q+1}
+比\tm{P}大。所有其他情况下行为未定义。
+
+\paragraph{}
+如果指定的关系为真，则运算符\tm{\tl}（小于）、\tm{\tg}（大于）、\tm{\tl=}（小于
+等于）和\tm{\tg=}（大于等于）应生成1，如果为假，则生成0。\footnote{表达式
+\tm{a<b<c}不按常规数学方式解释。如语法所示，它意味着\tm{(a<b)<c}；换句话说，
+``如果\tm{a}小于\tm{b}，将\tm{1}与\tm{c}比较；否则，将\tm{0}与\tm{c}比较''。}
+结果类型为\tm{int}。
+
 \ssect{等性运算符}{lang.expr.eq}
+\syntax
+\paragraph{}
+\synsym{equality-expression}
+\synprd{\nt{relational-expression}}
+  \synprd{\nt{equality-expression} \tm{==} \nt{relational-expression}}
+  \synprd[]{\nt{equality-expression} \tm{!=} \nt{relational-expression}}
+
+\constraint
+\paragraph{}
+以下之一应该成立：
+\begin{itemize}
+  \item{两个操作数均为算术类型；}
+  \item{两个操作数均为指向兼容类型的限定或未限定版本的指针；}
+  \item{其中一个操作数为指向对象类型的指针，另一个为指向\tm{void}类型限定或未限
+    定版本的指针，或}
+  \item{其中一个操作数是指针，另一个为零指针常量。}
+\end{itemize}
+
+\semantic
+\paragraph{}
+\tm{==}（等于）和\tm{!=}（不等于）运算符与关系运算符类似，但优先级较低。
+\footnote{由于优先级，当\tm{a<b}和\tm{c<d}具有相同真值时，\tm{a<b == c<d}为1。}
+如果指定的关系为真，则每个运算符生成1；如果指定的关系为假，则生成0。结果的类型为
+\tm{int}。对于任何一对操作数，只有一个关系为真。
+
+\paragraph{}
+如果两个操作数都有算术类型，则执行常规算术转换。当且仅当实部和虚部相等时，复数类
+型的值才相等。来自不同类型域的算术类型的任意两个值相等当且仅当它们转换为由常规算
+术转换确定的（复数）结果类型的结果是相等的。
+
+\paragraph{}
+否则，至少有一个操作数是指针。如果一个操作数是指针，另一个操作数是零指针常量，则
+零指针常量将转换为指针类型。如果一个操作数是指向对象类型的指针，而另一个操作数是
+指向\tm{void}限定或不限定版本的指针，则前者将转换为后者的类型。
+
+\paragraph{}
+如果两个指针都是零指针，两个指针都是指向同一对象（包括指向对象的指针和位于其开头
+的子对象）或函数的指针，两个指针都是指向同一数组对象的最后一个元素之后的第一个元
+素的指针，或者一个指针指向一个数组对象最后一个元素之后的第一个元素，另一个指针指
+向地址空间中恰好紧跟在第一个数组对象之后的不同数组对象的开始。\footnote{两个对象
+在内存中可能是相邻的，因为它们是较大数组的相邻元素，或者结构的相邻成员之间没有填
+充，或者是因为实现选择了将它们放置在一起，即使它们是不相关的。如果先前的无效指针
+操作（如访问数组边界外）产生未定义行为，则随后的比较也会产生未定义的行为。}
+
+\paragraph{}
+就这些运算符而言，指向不是数组元素对象的指针行为与指向长度为1的数组的第一个元素
+的指针行为相同，对象类型作为其元素类型。
+
+\pagebreak
 \ssect{按位与运算符}{lang.expr.and}
+\syntax
+\paragraph{}
+\synsym{AND-expression}
+  \synprd{\nt{equality-expression}}
+  \synprd[]{\nt{AND-expression} \tm{\&} \nt{equality-expression}}
+
+\constraint
+\paragraph{}
+每一个操作数均应该具有整型。
+
+\semantic
+\paragraph{}
+常规算术转换作用于操作数。
+
+\paragraph{}
+二元\tm{\&}运算符的结果是操作数的按位与（即当且仅当转换后操作数中的对应位都置位
+时，才会设置结果中的对应位）。
+
 \ssect{按位异或运算符}{lang.expr.xor}
+\syntax
+\paragraph{}
+\synsym{exclusive-OR-expression}
+  \synprd{\nt{AND-expression}}
+  \synprd[]{\nt{exclusive-OR-expression} \tm{\^} \nt{AND-expression}}
+
+\constraint
+\paragraph{}
+每一个操作数均应该具有整型。
+
+\semantic
+\paragraph{}
+常规算术转换作用于操作数。
+
+\paragraph{}
+二元运算符\tm{\^}的结果是操作数的按位异或（即当且仅当转换后操作数中对应位上仅有
+一个置位时，才会设置结果中的对应位）。
+
 \ssect{按位或运算符}{lang.expr.or}
+\syntax
+\paragraph{}
+\synsym{inclusive-OR-expression}
+\synprd{\nt{exclusive-OR-expression}}
+  \synprd[]{\nt{inclusive-OR-expression} \tm{|} \nt{exclusive-OR-expression}}
+
+\constraint
+\paragraph{}
+每一个操作数均应该具有整型。
+
+\semantic
+\paragraph{}
+常规算术转换作用于操作数。
+
+\paragraph{}
+运算符\tm{|}的结果为操作数的按位或（即当且仅当转换后操作数中的至少一个对应位置位
+时，才会设置结果中的对应位）。
+
 \ssect{逻辑与运算符}{lang.expr.land}
+\syntax
+\paragraph{}
+\synsym{logical-AND-expression}
+  \synprd{\nt{inclusive-OR-expression}}
+  \synprd[]{\nt{logical-AND-expression} \tm{\&\&} \nt{inclusive-OR-expression}}
+
+\constraint
+\paragraph{}
+每一个操作数均应该为标量类型。
+
+\semantic
+\paragraph{}
+如果\tm{\&\&}运算符的两个操作数的比较结果都不等于0则应生成1；否则将生成0。结果类
+型为\tm{int}。
+
+\paragraph{}
+与按位二元\tm{\&}运算符不同，\tm{\&\&}运算符保证从左向右计算；如果计算第二个操作
+数，则在第一个操作数和第二个操作数的计算之间有一个序列点。如果第一个操作数比较等
+于0，则不计算第二个操作数。
+
 \ssect{逻辑或运算符}{lang.expr.lor}
+\syntax
+\paragraph{}
+\synsym{logical-OR-expression}
+  \synprd{\nt{inclusive-AND-expression}}
+  \synprd[]{\nt{logical-OR-expression} \tm{||} \nt{inclusive-AND-expression}}
+
+\constraint
+\paragraph{}
+每一个操作数均应该为标量类型。
+
+\semantic
+\paragraph{}
+如果\tm{||}运算符的两个操作数中任一个的比较结果不等于0则应生成1；否则将生成0。结
+果类型为\tm{int}。
+
+\paragraph{}
+与按位二元\tm{|}运算符不同，\tm{||}运算符保证从左向右计算；如果计算第二个操作
+数，则在第一个操作数和第二个操作数的计算之间有一个序列点。如果第一个操作数比较不
+等于0，则不计算第二个操作数。
+
 \ssect{条件运算符}{lang.expr.cond}
+\syntax
+\paragraph{}
+\synsym{conditional-expression}
+  \synprd{\nt{logical-OR-expression}}
+  \synprd[]{\nt{logical-OR-expression} \tm{?} \nt{expression} \tm{:}
+    \nt{conditional-expression}}
+
+\constraint
+\paragraph{}
+第一操作数应具有标量类型。
+
+\paragraph{}
+对第二和第三操作数以下之一应该成立：
+\begin{itemize}
+  \item{两操作数均为算术类型；}
+  \item{两操作数均为相同结构或联合类型；}
+  \item{两操作数均为void类型。}
+  \item{两操作数均为指向兼容类型的限定或未限定版本的指针；}
+  \item{其中一个操作数为指针，另一个为零指针常量；或}
+  \item{其中一个操作数为对象类型指针，另一个为指向\tm{void}类型限定或未限定版本
+    的指针。}
+\end{itemize}
+
+\semantic
+\paragraph{}
+对第一个操作数求值；在其计算和第二个或第三个操作数的计算之间有一个序列点（无论哪
+一个）。第二个操作数仅在第一个比较不等于0时计算；第三个操作数仅在第一个比较等于0
+时计算；结果是第二个或第三个操作数的值（以计算值为准），转换为下面描述的类型。
+\footnote{条件表达式不产生左值。}
+
+\paragraph{}
+如果第二个和第三个操作数都具有算术类型，且由常规算术转换确定的结果类型，如果应用
+的话，则是结果类型是转换的结果类型。如果两个操作数都具有结构或联合类型，则结果具
+有该类型。如果两个操作数都具有\tm{void}类型，则结果具有\tm{void}类型。
+
+\paragraph{}
+如果第二个和第三个操作数都是指针，或者一个是零指针常量，另一个是指针，则结果类型
+是指向使用两个操作数引用类型的所有类型限定符所限定类型的指针。此外，如果两个操作
+数都是指向兼容类型或兼容类型的不同限定版本的指针，则结果类型是指向合成类型的适当
+限定版本的指针；如果一个操作数是零指针常量，则结果具有另一个操作数的类型；否则，
+一个操作数是指向\tm{void}或\tm{void}的限定版本，在这种情况下，结果类型是指向适当
+限定版本的\tm{void}指针。
+
+\paragraph{}
+\ex* 当第二个和第三个操作数是指针时产生的公共类型在两个独立的阶段中确定。例如，
+适当的限定符不依赖于两个指针是否具有兼容的类型。
+
+\paragraph{}
+给定以下声明
+\begin{lstlisting}
+    const void *c_vp;
+    void *vp;
+    const int *c_ip;
+    volatile int *v_ip;
+    int *ip;
+    const char *c_cp;
+\end{lstlisting}
+下表中的第三列是条件表达式结果的通用类型，前两列是第二个和第三个操作数（任意顺
+序）：
+\begin{table}[h!]
+  \begin{tabular}{lll}
+    \tm{c\_vp} & \tm{c\_ip} & \tm{const void *} \\
+    \tm{v\_ip} & \tm{0}     & \tm{volatile int *} \\
+    \tm{c\_ip} & \tm{v\_ip} & \tm{const volatile int *} \\
+    \tm{vp}    & \tm{c\_cp} & \tm{const void *} \\
+    \tm{ip}    & \tm{c\_ip} & \tm{const int *} \\
+    \tm{vp}    & \tm{ip}    & \tm{void *}
+  \end{tabular}
+\end{table}
+
 \ssect{赋值运算符}{lang.expr.assign}
+\syntax
+\paragraph{}
+\synsym{assignment-expression}
+  \synprd{\nt{conditional-expression}}
+  \synprd{\nt{unary-expression assignment-operator assignment-expression}}
+\synsym[one of]{assignment-operator}
+  \synprd[]{\tm{= *= /= \%= += -= \tl{}\tl= \tg{}\tg= \&= \^{}= |=}}
+
+\constraint
+\paragraph{}
+赋值运算符的左操作数应为可修改的左值。
+
+\semantic
+\paragraph{}
+赋值运算符将值存储在左操作数指定的对象中。赋值表达式在赋值之后具有左操作数的值，
+\footnote{实现允许读取对象以确定值，但不需要这样做，即使对象具有\tm{volatile}限
+定类型。} 但不是左值。赋值表达式的类型是左操作数在左值转换后的类型。更新左操作数
+的存储值的副作用后序于左操作数和右操作数的值计算。操作数的计算无序。
+
 \sssect{简单赋值}{lang.expr.assign.simple}
+\constraint
+\paragraph{}
+以下之一应该成立：\footnote{对于类型限定符，这些约束的不对称性是由于转换（在
+\ref{lang.conv.other.desig}中指定）导致的，该转换将左值更改为``表达式的值''，从
+而删除应用于表达式类型范畴的任何类型限定符（例如，它从类型
+\tm{int volatile * const}中删除\tm{const}而不删除\tm{volatile}）。}
+\begin{itemize}
+  \item{左操作数具有原子，限定或未限定算术类型，右操作数具有算术类型；}
+  \item{左操作数具有与右操作数兼容的结构或联合类型的原子，限定或未限定版本；}
+  \item{左操作数具有原子，限定或未限定指针类型，且（考虑左值转换后的左操作数将具
+    有的类型）两操作数均为指向兼容类型的限定或未限定版本的指针，并且左操作数具有
+    右操作数所指类型的所有限定符。}
+  \item{左操作数具有原子，限定或未限定的指针类型，并且（考虑到左操作数在左值转换
+    后将具有的类型）一个操作数是指向对象类型的指针，另一个操作数是指向\tm{void}
+    类型的限定或未限定版本的指针，并且左侧指向的类型具有右操作数所指的类型的所有
+    限定符；}
+  \item{左操作数是原子，限定指针或未限定指针，右操作数是零指针常量；或}
+  \item{左操作数为原子，限定或未限定\tm{\_Bool}类型，右操作数是指针。}
+\end{itemize}
+
+\semantic
+\paragraph{}
+在\textit{简单赋值}（\tm{=}）中，右操作数的值转换为赋值表达式的类型，并替换存储
+在左操作数指定的对象中的值。
+
+\paragraph{}
+如果从任何与第一个对象存储重叠的另一个对象读取存储在第一个对象中的值，则重叠应准
+确，并且两个对象应具有兼容类型的限定或未限定版本；否则行为未定义。
+
+\paragraph{}
+\ex 以下程序片断中
+\begin{lstlisting}
+    int f(void);
+    char c;
+    /* ... */
+    if ((c = f()) == -1)
+      /* ... */
+\end{lstlisting}
+函数返回的\tm{int}值存储在\tm{char}中时可能会被截断，然后在比较前转换回\tm{int}
+的宽度。在一个实现中，``普通''\tm{char}的值范围与\tm{unsigned char}的值范围相同
+（\tm{char}比\tm{int}更窄），转换的结果不能是负数，因此比较的操作数永远不相等。
+因此，对于完全可移植性，变量\tm{c}应该声明为\tm{int}。
+
+\paragraph{}
+\ex 以下片断中：
+\begin{lstlisting}
+    char c;
+    int i;
+    long l;
+
+    l = (c = i);
+\end{lstlisting}
+\tm{i}的值转换为赋值表达式\tm{c = i}的类型，即\tm{char}类型。然后将括号中的表达
+式值转换为外层赋值表达式的类型，即\tm{long int}类型。
+
+\paragraph{}
+\ex 考虑以下片断：
+\begin{lstlisting}
+    const char **cpp;
+    char *p;
+    const char c = 'A';
+
+    cpp = &p;   // constraint violation
+    *cpp = &c;  // valid
+    *p = 0;     // valid
+\end{lstlisting}
+第一个赋值不安全，因为它将允许后面的有效代码尝试更改常量对象\tm{c}的值。
+
 \sssect{复合赋值}{lang.expr.assign.cmpd}
+\constraint
+\paragraph{}
+对\tm{+=}和\tm{-=}运算符，左操作数应为指向完整对象类型的原子指针、限定指针或未限
+定指针，右操作数应为整型；或左操作数为原子、限定指针或未限定指针，右操作数为算术
+类型。
+
+\paragraph{}
+对于其他运算符，左操作数应具有原子、限定或未限定算术类型，并且（考虑到左操作数在
+左值转换后的类型），每个操作数应具有与相应的二元运算符允许的算术类型一致的算术类
+型。
+
+\semantic
+\paragraph{}
+形如\tm{E1} \nt{op}\tm{= E2}的\textit{复合赋值}等价于简单赋值表达式\tm{E1 = E1}
+\nt{op} \tm{(E2)}，但左值\tm{E1}只计算一次，并且对于不确定性有序的函数调用，复合
+赋值的操作是单个（single）计算。如果\tm{E1}具有原子类型，则复合赋值是读-修改-写
+操作，具有\tm{memory\_order\_seq\_cst}的内存顺序语义。\footnote{
+\newcommand{\lbox}[2][4em]{\\ \mbox{\hspace{#1}#2}}
+如果可以形成指向原子对象的指针，并且\tm{E1}和\tm{E2}具有整型，则相当于以下代码序
+列，其中\nt{T1}是\tm{E1}的类型，\nt{T2}是\tm{E2}的类型：
+\lbox{\nt{T1} \tm{*addr = \&E1;}}
+\lbox{\nt{T2} \tm{val = (E1);}}
+\lbox{\nt{T1} \tm{odl = *addr;}}
+\lbox{\nt{T1} \tm{new;}}
+\lbox{\tm{do \{}}
+\lbox[6em]{\tm{new = old} \nt{op} \tm{val;}}
+\lbox{\tm{\} while (!atomic\_compare\_exchange\_strong(addr, \&old, new));}}  \\
+\tm{new}为操作的结果。                                                        \\
+如果\tm{E1}或\tm{E2}具有浮点类型，则在丢弃的\tm{new}求值过程中遇到的异常条件或浮
+点异常也应丢弃，以满足\tm{E1} \nt{op}\tm{= E2}和\tm{E1 = E1} \nt{op} \tm{(E2)}的
+等效性。例如，如果附录\ref{fparith}有效，所涉及的浮点类型具有IEC 60559格式，且
+\tm{FLT\_EVAL\_METHOD}为0，则等效代码为
+\lbox{\tm{\#include <fenv.h>}}
+\lbox{\tm{\#pragma STDC FENV\_ACCESS ON}}
+\lbox{\tm{/* ... */}}
+\lbox[6em]{\tm{fenv\_t fenv;}}
+\lbox[6em]{\nt{T1} \tm{*addr = \&E1;}}
+\lbox[6em]{\nt{T2} \tm{val = E2;}}
+\lbox[6em]{\nt{T1} \tm{old = *addr;}}
+\lbox[6em]{\nt{T1} \tm{new;}}
+\lbox[6em]{\tm{feholdexcept(\&fenv);}}
+\lbox[6em]{\tm{for (;;) \{}}
+\lbox[8em]{\tm{new = old} \nt{op} \tm{val;}}
+\lbox[8em]{\tm{if (!atomic\_compare\_exchange\_strong(addr, \&old, new))}}
+\lbox[10em]{\tm{break;}}
+\lbox[8em]{\tm{feclearexcept(FE\_ALL\_EXCEPT);}}
+\lbox[6em]{\tm{\}}}
+\lbox[6em]{\tm{feupdateenv(\&fenv);}} \\
+如果\tm{FLT\_EVAL\_METHOD}不是0，那么\tm{T2}必须具有计算\tm{E2}所需范围和精度的
+类型，以便满足等效性。}
 
 \ssect{逗号运算符}{lang.expr.comma}
+\syntax
+\paragraph{}
+\synsym{expression}
+  \synprd{\nt{assignment-expression}}
+  \synprd[]{\nt{expression} \tm{,} \nt{assignment-expression}}
 
-\sect{常表达式}{lang.constexpr}
+\semantic
+\paragraph{}
+逗号运算符的左操作数被计算为空表达式；它的计算值与右操作数的计算值之间有一个序列
+点。然后计算右操作数；结果有其类型和值。\footnote{逗号表达式不产生左值。}
+
+\paragraph{}
+\ex* 如语法所示，逗号运算符（如本节所述）不能出现在使用逗号分隔列表中项目的上下
+文中（如函数参数或初始化列表）。另一方面，它可以在带圆括号的表达式中使用，也可以
+在条件运算符的第二个表达式中使用。在函数调用
+\begin{lstlisting}
+    f(a, (t=3, t+2), c)
+\end{lstlisting}
+中函数有三个参数，第二个参数的值为5。
+
+\fwdref{6.7.9}
+
+\sect{常量表达式}{lang.constexpr}
+\syntax
+\paragraph{}
+\synsym{constant-expression}
+  \synprd[]{\nt{conditional-expression}}
+
+\desc
+\paragraph{}
+常量表达式可以在翻译期间而不是运行时进行计算，因此可以在常量可能存在的任何位置使
+用。
+
+\constraint
+\paragraph{}
+常量表达式不应包含赋值、递增、递减、函数调用或逗号运算符，除非它们包含在未计算的
+子表达式中。\footnote{通常不计算\tm{sizeof}或\tm{\_Alignof}运算符的操作数
+（\ref{lang.expr.unary.sizeof}）。}
+
+\paragraph{}
+每个常量表达式的计算结果应为其类型的可表示值范围内的常量。
+
+\semantic
+\paragraph{}
+在多个上下文中需要计算为常量的表达式。如果在翻译环境中对浮点表达式进行求值，则算
+术范围和精度至少应与在执行环境中对表达式进行求值时一样大。\footnote{使用由
+\tm{FLT\_EVAL\_METHOD}确定的求值格式也适用于翻译环境中的求值。}
+
+\paragraph{}
+整型\textit{常量表达式}\footnote{整型常量表达式在许多上下文中都是必需的，例如结
+构的位字段成员的大小、枚举常量的值和非可变长度数组的大小。
+\ref{lang.ppdir.condinc}中讨论了适用于条件包含预处理指令中使用的整数常量表达式的
+其他约束。}应具有整型，并且只能具有整型常量、枚举常量、字符常量、结果为整型常量
+的sizeof表达式、表达式对齐和浮点常量，这些常量是强制转换的直接操作数。整数常量表
+达式中的强制转换运算符只能将算术类型转换为整数类型，但作为操作数的一部分转换为
+\tm{sizeof}或\tm{\_Alignof}运算符的情况除外。
+
+\paragraph{}
+初始化中的常量表达式允许有更多的纬度。此类常量表达式应为或计算为以下其中之一：
+\begin{itemize}
+  \item{算术常量表达式，}
+  \item{零指针常量，}
+  \item{地址常量，或}
+  \item{完整对象类型的地址常量加或减一个整数常量表达式。}
+\end{itemize}
+
+\paragraph{}
+\textit{算术常量表达式}应具有算术类型，且只能具有整数常量、浮点常量、枚举常量、
+字符常量、结果为整数常量的\tm{sizeof}表达式以及\tm{\_Alignof}表达式等操作数。算
+术常量表达式中的强制转换运算符只能将算术类型转换为算术类型，但作为操作数的一部分
+转换为\tm{sizeof}或\tm{\_Alignof}运算符的情况除外。
+
+\paragraph{}
+\textit{地址常量}是一个空指针、一个指向指定静态存储期对象的左值的指针或一个指向
+函数指示符的指针；它应使用一元运算符\tm{\&}或整数常量转换为指针类型来显式创建，
+或通过使用数组或函数类型的表达式来隐式创建。数组下标\tm{[]}，成员访问\tm{.}和
+\tm{-\tg}运算符、地址\tm{\&}和间接寻址\tm{*}一元运算符和指针强制转换可用于创建地
+址常量，但不能使用这些运算符访问对象的值。
+
+\paragraph{}
+实现可能接受其他形式的常量表达式。
+
+\paragraph{}
+计算常量表达式的语义规则和非常量表达式一样。\footnote{因此，以下初始化中，    \\
+\mbox{\hspace{4em}\tm{static int i = 2 || 1 / 0;}}                            \\
+表达式是值为一的有效整数常量表达式。}
+
+\fwdref{6.7.6.2，6.7.9}
 
 \sect{声明}{lang.dcl}
+\syntax
+\paragraph{}<++>
+
+\constraint
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\fwdref{<++>}
+
 \ssect{存储类说明}{lang.dcl.stc}
-\ssect{类型说明}{lang.dcl.type}
+\syntax
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\fwdref{<++>}
+
+\ssect{类型说明符}{lang.dcl.type}
+\syntax
+\paragraph{}<++>
+
+\constraint
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\fwdref{<++>}
+
 \sssect{结构与联合说明符}{lang.dcl.type.struct}
+\syntax
+\paragraph{}<++>
+
+\constraint
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\fwdref{<++>}
+
 \sssect{枚举说明符}{lang.dcl.type.enum}
-\sssect{标签}{lang.dcl.type.tag}
+\syntax
+\paragraph{}<++>
+
+\constraint
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\fwdref{<++>}
+
+\sssect{标签Tags}{lang.dcl.type.tag}
+\constraint
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\fwdref{<++>}
+
 \sssect{原子类型说明符}{lang.dcl.type.atom}
+\syntax
+\paragraph{}<++>
+
+\constraint
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
 
 \ssect{类型限定}{lang.dcl.qual}
+\syntax
+\paragraph{}<++>
+
+\constraint
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
 \sssect{restrict的形式定义}{lang.dcl.qual.restrict}
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
 
 \ssect{函数说明}{lang.dcl.fct}
-\ssect{对齐说明}{lang.dcl.align}
+\syntax
+\paragraph{}<++>
+
+\constraint
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\recprac
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\fwdref{<++>}
+
+\ssect{对齐说明符}{lang.dcl.align}
+\syntax
+\paragraph{}<++>
+
+\constraint
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
 \ssect{声明子}{lang.dcl.decl}
+\syntax
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\implimit
+\paragraph{}<++>
+
+\fwdref{<++>}
+
 \sssect{指针声明子}{lang.dcl.decl.ptr}
+\semantic
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
 \sssect{数组声明子}{lang.dcl.decl.array}
+\constraint
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\fwdref{<++>}
+
 \sssect{函数声明子（含原型）}{lang.dcl.decl.fct}
+\constraint
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\fwdref{<++>}
 
 \ssect{类型名}{lang.dcl.typename}
+\syntax
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
+\paragraph{}<++>
+
 \ssect{类型定义}{lang.dcl.typedef}
+\syntax
+\paragraph{}<++>
+
+\constraint
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
 \ssect{初始化}{lang.dcl.init}
+\syntax
+\paragraph{}<++>
+
+\constraint
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\fwdref{<++>}
+
 \ssect{静态断言}{lang.dcl.assert}
+\syntax
+\paragraph{}<++>
+
+\constraint
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
+\fwdref{<++>}
 
 \sect{语句与块}{lang.stmt}
+\syntax
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\fwdref{<++>}
+
 \ssect{标号语句}{lang.stmt.label}
+\syntax
+\paragraph{}<++>
+
+\constraint
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
+\fwdref{<++>}
+
 \ssect{复合语句}{lang.stmt.cmpd}
+\syntax
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
 \ssect{表达式与空语句}{lang.stmt.expr}
+\syntax
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\fwdref{<++>}
+
 \ssect{选择语句}{lang.stmt.sel}
+\syntax
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
+\paragraph{}<++>
+
 \sssect{if语句}{lang.stmt.sel.if}
+\constraint
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
+\paragraph{}<++>
+
 \sssect{switch语句}{lang.stmt.sel.switch}
+\constraint
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\implimit
+\paragraph{}<++>
+
+\paragraph{}<++>
 
 \ssect{迭代语句}{lang.stmt.iter}
+\syntax
+\paragraph{}<++>
+
+\constraint
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
 \sssect{while语句}{lang.stmt.iter.while}
+\paragraph{}<++>
+
 \sssect{do语句}{lang.stmt.iter.do}
+\paragraph{}<++>
+
 \sssect{for语句}{lang.stmt.iter.for}
+\paragraph{}<++>
+
+\paragraph{}<++>
 
 \ssect{跳转语句}{lang.stmt.jmp}
+\syntax
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
 \sssect{goto语句}{lang.stmt.jmp.goto}
+\constraint
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
 \sssect{continue语句}{lang.stmt.jmp.cont}
+\constraint
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
 \sssect{break语句}{lang.stmt.jmp.brk}
+\constraint
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
 \sssect{return语句}{lang.stmt.jmp.ret}
+\constraint
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
 
 \sect{外部定义}{lang.extn}
+\syntax
+\paragraph{}<++>
+
+\constraint
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
+\paragraph{}<++>
+
 \ssect{函数定义}{lang.extn.fct}
+\syntax
+\paragraph{}<++>
+
+\constraint
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
 \ssect{外部对象定义}{lang.extn.obj}
+\semantic
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
 
 \sect{预处理指令}{lang.ppdir}
+\syntax
+\paragraph{}<++>
+
+\desc
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\constraint
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
 \ssect{条件包含}{lang.ppdir.condinc}
+\constraint
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\fwdref{<++>}
+
 \ssect{源文件包含}{lang.ppdir.inc}
+\constraint
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\fwdref{<++>}
+
 \ssect{宏替换}{lang.ppdir.macro}
+\constraint
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
 \sssect{参数替换}{lang.ppdir.macro.subst}
+\paragraph{}<++>
+
+\paragraph{}<++>
+
 \sssect{\#运算符}{lang.ppdir.macro.stringize}
+\constraint
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
 \sssect{\#\#运算符}{lang.ppdir.macro.concat}
+\constraint
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
 \sssect{重扫描和进一步替换}{lang.ppdir.macro.rescan}
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
 \sssect{宏定义作用域}{lang.ppdir.macro.scope}
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
 
 \ssect{行控制}{lang.ppdir.line}
+\constraint
+\paragraph{}<++>
+
+\semantic
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
 \ssect{Error指令}{lang.ppdir.error}
+\semantic
+\paragraph{}<++>
+
 \ssect{Pragma指令}{lang.ppdir.pragma}
+\semantic
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\fwdref{<++>}
+
 \ssect{空指令}{lang.ppdir.null}
+\semantic
+\paragraph{}<++>
+
 \ssect{预定义宏名}{lang.ppdir.predef}
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\paragraph{}<++>
+
+\fwdref{<++>}
+
 \sssect{强制定义的宏}{lang.ppdir.predef.mand}
+\paragraph{}<++>
+
+\fwdref{<++>}
+
 \sssect{环境相关宏}{lang.ppdir.predef.env}
+\paragraph{}<++>
+
+\fwdref{<++>}
+
 \sssect{条件特性宏}{lang.ppdir.predef.cond}
+\paragraph{}<++>
+
+\paragraph{}<++>
 
 \ssect{Pragma运算符}{lang.ppdir.pragmaop}
+\semantic
+\paragraph{}<++>
+
+\paragraph{}<++>
 
 \sect{未来语言方向}{lang.dir}
 \ssect{符点类型}{lang.dir.float}
+\paragraph{}<++>
+
 \ssect{标识符链接}{lang.dir.link}
+\paragraph{}<++>
+
 \ssect{外部名称}{lang.dir.extn}
+\paragraph{}<++>
+
 \ssect{字符转义序列}{lang.dir.escape}
+\paragraph{}<++>
+
 \ssect{存储类说明}{lang.dir.stc}
+\paragraph{}<++>
+
 \ssect{函数声明子}{lang.dir.fctdecl}
+\paragraph{}<++>
+
 \ssect{函数定义}{lang.dir.fctdef}
+\paragraph{}<++>
+
 \ssect{Pragma指令}{lang.dir.pragma}
+\paragraph{}<++>
+
 \ssect{预定义宏名}{lang.dir.predef}
+\paragraph{}<++>
+
