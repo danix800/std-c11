@@ -31,8 +31,82 @@ software interfaces}。
 ISO/IEC 9899:1999/Cor 3:2007。相对上一版本的主要变化包括：
 \begin{itemize}
   \item{条件（可选）支持特性（包括某些先前的强制特性）}
-  \item{}<++>
+  \item{支持多个执行线程，包括改进的内存序列模型、原子对象和线程局部存储（
+    \tm{<stdamico.h>}和\tm{<threads.h>}）}
+  \item{附加浮点特征宏（\tm{<float.h>}）}
+  \item{查询和指定对象的对齐方式（\tm{<stdlaign.h>}，\tm{<stdlib.h>}）}
+  \item{Unicode字符和字符串（\tm{<uchar.h>}）（最初在ISO/IEC TR 19769:2004中指
+    定）}
+  \item{泛型表达式}
+  \item{静态断言}
+  \item{匿名结构和联合}
+  \item{无返回函数}
+  \item{复数创建宏（\tm{<complex.h>）}
+  \item{支持以独占方式打开文件}
+  \item{删除了\tm{gets}函数（\tm{<stdio.h>}）}
+  \item{添加了\tm{aligned\_alloc}、\tm{at\_quick\_exit}和\tm{quick\_exit}函数
+    （\tm{<stdlib.h>}）}
+  \item{（有条件）边界检查接口支持（最初在ISO/IEC TR 24731-1:2007中指定）}
+  \item{（有条件）支持条件分析}
 \end{itemize}
 
 \paragraph{}
 第二版主要变更包括：
+\begin{itemize}
+  \item{通过双字母词和\tm{<iso646.h>}支持受限字符集（最初在
+    ISO/IEC 9899-1990/Amd.1:1995中指定）}
+  \item{\tm{<wchar.h>}和\tm{<wctype.h>}中的宽字符库支持（最初在
+    ISO/IEC 9899-1990/Amd.1:1995中指定）}
+  \item{通过有效类型实现更精确的别名规则}
+  \item{受限指针}
+  \item{变长数组}
+  \item{灵活数组}
+  \item{参数数组声明子中的\tm{static}和类型限定}
+  \item{\tm{<complex.h>}中的复（虚）数支持}
+  \item{\tm{<tgmath.h>}中的泛型数学宏}
+  \item{\tm{long long int}类型和库函数}
+  \item{扩展整型}
+  \item{增加的最小翻译限制}
+  \item{\tm{<float.h>}中的额外浮点类型特性}
+  \item{移除隐式\tm{int}}
+  \item{可靠的整数除法}
+  \item{通用字符名（\tm{\bs{}u}和\tm{\bs{}U}）}
+  \item{扩展标识符}
+  \item{十六进制浮点常量和\tm{\%a}与\tm{\%A printf/scanf}转换说明符}
+  \item{复合字面值}
+  \item{指定初始化}
+  \item{\tm{//}注释}
+  \item{\tm{<inttypes.h>}和\tm{<stdint.h>}中指定宽度整型和相应的库函数}
+  \item{移除隐式函数声明}
+  \item{预处理算术在\tm{intmax/uintmax}中完成}
+  \item{混合声明与语句}
+  \item{选择和迭代语句的新作用域}
+  \item{整型常量类型规则}
+  \item{整型提升规则}
+  \item{可变参数宏}
+  \item{\tm{<stdio.h>}和\tm{<wchar.h>}中的\tm{vscanf}函数簇}
+  \item{\tm{<math.h>}中的额外数学库函数}
+  \item{数学库函数对错误条件的处理（\tm{math\_errhandling}）}
+  \item{\tm{<fenv.h>}中的浮点环境访问}
+  \item{IEC 60559（也称IEC 559或IEEE算术）支持}
+  \item{\tm{enum}声明中允许末尾逗号}
+  \item{\tm{printf}中允许\tm{\%lf}转换说明符}
+  \item{内联函数}
+  \item{\tm{<stdio.h>}中的\tm{snprintf}函数簇}
+  \item{\tm{<stdbool.h>}中的布尔类型}
+  \item{空的宏参数}
+  \item{新的结构类型兼容规则（标签兼容性）}
+  \item{额外的预定义宏名}
+  \item{\tm{\_Pragma}预处理运算符}
+  \item{标准pragma}
+  \item{\tm{\_\_func\_\_}预定义标识符}
+  \item{\tm{va\_copy}宏}
+  \item{额外的\tm{strftime}转换说明符}
+  \item{LIA兼容性附录}
+  \item{在二进制文件的开头取消\tm{ungetc}}
+  \item{移除取消的别名数组参数}
+  \item{数组到指针的转换不再限于左值}
+  \item{对聚合和联合的初始化约束放宽}
+  \item{对可移植头名称限制放宽}
+  \item{在返回值的函数中不允许不带表达式返回（反之亦然）}
+\end{itemize}
