@@ -18,6 +18,17 @@
 \usepackage{chngcntr}
 \counterwithout{footnote}{chapter}
 
+% page titles
+%\fancyhead[L]{\color{structurecolor}\ifdefstring{\ELEGANT@lang}{en}{\itshape}
+%{\kaishu}ISO/IEC 9899:2011 (E)}
+%\fancyhead[R]{\color{structurecolor}\ifdefstring{\ELEGANT@lang}{en}{\itshape}
+%{\kaishu}\copyright ISO/IEC 2011 − All rights reserved}
+%\fancyfoot[L]{\color{structurecolor}\ifdefstring{\ELEGANT@lang}{en}{\itshape}
+%{\kaishu}\rightmark}
+%\fancyfoot[R]{\color{structurecolor}\ifdefstring{\ELEGANT@lang}{en}{\itshape}
+%{\kaishu}--\thepage/\pageref*{LastPage}--}
+%\fancyfoot[c]{\base{structurecolor}{88}}
+
 % space btw footnotes
 \setlength{\footnotesep}{0.5cm}
 
@@ -25,7 +36,7 @@
 \setlength{\skip\footins}{0.6cm}
 
 % for lstlisting, mainly for examples
-\lstset{language=C}
+\lstset{showstringspaces=false,language=C}
 
 % list style
 \setlist[enumerate,1]{label={\arabic*. },ref={\arabic*}}
