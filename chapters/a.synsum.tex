@@ -1,20 +1,730 @@
 \chptr{（信息）语法汇总}{synsum}
 
+\paragraph{}
+\notes 语法记号在\ref{lang.notation}节中描述。
+
 \sect{词法}{synsum.lex}
 \ssect{词法元素}{synsum.lex.elem}
+\synsymref{lang.lex}{token}
+  \synprd{\nt{keyword}}
+  \synprd{\nt{identifier}}
+  \synprd{\nt{constant}}
+  \synprd{\nt{string-literal}}
+  \synprd[]{\nt{punctuator}}
+
+\synsymref{lang.lex}{preprocessing-token}
+  \synprd{\nt{header-name}}
+  \synprd{\nt{identifier}}
+  \synprd{\nt{pp-number}}
+  \synprd{\nt{character-constant}}
+  \synprd{\nt{string-literal}}
+  \synprd{\nt{punctuator}}
+  \synprd[]{除以上所列的每一个非空白字符}
+
+
 \ssect{关键字}{synsum.lex.keyword}
+\synsymref[one of]{lang.lex.keyword}{keyword}
+\bgroup
+\newcommand{\kwgrp}[4][\linebreak]{\synprd[#1]{\makebox[24em]{
+      \makebox[8em][l]{\tm{#2}}
+      \makebox[8em][l]{\tm{#3}}
+      \makebox[8em][l]{\tm{#4}}}}}
+  \kwgrp{auto}      {if}        {unsigned}
+  \kwgrp{break}     {inline}    {void}
+  \kwgrp{case}      {int}       {volatile}
+  \kwgrp{char}      {long}      {while}
+  \kwgrp{const}     {register}  {\_Alignas}
+  \kwgrp{continue}  {restrict}  {\_Alignof}
+  \kwgrp{default}   {return}    {\_Atomic}
+  \kwgrp{do}        {short}     {\_Bool}
+  \kwgrp{double}    {signed}    {\_Complex}
+  \kwgrp{else}      {sizeof}    {\_Generic}
+  \kwgrp{enum}      {static}    {\_Imaginary}
+  \kwgrp{extern}    {struct}    {\_Noreturn}
+  \kwgrp{float}     {switch}    {\_Static\_assert}
+  \kwgrp{for}       {typedef}   {\_Thread\_local}
+  \kwgrp[]{goto}    {union}     {}
+\egroup
+
+
 \ssect{标识符}{synsum.lex.id}
+\synsymref{lang.lex.id.general}{identifier}
+\synprd{\nt{identifier-nondigit}}
+\synprd{\nt{identifier identifier-nondigit}}
+\synprd[]{\nt{identifier digit}}
+
+\synsymref{lang.lex.id.general}{identifier-nondigit}
+\synprd{\nt{nondigit}}
+\synprd{\nt{universal-character-name}}
+\synprd[]{其他实现定义字符}
+
+\synsymref[one of]{lang.lex.id.general}{nondigit}
+\synprd{\tm{\_  a b c d e f g h i j k l m}}
+\synprd{\tm{\ \ n o p q r s t u v w x y z}}
+\synprd{\tm{\ \ A B C D E F G H I J K L M}}
+\synprd[]{\tm{\ \ N O P Q R S T U V W X Y Z}}
+
+\synsymref[one of]{lang.lex.id.general}{digit}
+\synprd[]{\tm{0 1 2 3 4 5 6 7 8 9}}
+
+
 \ssect{通用字符名}{synsum.lex.uchar}
+\synsymref{lang.lex.univ}{universal-character-name}
+  \synprd{\tm{\bs{}u} \nt{hex-quad}}
+  \synprd[]{\tm{\bs{}U} \nt{hex-quad hex-quad}}
+
+\synsymref{lang.lex.univ}{hex-quad}
+  \synprd[]{\nt{hexadecimal-digit hexadecimal-digit hexadecimal-digit
+                hexadecimal-digit}}
+
+
 \ssect{常量}{synsum.lex.const}
+\synsymref{lang.lex.const}{constant}
+  \synprd{\nt{integer-constant}}
+  \synprd{\nt{floating-constant}}
+  \synprd{\nt{enumeration-constant}}
+  \synprd[]{\nt{character-constant}}
+
+\synsymref{lang.lex.const.int}{integer-constant}
+  \synprd{\nt{decimal-constant integer-suffix$_{opt}$}}
+  \synprd{\nt{octal-constant integer-suffix$_{opt}$}}
+  \synprd[]{\nt{hexadecimal-constant integer-suffix$_{opt}$}}
+
+\synsymref{lang.lex.const.int}{decimal-constant}
+  \synprd{\nt{nonzero-digit}}
+  \synprd[]{\nt{decimal-constant digit}}
+
+\synsymref{lang.lex.const.int}{octal-constant}
+  \synprd{\tm{0}}
+  \synprd[]{\nt{octal-constant octal-digit}}
+
+\synsymref{lang.lex.const.int}{hexadecimal-constant}
+  \synprd{\nt{hexadecimal-prefix hexadecimal-digit}}
+  \synprd[]{\nt{hexadecimal-constant hexadecimal-digit}}
+
+\synsymref[one of]{lang.lex.const.int}{hexadecimal-prefix}
+  \synprd[]{\tm{0x 0X}}
+
+\synsymref[one of]{lang.lex.const.int}{nonzero-digit}
+  \synprd[]{\tm{0 1 2 3 4 5 6 7 8 9}}
+
+\synsymref[one of]{lang.lex.const.int}{octal-digit}
+  \synprd[]{\tm{0 1 2 3 4 5 6 7}}
+
+\synsymref[one of]{lang.lex.const.int}{hexadecimal-digit}
+  \synprd{\tm{0 1 2 3 4 5 6 7 8 9}}
+  \synprd{\tm{a b c d e f}}
+  \synprd[]{\tm{A B C D E F}}
+
+\synsymref{lang.lex.const.int}{integer-suffix}
+  \synprd{\nt{unsigned-suffix long-suffix$_{opt}$}}
+  \synprd{\nt{unsigned-suffix long-long-suffix}}
+  \synprd{\nt{long-suffix unsigned-suffix$_{opt}$}}
+  \synprd[]{\nt{long-long-suffix unsigned-suffix$_{opt}$}}
+
+\synsymref[one of]{lang.lex.const.int}{unsigned-suffix}
+  \synprd[]{\tm{u U}}
+
+\synsymref[one of]{lang.lex.const.int}{long-suffix}
+  \synprd[]{\tm{l L}}
+
+\synsymref[one of]{lang.lex.const.int}{long-long-suffix}
+  \synprd[]{\tm{ll LL}}
+
+\synsymref{lang.lex.const.float}{floating-constant}
+  \synprd{\nt{decimal-floating-constant}}
+  \synprd[]{\nt{hexadecimal-floating-constant}}
+
+\synsymref{lang.lex.const.float}{decimal-floating-constant}
+  \synprd{\nt{fractional-constant exponent-part$_{opt}$
+              floating-suffix$_{opt}$}}
+  \synprd[]{\nt{digit-sequence exponent-part floating-suffix$_{opt}$}}
+
+\synsymref{lang.lex.const.float}{hexadecimal-floating-constant}
+  \synprd{\nt{hexadecimal-prefix hexadecimal-fractional-constant}}
+  \synprd{\hspace{6em}\nt{binary-exponent-part floating-suffix$_{opt}$}}
+  \synprd{\nt{hexadecimal-prefix hexadecimal-digit-sequence}}
+  \synprd[]{\hspace{6em}\nt{binary-exponent-part floating-suffix$_{opt}$}}
+
+\synsymref{lang.lex.const.float}{fractional-constant}
+  \synprd{\nt{digit-sequence$_{opt}$} \tm{.} \nt{digit-sequence}}
+  \synprd[]{\nt{digit-sequence} \tm{.}}
+
+\synsymref{lang.lex.const.float}{exponent-part}
+  \synprd{\tm{e} \nt{sign$_{opt}$ digit-sequence}}
+  \synprd[]{\tm{E} \nt{sign$_{opt}$ digit-sequence}}
+
+\synsymref[one of]{lang.lex.const.float}{sign}
+  \synprd[]{\tm{+ -}}
+
+\synsymref{lang.lex.const.float}{digit-sequence}
+  \synprd{\nt{digit}}
+  \synprd[]{\nt{digit-sequence digit}}
+
+\synsymref{lang.lex.const.float}{hexadecimal-fractional-constant}
+  \synprd{\nt{hexadecimal-digit-sequence$_{opt}$} \tm{.}
+          \nt{hexadecimal-digit-sequence}}
+  \synprd[]{\nt{hexadecimal-digit-sequence$_{opt}$} \tm{.}}
+
+\synsymref{lang.lex.const.float}{binary-exponent-part}
+  \synprd{\tm{p} \nt{sign$_{opt}$ digit-sequence}}
+  \synprd[]{\tm{P} \nt{sign$_{opt}$ digit-sequence}}
+
+\synsymref{lang.lex.const.float}{hexadecimal-digit-sequence}
+  \synprd{\nt{hexadecimal-digit}}
+  \synprd[]{\nt{hexadecimal-digit-sequence hexadecimal-digit}}
+
+\synsymref[one of]{lang.lex.const.float}{floating-suffix}
+  \synprd[]{\tm{f l F L}}
+
+\synsymref{lang.lex.const.enum}{enumeration-constant}
+  \synprd[]{\nt{identifier}}
+
+\synsymref{lang.lex.const.char}{character-constant}
+  \synprd{\tm{\sq} \nt{c-char-sequence} \tm{\sq}}
+  \synprd{\tm{L\sq} \nt{c-char-sequence} \tm{\sq}}
+  \synprd{\tm{u\sq} \nt{c-char-sequence} \tm{\sq}}
+  \synprd[]{\tm{U\sq} \nt{c-char-sequence} \tm{\sq}}
+
+\synsymref{lang.lex.const.char}{c-char-sequence}
+  \synprd{\nt{c-char}}
+  \synprd[]{\nt{c-char-sequence c-char}}
+
+\synsymref{lang.lex.const.char}{c-char}
+  \synprd{源字符集中除单引号\tm{\sq}，反斜杠\tm{\bs}或新行字符外的任何成员}
+  \synprd[]{\nt{escape-sequence}}
+
+\synsymref{lang.lex.const.char}{escape-sequence}
+  \synprd{\nt{simple-escape-sequence}}
+  \synprd{\nt{octal-escape-sequence}}
+  \synprd{\nt{hexadecimal-escape-sequence}}
+  \synprd[]{\nt{universal-character-name}}
+
+\synsymref[one of]{lang.lex.const.char}{simple-escape-sequence}
+  \synprd{\tm{\bs\sq\ \bs\dq\ \bs{}?\ \bs\bs}}
+  \synprd[]{\tm{\bs{}a \bs{}b \bs{}f \bs{}n \bs{}r \bs{}t \bs{}v}}
+
+\synsymref{lang.lex.const.char}{octal-escape-sequence}
+  \synprd{\tm{\bs} \nt{octal-digit}}
+  \synprd{\tm{\bs} \nt{octal-digit octal-digit}}
+  \synprd[]{\tm{\bs} \nt{octal-digit octal-digit octal-digit}}
+
+\synsymref{lang.lex.const.char}{hexadecimal-escape-sequence}
+  \synprd{\tm{\bs{}x} \nt{hexadecimal-digit}}
+  \synprd[]{\nt{hexadecimal-escape-sequence hexadecimal-digit}}
+
+
 \ssect{字符串字面值}{synsum.lex.str}
+\synsymref{lang.lex.str}{string-literal}
+  \synprd[]{\nt{encoding-prefix$_{opt}$}\tm{\dq}
+          \nt{s-char-sequence$_{opt}$}\tm{\dq}}
+
+\synsymref{lang.lex.str}{encoding-prefix}
+  \synprd{\tm{u8}}
+  \synprd{\tm{u}}
+  \synprd{\tm{U}}
+  \synprd[]{\tm{L}}
+
+\synsymref{lang.lex.str}{s-char-sequence}
+  \synprd{\nt{s-char}}
+  \synprd[]{\nt{s-char-sequence s-char}}
+
+\synsymref{lang.lex.str}{s-char}
+  \synprd{源字符集中除双引号\tm{\dq}，反斜杠\tm{\bs}或新行字符外的任何成员}
+  \synprd[]{\nt{escape-sequence}}
+
+
 \ssect{标点}{synsum.lex.punct}
+\synsymref[one of]{lang.lex.punct}{punctuator}
+  \synprd{\tm{[ ] ( ) \{ \} .\ ->}}
+  \synprd{\tm{++ -\dsh\ \& * + - \~\ !}}
+  \synprd{\tm{/ \% \tl{}\tl\ \tg{}\tg\ < > <= >= == != \^\ | \&\& ||}}
+  \synprd{\tm{?\ :\ ; ...}}
+  \synprd{\tm{= *= /= \%= += -= \tl{}\tl{}= \tg{}\tg{}= \&= \^{}= |=}}
+  \synprd{\tm{, \# \#\#}}
+  \synprd[]{\tm{<:\ :> <\% \%> \%:\ \%:\%:}}
+
+
 \ssect{头名称}{synsum.lex.header}
+\synsymref{lang.lex.header}{header-name}
+  \synprd{\tm{<} \nt{h-char-sequence} \tm{>}}
+  \synprd[]{\tm{\dq} \nt{q-char-sequence} \tm{\dq}}
+
+\synsymref{lang.lex.header}{h-char-sequence}
+  \synprd{\nt{h-char}}
+  \synprd[]{\nt{h-char-sequence h-char}}
+
+\synsymref{lang.lex.header}{h-char}
+  \synprd[]{源字符集中除新行字符和\tm{>}以外的任何成员}
+
+\synsymref{lang.lex.header}{q-char-sequence}
+  \synprd{\nt{q-char}}
+  \synprd[]{\nt{q-char-sequence q-char}}
+
+\synsymref{lang.lex.header}{q-char}
+  \synprd[]{源字符集中除新行字符和\tm{\dq}以外的任何成员}
+
+
 \ssect{预处理数字}{synsum.lex.ppnum}
+\synsymref{lang.lex.ppnum}{pp-number}
+  \synprd{\nt{digit}}
+  \synprd{\tm{.} \nt{digit}}
+  \synprd{\nt{pp-number digit}}
+  \synprd{\nt{pp-number identifier-nondigit}}
+  \synprd{\nt{pp-number} \tm{e} \nt{sign}}
+  \synprd{\nt{pp-number} \tm{E} \nt{sign}}
+  \synprd{\nt{pp-number} \tm{p} \nt{sign}}
+  \synprd{\nt{pp-number} \tm{P} \nt{sign}}
+  \synprd[]{\nt{pp-number} \tm{.}}
+
 
 \sect{短语结构}{synsum.phrase}
 \ssect{表达式}{synsum.phrase.expr}
+\synsymref{lang.expr}{primary-expression}
+  \synprd{\nt{identifier}}
+  \synprd{\nt{constant}}
+  \synprd{\nt{string-literal}}
+  \synprd{\tm{(} \nt{expression} \tm{)}}
+  \synprd[]{\nt{generic-selection}}
+
+\synsymref{lang.expr.prim}{generic-selection}
+  \synprd{\tm{\_Generic (} \nt{assignment-expression} \tm{,}
+    \nt{generic-assoc-list} \tm{)}}
+
+\synsymref{lang.expr.prim.generic}{generic-assoc-list}
+  \synprd{\nt{generic-association}}
+  \synprd{\nt{generic-assoc-list} \tm{,} \nt{generic-association}}
+
+\synsymref{lang.expr.prim.generic}{generic-association}
+  \synprd{\nt{generic-association} \tm{:} \nt{association-expression}}
+  \synprd[]{\tm{default} \tm{:} \nt{assignment-expression}}
+
+\synsymref{lang.expr.post}{postfix-expression}
+  \synprd{\nt{primary-expression}}
+  \synprd{\nt{postfix-expression} \tm{[} \nt{expression} \tm{]}}
+  \synprd{\nt{postfix-expression} \tm{(} \nt{argument-expression-list$_{opt}$}
+    \tm{)}}
+  \synprd{\nt{postfix-expression} \tm{.} \nt{identifier}}
+  \synprd{\nt{postfix-expression} \tm{->} \nt{identifier}}
+  \synprd{\nt{postfix-expression} \tm{++}}
+  \synprd{\nt{postfix-expression} \tm{-\dsh}}
+  \synprd{\tm{(} \nt{type-name} \tm{) \{} \nt{initializer-list} \tm{\}}}
+  \synprd[]{\tm{(} \nt{type-name} \tm{) \{} \nt{initializer-list} \tm{, \}}}
+
+\synsymref{lang.expr.post}{argument-expression-list}
+  \synprd{\nt{argument-expression}}
+  \synprd[]{\nt{argument-expression-list} \tm{,} \nt{argument-expression}}
+
+\synsymref{lang.expr.unary}{unary-expression}
+  \synprd{\nt{postfix-expression}}
+  \synprd{\tm{++} \nt{unary-expression}}
+  \synprd{\tm{-\dsh{}} \nt{unary-expression}}
+  \synprd{\nt{unary-operator cast-expression}}
+  \synprd{\tm{sizeof} \nt{unary-expression}}
+  \synprd{\tm{sizeof (} \nt{type-name} \tm{)}}
+  \synprd[]{\tm{\_Alignof (} \nt{type-name} \tm{)}}
+
+\synsymref[one of]{lang.expr.unary}{unary-operator}
+  \synprd[]{\tm{\&\ \ *\ \ +\ \ -\ \ \~\ \ !}}
+
+\synsymref{lang.expr.cast}{cast-expression}
+  \synprd{unary-expression}
+  \synprd[]{\tm{(} \nt{type-name} \tm{)} \nt{cast-expression}}
+
+\synsymref{lang.expr.mul}{multiplicative-expression}
+  \synprd{\nt{cast-expression}}
+  \synprd{\nt{multiplicative-expression} \tm{*} \nt{cast-expression}}
+  \synprd{\nt{multiplicative-expression} \tm{/} \nt{cast-expression}}
+  \synprd[]{\nt{multiplicative-expression} \tm{\%} \nt{cast-expression}}
+
+\synsymref{lang.expr.add}{additive-expression}
+  \synprd{\nt{multiplicative-expression}}
+  \synprd{\nt{additive-expression} \tm{+} \nt{multiplicative-expression}}
+  \synprd[]{\nt{additive-expression} \tm{-} \nt{multiplicative-expression}}
+
+\synsymref{lang.expr.shift}{shift-expression}
+  \synprd{\nt{additive-expression}}
+  \synprd{\nt{shift-expression} \tm{\tl{}\tl} \nt{additive-expression}}
+  \synprd[]{\nt{shift-expression} \tm{\tg{}\tg} \nt{additive-expression}}
+
+\synsymref{lang.expr.rel}{relational-expression}
+  \synprd{\nt{shift-expression}}
+  \synprd{\nt{relational-expression} \tm{\tl} \nt{shift-expression}}
+  \synprd{\nt{relational-expression} \tm{\tg} \nt{shift-expression}}
+  \synprd{\nt{relational-expression} \tm{\tl=} \nt{shift-expression}}
+  \synprd[]{\nt{relational-expression} \tm{\tg=} \nt{shift-expression}}
+
+\synsymref{lang.expr.eq}{equality-expression}
+  \synprd{\nt{relational-expression}}
+  \synprd{\nt{equality-expression} \tm{==} \nt{relational-expression}}
+  \synprd[]{\nt{equality-expression} \tm{!=} \nt{relational-expression}}
+
+\synsymref{lang.expr.and}{AND-expression}
+  \synprd{\nt{equality-expression}}
+  \synprd[]{\nt{AND-expression} \tm{\&} \nt{equality-expression}}
+
+\synsymref{lang.expr.xor}{exclusive-OR-expression}
+  \synprd{\nt{AND-expression}}
+  \synprd[]{\nt{exclusive-OR-expression} \tm{\^} \nt{AND-expression}}
+
+\synsymref{lang.expr.or}{inclusive-OR-expression}
+  \synprd{\nt{exclusive-OR-expression}}
+  \synprd[]{\nt{inclusive-OR-expression} \tm{|} \nt{exclusive-OR-expression}}
+
+\synsymref{lang.expr.land}{logical-AND-expression}
+  \synprd{\nt{inclusive-OR-expression}}
+  \synprd[]{\nt{logical-AND-expression} \tm{\&\&} \nt{inclusive-OR-expression}}
+
+\synsymref{lang.expr.lor}{logical-OR-expression}
+  \synprd{\nt{inclusive-AND-expression}}
+  \synprd[]{\nt{logical-OR-expression} \tm{||} \nt{inclusive-AND-expression}}
+
+\synsymref{lang.expr.cond}{conditional-expression}
+  \synprd{\nt{logical-OR-expression}}
+  \synprd[]{\nt{logical-OR-expression} \tm{?} \nt{expression} \tm{:}
+    \nt{conditional-expression}}
+
+\synsymref{lang.expr.assign}{assignment-expression}
+  \synprd{\nt{conditional-expression}}
+  \synprd[]{\nt{unary-expression assignment-operator assignment-expression}}
+
+\synsymref[one of]{lang.expr.assign}{assignment-operator}
+  \synprd[]{\tm{= *= /= \%= += -= \tl{}\tl= \tg{}\tg= \&= \^{}= |=}}
+
+\synsymref{lang.expr.comma}{expression}
+  \synprd{\nt{assignment-expression}}
+  \synprd[]{\nt{expression} \tm{,} \nt{assignment-expression}}
+
+\synsymref{lang.constexpr}{constant-expression}
+  \synprd[]{\nt{conditional-expression}}
+
+
 \ssect{声明}{synsum.phrase.dcl}
+\synsymref{lang.dcl}{declaration}
+  \synprd{\nt{declaration-specifiers init-declarator-list\tsub{opt}} \tm{;}}
+  \synprd[]{\nt{static\_assert-declaration}}
+
+\synsymref{lang.dcl}{declaration-specifiers}
+  \synprd{\nt{storage-class-specifier declaration-specifiers\tsub{opt}}}
+  \synprd{\nt{type-specifier declaration-specifiers\tsub{opt}}}
+  \synprd{\nt{type-qualifier declaration-specifiers\tsub{opt}}}
+  \synprd{\nt{function-specifier declaration-specifiers\tsub{opt}}}
+  \synprd[]{\nt{alignment-specifier declaration-specifiers\tsub{opt}}}
+
+\synsymref{lang.dcl}{init-declarator-list}
+  \synprd{\nt{init-declarator}}
+  \synprd[]{\nt{init-declarator-list} \tm{,} \nt{init-declarator}}
+
+\synsymref{lang.dcl}{init-declarator}
+  \synprd{\nt{declarator}}
+  \synprd[]{\nt{declarator} \tm{=} \nt{initializer}}
+
+\synsymref{lang.dcl.stc}{storage-class-specifier}
+  \synprd{\tm{typedef}}
+  \synprd{\tm{extern}}
+  \synprd{\tm{static}}
+  \synprd{\tm{\_Thread\_local}}
+  \synprd{\tm{auto}}
+  \synprd[]{\tm{register}}
+
+\synsymref{lang.dcl.type}{type-specifier}
+  \synprd{\tm{void}}
+  \synprd{\tm{char}}
+  \synprd{\tm{short}}
+  \synprd{\tm{int}}
+  \synprd{\tm{long}}
+  \synprd{\tm{float}}
+  \synprd{\tm{double}}
+  \synprd{\tm{signed}}
+  \synprd{\tm{unsigned}}
+  \synprd{\tm{\_Bool}}
+  \synprd{\tm{\_Complex}}
+  \synprd{\nt{automic-type-specifier}}
+  \synprd{\nt{struct-or-union-specifier}}
+  \synprd{\nt{enum-specifier}}
+  \synprd[]{\nt{typedef-name}}
+
+\synsymref{lang.dcl.type.struct}{struct-or-union-specifier}
+  \synprd{\nt{struct-or-union identifier\tsub{opt}} \tm{\{}
+    \nt{struct-declaration-list} \tm{\}}}
+  \synprd[]{\nt{struct-or-union identifier}}
+
+\synsymref{lang.dcl.type.struct}{struct-or-union}
+  \synprd{\tm{struct}}
+  \synprd[]{\tm{union}}
+
+\synsymref{lang.dcl.type.struct}{struct-declaration-list}
+  \synprd{\nt{struct-declaration}}
+  \synprd[]{\nt{struct-declaration-list struct-declaration}}
+
+\synsymref{lang.dcl.type.struct}{struct-declaration}
+  \synprd{\nt{specifier-qualifier-list struct-declarator-list\tsub{opt}} \tm{;}}
+  \synprd[]{\nt{static\_assert-declaration}}
+
+\synsymref{lang.dcl.type.struct}{specifier-qualifier-list}
+  \synprd{\nt{type-specifier specifier-qualifier-list\tsub{opt}}}
+  \synprd[]{\nt{type-qualifier specifier-qualifier-list\tsub{opt}}}
+
+\synsymref{lang.dcl.type.struct}{struct-declarator-list}
+  \synprd{\nt{struct-declarator}}
+  \synprd[]{\nt{struct-declarator-list} \tm{,} \nt{struct-declarator}}
+
+\synsymref{lang.dcl.type.struct}{struct-declarator}
+  \synprd{\nt{declarator}}
+  \synprd[]{\nt{declarator\tsub{opt}} \tm{:} \nt{constant-expression}}
+
+\synsymref{lang.dcl.type.enum}{enum-specifier}
+  \synprd{\tm{enum} \nt{identifier\tsub{opt}} \tm{\{} \nt{enumerator-list} \tm{\}}}
+  \synprd{\tm{enum} \nt{identifier\tsub{opt}} \tm{\{} \nt{enumerator-list} \tm{,\}}}
+  \synprd[]{\tm{enum} \nt{identifier}}
+
+\synsymref{lang.dcl.type.enum}{enumerator-list}
+  \synprd{\nt{enumerator}}
+  \synprd[]{\nt{enumerator-list} \tm{,} \nt{enumerator}}
+
+\synsymref{lang.dcl.type.enum}{enumerator}
+  \synprd{\nt{enumeration-constant}}
+  \synprd[]{\nt{enumeration-constant} \tm{=} \nt{constant-expression}}
+
+\synsymref{lang.dcl.type.atom}{atomic-type-specifier}
+  \synprd[]{\tm{\_Atomic (} \nt{type-name} \tm{)}}
+
+\synsymref{lang.dcl.qual}{type-qualifier}
+  \synprd{\tm{const}}
+  \synprd{\tm{restrict}}
+  \synprd{\tm{volatile}}
+  \synprd[]{\tm{\_Atomic}}
+
+\synsymref{lang.dcl.fct}{function-specifier}
+  \synprd{\tm{inline}}
+  \synprd[]{\tm{\_Noreturn}}
+
+\synsymref{lang.dcl.align}{alignment-specifier}
+  \synprd{\tm{\_Alignas (} \nt{type-name} \tm{)}}
+  \synprd[]{\tm{\_Alignas (} \nt{constant-expression} \tm{)}}
+
+\synsymref{lang.dcl.decl}{declarator}
+  \synprd[]{\nt{pointer\tsub{opt} direct-declarator}}
+
+\synsymref{lang.dcl.decl}{direct-declarator}
+  \synprd{\nt{identifier}}
+  \synprd{\tm{(} \nt{declarator} \tm{)}}
+  \synprd{\nt{direct-declarator} \tm{[} \nt{type-qualifier-list\tsub{opt}
+    assignment-expression\tsub{opt}} \tm{]}}
+  \synprd{\nt{direct-declarator} \tm{[ static} \nt{type-qualifier-list\tsub{opt}
+    assignment-expression} \tm{]}}
+  \synprd{\nt{direct-declarator} \tm{[} \nt{type-qualifier-list} \tm{static}
+    \nt{assignment-expression} \tm{]}}
+  \synprd{\nt{direct-declarator} \tm{[} \nt{type-qualifier-list\tsub{opt}}
+    \tm{*]}}
+  \synprd{\nt{direct-declarator} \tm{(} \nt{parameter-type-list} \tm{)}}
+  \synprd[]{\nt{direct-declarator} \tm{(} \nt{identifier-list\tsub{opt}} \tm{)}}
+
+\synsymref{lang.dcl.decl}{pointer}
+  \synprd{\tm{*} \nt{type-qualifier-list\tsub{opt}}}
+  \synprd[]{\tm{*} \nt{type-qualifier-list\tsub{opt} pointer}}
+
+\synsymref{lang.dcl.decl}{type-qualifier-list}
+  \synprd{\nt{type-qualifier}}
+  \synprd[]{\nt{type-qualifier-list type-qualifier}}
+
+\synsymref{lang.dcl.decl}{parameter-type-list}
+  \synprd{\nt{parameter-list}}
+  \synprd[]{\nt{parameter-list} \tm{, ...}}
+
+\synsymref{lang.dcl.decl}{parameter-list}
+  \synprd{\nt{parameter-declaration}}
+  \synprd[]{\nt{parameter-list} \tm{,} \nt{parameter-declaration}}
+
+\synsymref{lang.dcl.decl}{parameter-declaration}
+  \synprd{\nt{declaration-specifiers declarator}}
+  \synprd[]{\nt{declaration-specifiers abstract-declarator\tsub{opt}}}
+
+\synsymref{lang.dcl.decl}{identifier-list}
+  \synprd{\nt{identifier}}
+  \synprd[]{\nt{identifier-list} \tm{,} \nt{identifier}}
+
+\synsymref{lang.dcl.typename}{type-name}
+  \synprd[]{\nt{specifier-qualifier-list abstract-declarator\tsub{opt}}}
+
+\synsymref{lang.dcl.typename}{abstract-declarator}
+  \synprd{\nt{pointer}}
+  \synprd[]{\nt{pointer\tsub{opt} direct-abstract-declarator}}
+
+\synsymref{lang.dcl.typename}{direct-abstract-declarator}
+  \synprd{\tm{(} \nt{abstract-declarator} \tm{)}}
+  \synprd{\nt{direct-abstract-declarator\tsub{opt}} \tm{[}
+    \nt{type-qualifier-list\tsub{opt} assignment-expression} \tm{]}}
+  \synprd{\nt{direct-abstract-declarator\tsub{opt}} \tm{[ static}
+    \nt{type-qualifier-list\tsub{opt} assignment-expression} \tm{]}}
+  \synprd{\nt{direct-abstract-declarator\tsub{opt}} \tm{[}
+    \nt{type-qualifier-list} \tm{static} \nt{assignment-expression} \tm{]}}
+  \synprd{\nt{direct-abstract-declarator\tsub{opt}} \tm{[ * ]}}
+  \synprd[]{\nt{direct-abstract-declarator\tsub{opt}} \tm{(}
+    \nt{parameter-type-list\tsub{opt}} \tm{)}}
+
+\synsymref{lang.dcl.typedef}{typedef-name}
+  \synprd[]{\nt{identifier}}
+
+\synsymref{lang.dcl.init}{initializer}
+  \synprd{\nt{assignment-expression}}
+  \synprd{\tm{\{} \nt{initializer-list} \tm{\}}}
+  \synprd[]{\tm{\{} \nt{initializer-list} \tm{, \}}}
+
+\synsymref{lang.dcl.init}{initializer-list}
+  \synprd{\nt{designation\tsub{opt} initializer}}
+  \synprd[]{\nt{initializer-list} \tm{,} \nt{designation\tsub{opt} initializer}}
+
+\synsymref{lang.dcl.init}{designation}
+  \synprd[]{\nt{designator-list} \tm{=}}
+
+\synsymref{lang.dcl.init}{designator-list}
+  \synprd{\nt{designator}}
+  \synprd[]{\nt{designator-list designator}}
+
+\synsymref{lang.dcl.init}{designator}
+  \synprd{\tm{[} \nt{constant-expression} \tm{]}}
+  \synprd[]{\tm{.} \nt{identifier}}
+
+\synsymref{lang.dcl.assert}{static\_assert-declaration}
+  \synprd[]{\tm{\_Static\_assert (} \nt{constant-expression} \tm{,}
+    \nt{string-literal} \tm{) ;}}
+
+
 \ssect{语句}{synsum.phrase.stmt}
+\synsymref{lang.stmt}{statement}
+  \synprd{\nt{labeled-statement}}
+  \synprd{\nt{compound-statement}}
+  \synprd{\nt{expression-statement}}
+  \synprd{\nt{selection-statement}}
+  \synprd{\nt{iteration-statement}}
+  \synprd[]{\nt{jump-statement}}
+
+\synsymref{lang.stmt.label}{labeled-statement}
+  \synprd{\nt{identifier} \tm{:} \nt{statement}}
+  \synprd{\tm{case} \nt{constant-expression} \tm{:} \nt{statement}}
+  \synprd[]{\tm{default :} \nt{expression}}
+
+\synsymref{lang.stmt.cmpd}{compound-statement}
+  \synprd[]{\tm{\{} \nt{block-item-list\tsub{opt}} \tm{\}}}
+
+\synsymref{lang.stmt.cmpd}{block-item-list}
+  \synprd{\nt{block-item}}
+  \synprd[]{\nt{block-item-list block-item}}
+
+\synsymref{lang.stmt.cmpd}{block-item}
+  \synprd{\nt{declaration}}
+  \synprd[]{\nt{statement}}
+
+\synsymref{lang.stmt.expr}{expression-statement}
+  \synprd[]{\nt{expression\tsub{opt} \tm{;}}}
+
+\synsymref{lang.stmt.sel}{selection-statement}
+  \synprd{\tm{if (} \nt{expression} \tm{)} \nt{statement}}
+  \synprd{\tm{if (} \nt{expression} \tm{)} \nt{statement} \tm{else}
+    \nt{statement}}
+  \synprd[]{\tm{switch (} \nt{expression} \tm{)} \nt{statement}}
+
+\synsymref{lang.stmt.iter}{iteration-statement}
+  \synprd{\tm{while (} \nt{expression} \tm{)} \nt{statement}}
+  \synprd{\tm{do} \nt{statement} \tm{while (} \nt{expression} \tm{) ;}}
+  \synprd{\tm{for (} \nt{expression\tsub{opt}} \tm{;} \nt{expression\tsub{opt}}
+    \tm{;} \nt{expression\tsub{opt}} \nt{)} \nt{statement}}
+  \synprd[]{\tm{for (} \nt{declaration expression\tsub{opt}} \tm{;}
+    \nt{expression\tsub{opt}} \tm{)} \nt{statement}}
+
+\synsymref{lang.stmt.jmp}{jump-statement}
+  \synprd{\tm{goto} \nt{identifier} \tm{;}}
+  \synprd{\tm{continue} \tm{;}}
+  \synprd{\tm{break} \tm{;}}
+  \synprd[]{\tm{return} \nt{expression\tsub{opt}} \tm{;}}
+
+
 \ssect{外部定义}{synsum.phrase.extdef}
+\synsymref{lang.extn}{translation-unit}
+  \synprd{\nt{external-declaration}}
+  \synprd{\nt{translation-unit external-declaration}}
+
+\synsymref{lang.extn.fct}{external-declaration}
+  \synprd{\nt{function-definition}}
+  \synprd[]{\nt{declaration}}
+
+\synsymref{lang.extn.fct}{function-definition}
+  \synprd{\nt{declaration-specifiers declarator declaration-list\tsub{opt}
+    compound-statement}}
+
+\synsymref{lang.extn.fct}{declaration-list}
+  \synprd{\nt{declaration}}
+  \synprd[]{\nt{declaration-list declaration}}
 
 \sect{预处理指令}{synsum.pp}
+\synsymref{lang.ppdir}{preprocessing-file}
+  \synprd[]{\nt{group\tsub{opt}}}
+
+\synsymref{lang.ppdir}{group}
+  \synprd{\nt{group-part}}
+  \synprd[]{\nt{group group-part}}
+
+\synsymref{lang.ppdir}{group-part}
+  \synprd{\nt{if-section}}
+  \synprd{\nt{control-line}}
+  \synprd{\nt{text-line}}
+  \synprd[]{\tm{\#} \nt{non-directive}}
+
+\synsymref{lang.ppdir}{if-section}
+  \synprd[]{\nt{if-group elif-group\tsub{opt} else-group\tsub{opt} endif-line}}
+
+{\newcommand{\ppdprd}[3][\linebreak]{\synprd[#1]{\makebox[5em]{\tm{\# #2}\hfill}
+  #3}}
+\synsymref{lang.ppdir}{if-section}
+  \ppdprd{if}{\nt{constant-expression new-line group\tsub{opt}}}
+  \ppdprd{ifdef}{\nt{identifier new-line group\tsub{opt}}}
+  \ppdprd[]{ifndef}{\nt{identifier new-line group\tsub{opt}}}
+
+\synsymref{lang.ppdir}{elif-group}
+  \synprd{\nt{elif-group}}
+  \synprd[]{\nt{elif-groups elif-group}}
+
+\synsymref{lang.ppdir}{elif-group}
+  \ppdprd[]{elif}{\nt{constant-expression new-line group\tsub{opt}}}
+
+\synsymref{lang.ppdir}{else-group}
+  \ppdprd[]{else}{\nt{new-line group\tsub{opt}}}
+
+\synsymref{lang.ppdir}{endif-line}
+  \ppdprd[]{endif}{\nt{new-line}}
+
+\synsymref{lang.ppdir}{control-line}
+  \ppdprd{include}{\nt{pp-tokens new-line}}
+  \ppdprd{define}{\nt{identifier replacement-list new-line}}
+  \ppdprd{define}{\nt{identifier lparen identifier-list\tsub{opt}} \tm{)}
+    \nt{replacement-list new-line}}
+  \ppdprd{define}{\nt{identifier lparen} \tm{ ... )} \nt{replacement-list
+    new-line}}
+  \ppdprd{define}{\nt{identifier lparen identifier-list} \tm{, ... )}
+    \nt{replacement-list new-line}}
+  \ppdprd{undef}{\nt{identifier new-line}}
+  \ppdprd{line}{\nt{pp-tokens new-line}}
+  \ppdprd{error}{\nt{pp-tokens\tsub{opt} new-line}}
+  \ppdprd{pragma}{\nt{pp-tokens\tsub{opt} new-line}}
+  \ppdprd[]{}{\nt{new-line}}
+}
+
+\synsymref{lang.ppdir}{text-line}
+  \synprd[]{\nt{pp-tokens\tsub{opt} new-line}}
+
+\synsymref{lang.ppdir}{non-directive}
+  \synprd[]{\nt{pp-tokens new-line}}
+
+\synsymref{lang.ppdir}{lparen}
+  \synprd[]{前面没有直接跟上空白的\tm{(}字符}
+
+\synsymref{lang.ppdir}{replacement-list}
+  \synprd[]{\nt{pp-tokens\tsub{opt}}}
+
+\synsymref{lang.ppdir}{pp-tokens}
+  \synprd{\nt{preprocessing-token}}
+  \synprd[]{\nt{pp-tokens preprocessing-token}}
+
+\synsymref{lang.ppdir}{new-line}
+  \synprd[]{新行字符}}
