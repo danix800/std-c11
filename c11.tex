@@ -18,6 +18,9 @@
 \usepackage{chngcntr}
 \counterwithout{footnote}{chapter}
 
+%\usepackage{trace}
+%\tracingall
+
 % page titles
 %\fancyhead[L]{\color{structurecolor}\ifdefstring{\ELEGANT@lang}{en}{\itshape}
 %{\kaishu}ISO/IEC 9899:2011 (E)}
@@ -158,6 +161,9 @@
 \newcommand{\synsym}[2][]{\hspace{-2.5em}\parindent0pt\mbox{\qquad\nt{#2:} #1}
                           \linebreak}
 \newcommand{\synprd}[2][\linebreak]{\mbox{\qquad\qquad\quad #2}#1}
+% for synsum
+\newcommand{\synsymref}[3][]{\hspace{-2.5em}\parindent0pt\mbox{\qquad(\ref{#2})
+  \nt{#3:} #1}\linebreak}
 
 \begin{document}
 \maketitle
@@ -178,9 +184,15 @@
 \include{chapters/6.lang}
 \include{chapters/7.lib}
 
-\renewcommand{\thechapter}{\Alph{chapter}}
-\setcounter{chapter}{0}
+\newcounter{annexchptr}
+\renewcommand{\thechapter}{\Alph{annexchptr}}
 \renewcommand{\chaptername}{附录 \thechapter\;}
+\renewcommand{\chptr}[2]{
+  \stepcounter{annexchptr}
+  \chapter{#1\label{#2}}
+  \setcounter{excntr}{0}
+  \setcounter{notescntr}{0}
+}
 
 \include{chapters/a.synsum}
 \include{chapters/b.libsum}
