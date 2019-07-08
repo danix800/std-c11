@@ -1,441 +1,830 @@
-1           scope                                   范围
-2           refs                                    规范参考文献
-3           defns                                   术语、定义和符号
-4           conform                                 合规性
-5           env                                     环境
-5.1         env.concept                             概念模型
-5.1.1       env.concept.trans                       翻译环境
-5.1.1.1     evn.concept.trans.struct                程序结构
-5.1.1.2     env.concept.trans.phase                 翻译阶段
-5.1.1.3     env.concept.trans.diag                  诊断
-5.1.2       env.concept.exec                        执行环境
-5.1.2.1     env.concept.exec.free                   自由环境
-5.1.2.2     env.concept.exec.hosted                 宿主环境
-5.1.2.2.1   env.concept.exec.hosted.start           程序启动
-5.1.2.2.2   env.concept.exec.hosted.exec            程序执行
-5.1.2.2.3   env.concept.exec.hosted.term            程序终止
-5.1.2.3     env.concept.exec.exec                   程序执行
-5.1.2.4     env.concept.exec.thread                 多线程执行与数据竞争
-5.2         env.env                                 环境考虑
-5.2.1       env.env.charset                         字符集
-5.2.1.1     env.env.charset.trigraph                三字母序列
-5.2.1.2     env.env.charset.multibyte               多字节字符
-5.2.2       env.env.display                         字符显示语义
-5.2.3       env.env.sig                             信号与中断
-5.2.4       env.env.limit                           环境性限制
-5.2.4.1     env.env.limit.trans                     翻译限制
-5.2.4.2     env.env.limit.num                       数值限制
-5.2.4.2.1   env.env.limits.num.int                  整型大小<limits.h>
-5.2.4.2.2   env.env.limits.num.float                浮点类型特征<float.h>
-6           lang                                    语言
-6.1         lang.notation                           记号
-6.2         lang.concept                            概念
-6.2.1       lang.concept.scope                      标识符作用域
-6.2.2       lang.concept.link                       标识符链接
-6.2.3       lang.concept.namespace                  标识符命名空间
-6.2.4       lang.concept.storage                    对象存储期
-6.2.5       lang.concept.type                       类型
-6.2.6       lang.concept.repr                       类型表示
-6.2.6.1     lang.concept.repr.general               概论
-6.2.6.2     lang.concept.repr.int                   整型
-6.2.7       lang.concept.compat                     兼容类型与合成类型
-6.2.8       lang.concept.align                      对象对齐
-6.3         lang.conv                               转换
-6.3.1       lang.conv.arith                         算术操作数
-6.3.1.1     lang.conv.arith.rank                    布尔，字符与整数
-6.3.1.2     lang.conv.arith.bool                    布尔类型
-6.3.1.3     lang.conv.arith.signed                  有符号和无符号整数
-6.3.1.4     lang.conv.arith.fpint                   实浮点与整型
-6.3.1.5     lang.conv.arith.double                  实浮点类型
-6.3.1.6     lang.conv.arith.cmpl                    复类型
-6.3.1.7     lang.conv.arith.rcmpl                   实数与复数
-6.3.1.8     lang.conv.arith.usualarith              常规算术转换
-6.3.2       lang.conv.other                         其他操作数
-6.3.2.1     lang.conv.other.desig                   左值，数组和函数指示符
-6.3.2.2     lang.conv.other.void                    void
-6.3.2.3     lang.conv.other.ptr                     指针
-6.4         lang.lex                                词法元素
-6.4.1       lang.lex.keyword                        关键字
-6.4.2       lang.lex.id                             标识符
-6.4.2.1     lang.lex.id.general                     概论
-6.4.2.2     lang.lex.id.predef                      预定义标识符
-6.4.3       lang.lex.univ                           通用字符名
-6.4.4       lang.lex.const                          常量
-6.4.4.1     lang.lex.const.int                      整数常量
-6.4.4.2     lang.lex.const.float                    浮点常量
-6.4.4.3     lang.lex.const.enum                     枚举常量
-6.4.4.4     lang.lex.const.char                     字符常量
-6.4.5       lang.lex.str                            字符串字面值
-6.4.6       lang.lex.punct                          标点
-6.4.7       lang.lex.header                         头名称
-6.4.8       lang.lex.ppnum                          预处理数字
-6.4.9       lang.lex.comment                        注释
-6.5         lang.expr                               表达式
-6.5.1       lang.expr.prim                          主表达式
-6.5.1.1     lang.expr.prim.generic                  泛型选择
-6.5.2       lang.expr.post                          后缀运算符
-6.5.2.1     lang.expr.post.sub                      数组下标
-6.5.2.2     lang.expr.post.call                     函数调用
-6.5.2.3     lang.expr.post.mem                      结构与联合成员
-6.5.2.4     lang.expr.post.incr                     后自增与自减
-6.5.2.5     lang.expr.post.cmpd                     复合字面值
-6.5.3       lang.expr.unary                         一元运算符
-6.5.3.1     lang.expr.unary.incr                    前自增与自减
-6.5.3.2     lang.expr.unary.addr                    地址与取值
-6.5.3.3     lang.expr.unary.arith                   一元算术运算符
-6.5.3.4     lang.expr.unary.sizeof                  sizeof和alignof
-6.5.4       lang.expr.cast                          转换运算符
-6.5.5       lang.expr.mul                           乘法运算符
-6.5.6       lang.expr.add                           加法运算符
-6.5.7       lang.expr.shift                         位移运算符
-6.5.8       lang.expr.rel                           关系运算符
-6.5.9       lang.expr.eq                            等性运算符
-6.5.10      lang.expr.and                           按位与运算符
-6.5.11      lang.expr.xor                           按位异或运算符
-6.5.12      lang.expr.or                            按位或运算符
-6.5.13      lang.expr.land                          逻辑与运算符
-6.5.14      lang.expr.lor                           逻辑或运算符
-6.5.15      lang.expr.cond                          条件运算符
-6.5.16      lang.expr.assign                        赋值运算符
-6.5.16.1    lang.expr.assign.simple                 简单赋值
-6.5.16.2    lang.expr.assign.cmpd                   复合赋值
-6.5.17      lang.expr.comma                         逗号运算符
-6.6         lang.constexpr                          常表达式
-6.7         lang.dcl                                声明
-6.7.1       lang.dcl.stc                            存储类说明
-6.7.2       lang.dcl.type                           类型说明
-6.7.2.1     lang.dcl.type.struct                    结构与联合说明符
-6.7.2.2     lang.dcl.type.enum                      枚举说明符
-6.7.2.3     lang.dcl.type.tag                       标签
-6.7.2.4     lang.dcl.type.atom                      原子类型说明符
-6.7.3       lang.dcl.qual                           类型限定
-6.7.3.1     lang.dcl.qual.restrict                  restrict的形式定义
-6.7.4       lang.dcl.fct                            函数说明
-6.7.5       lang.dcl.align                          对齐说明
-6.7.6       lang.dcl.decl                           声明子
-6.7.6.1     lang.dcl.decl.ptr                       指针声明子
-6.7.6.2     lang.dcl.decl.array                     数组声明子
-6.7.6.3     lang.dcl.decl.fct                       函数声明子（含原型）
-6.7.7       lang.dcl.typename                       类型名
-6.7.8       lang.dcl.typedef                        类型定义
-6.7.9       lang.dcl.init                           初始化
-6.7.10      lang.dcl.assert                         静态断言
-6.8         lang.stmt                               语句与块
-6.8.1       lang.stmt.label                         标号语句
-6.8.2       lang.stmt.cmpd                          复合语句
-6.8.3       lang.stmt.expr                          表达式与空语句
-6.8.4       lang.stmt.sel                           选择语句
-6.8.4.1     lang.stmt.sel.if                        if语句
-6.8.4.2     lang.stmt.sel.switch                    switch语句
-6.8.5       lang.stmt.iter                          迭代语句
-6.8.5.1     lang.stmt.iter.while                    while语句
-6.8.5.2     lang.stmt.iter.do                       do语句
-6.8.5.3     lang.stmt.iter.for                      for语句
-6.8.6       lang.stmt.jmp                           跳转语句
-6.8.6.1     lang.stmt.jmp.goto                      goto语句
-6.8.6.2     lang.stmt.jmp.cont                      continue语句
-6.8.6.3     lang.stmt.jmp.brk                       break语句
-6.8.6.4     lang.stmt.jmp.ret                       return语句
-6.9         lang.extn                               外部定义
-6.9.1       lang.extn.fct                           函数定义
-6.9.2       lang.extn.obj                           外部对象定义
-6.10        lang.ppdir                              预处理指令
-6.10.1      lang.ppdir.condinc                      条件包含
-6.10.2      lang.ppdir.inc                          源文件包含
-6.10.3      lang.ppdir.macro                        宏替换
-6.10.3.1    lang.ppdir.macro.subst                  参数替换
-6.10.3.2    lang.ppdir.macro.stringize              \#运算符
-6.10.3.3    lang.ppdir.macro.concat                 \#\#运算符
-6.10.3.4    lang.ppdir.macro.rescan                 重扫描和进一步替换
-6.10.3.5    lang.ppdir.macro.scope                  宏定义作用域
-6.10.4      lang.ppdir.line                         行控制
-6.10.5      lang.ppdir.error                        Error指令
-6.10.6      lang.ppdir.pragma                       Pragma指令
-6.10.7      lang.ppdir.null                         空指令
-6.10.8      lang.ppdir.predef                       预定义宏名
-6.10.8.1    lang.ppdir.predef.mand                  强制定义的宏
-6.10.8.2    lang.ppdir.predef.env                   环境相关宏
-6.10.8.3    lang.ppdir.predef.cond                  条件特性宏
-6.10.9      lang.ppdir.pragmaop                     Pragma运算符
-6.11        lang.dir                                未来语言方向
-6.11.1      lang.dir.float                          符点类型
-6.11.2      lang.dir.link                           标识符链接
-6.11.3      lang.dir.extn                           外部名称
-6.11.4      lang.dir.escape                         字符转义序列
-6.11.5      lang.dir.stc                            存储类说明
-6.11.6      lang.dir.fctdecl                        函数声明子
-6.11.7      lang.dir.fctdef                         函数定义
-6.11.8      lang.dir.pragma                         Pragma指令
-6.11.9      lang.dir.predef                         预定义宏名
-7           lib                                     标准库
-7.1         lib.intro                               引言
-7.1.1       lib.intro.term                          术语定义
-7.1.2       lib.intro.header                        标准头
-7.1.3       lib.intro.reserved                      保留标识符
-7.1.4       lib.intro.use                           库函数的使用
-7.2         lib.diag                                诊断<assert.h>
-7.2.1       lib.diag.prog                           程序诊断
-7.3         lib.cmplx                               复算术<complex.h>
-7.3.1       lib.cmplx.intro                         引言
-7.3.2       lib.cmplx.conv                          惯例
-7.3.3       lib.cmplx.branch                        分支切割
-7.3.4       lib.cmplx.range                         CX\_LIMITED\_RANGE pragma
-7.3.5       lib.cmplx.trig                          三角函数
-7.3.6       lib.cmplx.hyper                         双曲函数
-7.3.7       lib.cmplx.exp                           指数与对数函数
-7.3.8       lib.cmplx.power                         幂与绝对值函数
-7.3.9       lib.cmplx.manip                         复操作函数
-7.4         lib.char                                字符处理<ctype.h>
-7.4.1       lib.char.class                          字符分类函数
-7.4.2       lib.char.case                           字符大小写映射函数
-7.5         lib.error                               错误处理<errno.h>
-7.6         lib.fpenv                               浮点环境<fenv.h>
-7.6.1       lib.fpenv.acc                           FENV\_ACCESS pragma
-7.6.2       lib.fpenv.except                        浮点异常
-7.6.3       lib.fpenv.rnd                           舍入
-7.6.4       lib.fpenv.env                           环境
-7.7         lib.float                               浮点类型特征<float.h>
-7.8         lib.intfmt                              整型格式转换<inttypes.h>
-7.8.1       lib.intfmt.macro                        格式说明符宏
-7.8.2       lib.intfmt.width                        最大宽度整型函数
-7.9         lib.altspell                            其他拼写<iso646.h>
-7.10        lib.intsize                             整型大小<limits.h>
-7.11        lib.locale                              本地化<locale.h>
-7.11.1      lib.locale.cntr                         区域环境控制
-7.11.2      lib.locale.numconv                      数值格式惯例查询
-7.12        lib.math                                数学<math.h>
-7.12.1      lib.math.error                          错误条件处理
-7.12.2      lib.math.fpcont                         FP\_CONTRACT
-7.12.3      lib.math.class                          分类宏
-7.12.4      lib.math.trig                           三角函数
-7.12.5      lib.math.hyper                          双曲函数
-7.12.6      lib.math.exp                            指数与对数函数
-7.12.7      lib.math.power                          幂与约对值函数
-7.12.8      lib.math.gamma                          错误与gamma函数
-7.12.9      lib.math.nearest                        最近整数函数
-7.12.10     lib.math.rem                            求余函数
-7.12.11     lib.math.manip                          操作函数
-7.12.12     lib.math.minmax                         最大，最小和正差分函数
-7.12.13     lib.math.fpmuladd                       浮点乘加
-7.12.14     lib.math.compmacro                      比较宏
-7.13        lib.jmp                                 非局部跳转<setjmp.h>
-7.13.1      lib.jmp.save                            保存调用环境
-7.13.2      lib.jmp.restore                         恢复调用环境
-7.14        lib.sig                                 信号处理<signal.h>
-7.14.1      lib.sig.spec                            指定信号处理
-7.14.2      lib.sig.send                            发送信号
-7.15        lib.align                               对齐<stdalign.h>
-7.16        lib.vararg                              可变参数<stdarg.h>
-7.16.1      lib.vararg.macro                        变参列表访问宏
-7.17        lib.atom                                原子<stdatomic.h>
-7.17.1      lib.atom.intro                          引言
-7.17.2      lib.atom.init                           初始化
-7.17.3      lib.atom.order                          顺序与一致性
-7.17.4      lib.atom.fence                          栅栏
-7.17.5      lib.atom.lockfree                       无锁属性
-7.17.6      lib.atom.int                            原子整型
-7.17.7      lib.atom.op                             原子类型操作
-7.17.8      lib.atom.flag                           原子标志类型与操作
-7.18        lib.bool                                布尔类型与值<stdbool.h>
-7.19        lib.def                                 通用定义<stddef.h>
-7.20        lib.int                                 整型<stdint.h>
-7.20.1      lib.int.int                             整型
-7.20.2      lib.int.lmt                             指定宽度整型限制
-7.20.3      lib.int.olmt                            其他整型限制
-7.20.4      lib.int.macro                           整型常量宏
-7.21        lib.io                                  输入/输出<stdio.h>
-7.21.1      lib.io.intro                            引言
-7.21.2      lib.io.stream                           流
-7.21.3      lib.io.file                             文件
-7.21.4      lib.io.fileop                           文件操作
-7.21.5      lib.io.access                           文件访问操作
-7.21.6      lib.io.fmt                              格式化输入输出函数
-7.21.7      lib.io.char                             字符输入输出函数
-7.21.8      lib.io.direct                           直接输入输出函数
-7.21.9      lib.io.pos                              文件定位函数
-7.21.10     lib.io.error                            错误处理函数
-B.21        lib.util                                实用工具函数<stdlib.h>
-7.22.1      lib.util.conv                           数值转换函数
-7.22.2      lib.util.rand                           伪随机序列生成函数
-7.22.3      lib.util.mem                            内存管理函数
-7.22.4      lib.util.comm                           环境通讯
-7.22.5      lib.util.search                         搜索与排序
-7.22.6      lib.util.int                            整型算术函数
-7.22.7      lib.util.mbchar                         多字节/宽字符转换函数
-7.22.8      lib.util.mbstr                          多字节/宽字符串转换函数
-7.23        lib.noret                               \_Noreturn<stdnoreturn.h>
-7.24        lib.str                                 字符串处理<string.h>
-7.24.1      lib.str.conv                            字符串函数惯例
-7.24.2      lib.str.cpy                             拷贝函数
-7.24.3      lib.str.concat                          连接函数
-7.24.4      lib.str.cmp                             比较函数
-7.24.5      lib.str.search                          搜索函数
-7.24.6      lib.str.misc                            其他函数
-7.25        lib.tgmath                              泛型数学<tgmath.h>
-7.26        lib.thread                              线程<threads.h>
-7.26.1      lib.thread.intro                        引言
-7.26.2      lib.thread.init                         初始化函数
-7.26.3      lib.thread.cond                         条件变量函数
-7.26.4      lib.thread.mutex                        互斥函数
-7.26.5      lib.thread.thread                       线程函数
-7.26.6      lib.thread.stor                         线程特定存储函数
-7.27        lib.time                                日期和时间<time.h>
-7.27.1      lib.time.comp                           时间组成
-7.27.2      lib.time.manip                          时间操作函数
-7.27.3      lib.time.conv                           时间转换函数
-7.28        lib.uchar                               Unicode工具<uchar.h>
-7.28.1      lib.uchar.conv                          可重启多字节/宽字符转换函数
-7.29        lib.wchar                               扩展多字节和宽字符工具<wchar.h>
-7.29.1      lib.wchar.intro                         引言
-7.29.2      lib.wchar.fmt                           格式化宽字符输入输出函数
-7.29.3      lib.wchar.io                            宽字符输入输出函数
-7.29.4      lib.wchar.general                       通用宽字符串工具
-7.29.4.1    lib.wchar.general.numconv               宽字符串数值转换函数
-7.29.4.2    lib.wchar.general.copy                  宽字符串拷贝函数
-7.29.4.3    lib.wchar.general.concat                宽字符串连接函数
-7.29.4.4    lib.wchar.general.comp                  宽字符串比较函数
-7.29.4.5    lib.wchar.general.search                宽字符串搜索函数
-7.29.4.6    lib.wchar.general.misc                  其他函数
-7.29.5      lib.wchar.time                          宽字符时间转换函数
-7.29.6      lib.wchar.conv                          扩展多字节/宽字符转换函数
-7.29.6.1    lib.wchar.conv.single                   单字节/宽字符转换函数
-7.29.6.2    lib.wchar.conv.state                    转换状态函数
-7.29.6.3    lib.wchar.conv.crstrt                   可重启多字节/宽字符转换函数
-7.29.6.4    lib.wchar.conv.srstrt                   可重启多字节/宽字符串转换函数
-7.30        lib.wctype                              宽字符分类和映射工具<wctype.h>
-7.30.1      lib.wctype.intro                        引言
-7.30.2      lib.wctype.class                        宽字符分类工具
-7.30.2.1    lib.wctype.class.fct                    宽字符分类函数
-7.30.2.2    lib.wctype.class.ext                    扩展宽字符分类函数
-7.30.3      lib.wctype.case                         宽字符大小写映射工具
-7.30.3.1    lib.wctype.case.fct                     宽字符大小写映射函数
-7.30.3.2    lib.wctype.case.ext                     扩展宽字符大小写映射函数
-7.31        lib.dir                                 未来标准库方向
-7.31.1      lib.dir.cmplx                           复算术<complex.h>
-7.31.2      lib.dir.ctype                           字符处理<ctype.h>
-7.31.3      lib.dir.errno                           错误处理<errno.h>
-7.31.4      lib.dir.fenv                            浮点环境<fenv.h>
-7.31.5      lib.dir.inttype                         整型格式转换<inttypes.h>
-7.31.6      lib.dir.locale                          语言环境<locale.h>
-7.31.7      lib.dir.sig                             信号处理<signal.h>
-7.31.8      lib.dir.atom                            原子<stdatomic.h>
-7.31.9      lib.dir.bool                            布尔类型与值<stdbool.h>
-7.31.10     lib.dir.int                             整型<stdint.h>
-7.31.11     lib.dir.io                              输入/输出<stdio.h>
-7.31.12     lib.dir.util                            实用工具函数<stdlib.h>
-7.31.13     lib.dir.str                             字符串处理<string.h>
-7.31.14     lib.dir.time                            日期和时间<time.h>
-7.31.15     lib.dir.thread                          线程<threads.h>
-7.31.16     lib.dir.wchar                           扩展多字节和宽字符工具<wchar.h>
-7.31.17     lib.dir.wctype                          宽字符分类与映射工具<wctype.h>
-A           synsum                                  （信息）语法汇总
-A.1         synsum.lex                              词法
-A.1.1       synsum.lex.elem                         词法元素
-A.1.2       synsum.lex.keyword                      关键字
-A.1.3       synsum.lex.id                           标识符
-A.1.4       synsum.lex.uchar                        通用字符名
-A.1.5       synsum.lex.const                        常量
-A.1.6       synsum.lex.str                          字符串字面值
-A.1.7       synsum.lex.punct                        标点
-A.1.8       synsum.lex.header                       头名称
-A.1.9       synsum.lex.ppnum                        预处理数字
-A.2         synsum.phrase                           短语结构
-A.2.1       synsum.phrase.expr                      表达式
-A.2.2       synsum.phrase.dcl                       声明
-A.2.3       synsum.phrase.stmt                      语句
-A.2.4       synsum.phrase.extdef                    外部定义
-A.3         synsum.pp                               预处理指令
-B           libsum                                  （信息）标准库汇总
-B.1         libsum.diag                             诊断<assert.h>
-B.2         libsum.cmplx                            复算术<complex.h>
-B.3         libsum.char                             字符处理<ctype.h>
-B.4         libsum.error                            错误处理<errno.h>
-B.5         libsum.fpenv                            浮点环境<fenv.h>
-B.6         libsum.float                            浮点类型特征<float.h>
-B.7         libsum.intfmt                           整型格式转换<inttypes.h>
-B.8         libsum.altspell                         其他拼写<iso646.h>
-B.9         libsum.intsize                          整型大小<limits.h>
-B.10        libsum.locale                           本地化<locale.h>
-B.11        libsum.math                             数学<math.h>
-B.12        libsum.jmp                              非局部跳转<setjmp.h>
-B.13        libsum.sig                              信号处理<signal.h>
-B.14        libsum.align                            对齐<stdalign.h>
-B.15        libsum.vararg                           可变参数<stdarg.h>
-B.16        libsum.atom                             原子<stdatomic.h>
-B.17        libsum.bool                             布尔类型与值<stdbool.h>
-B.18        libsum.def                              通用定义<stddef.h>
-B.19        libsum.int                              整型<stdint.h>
-B.20        libsum.io                               输入/输出<stdio.h>
-B.21        lib.util                                实用工具函数<stdlib.h>
-B.22        libsum.noret                            \_Noreturn<stdnoreturn.h>
-B.23        libsum.str                              字符串处理<string.h>
-B.24        libsum.tgmath                           泛型数学<tgmath.h>
-B.25        libsum.thread                           线程<threads.h>
-B.26        libsum.time                             日期和时间<time.h>
-B.27        libsum.uchar                            Unicode工具<uchar.h>
-B.28        libsum.wchar                            扩展多字节和宽字符工具<wchar.h>
-B.29        libsum.wctype                           宽字符分类和映射工具<wctype.h>
-C           seq                                     （信息）序列点
-D           uchar                                   （规范）标识符通用字符名
-D.1         uchar.range                             允许的字符范围
-D.2         uchar.disallowed                        初始不允许的字符范围
-E           limit                                   （信息）实现限制
-F           fparith                                 （规范）IEC 60559浮点算术
-G           comparith                               （规范）IEC 60559兼容复算术
-H           indeparith                              （信息）语言独立算术
-H.1         indeparith.intro                        引言
-H.2         indeparith.type                         类型
-H.2.1       indeparith.type.bool                    布尔类型
-H.2.2       indeparith.type.int                     整型
-H.2.2.1     indeparith.type.int.op                  整型操作
-H.2.3       indeparith.type.float                   浮点类型
-H.2.4       indeparith.type.float.parm              浮点参数
-H.2.5       indeparith.type.float.op                浮点操作
-H.2.6       indeparith.type.float.rnd               舍入风格
-H.2.7       indeparith.type.conv                    类型转换
-H.3         indeparith.note                         通知
-H.3.1       indeparith.note.alt                     通知可选
-H.3.1.1     indeparith.note.alt.ind                 指示
-H.3.1.2     indeparith.note.alt.trap                陷阱
-I           warn                                    （信息）通用警告
-J           port                                    （信息）可移植性问题
-J.1         port.unspec                             未指定行为
-J.2         port.undef                              未定义行为
-J.3         port.impl                               实现定义行为
-J.3.1       port.impl.trans                         翻译
-J.3.2       port.impl.env                           环境
-J.3.3       port.impl.id                            标识符
-J.3.4       port.impl.char                          字符
-J.3.5       port.impl.int                           整型
-J.3.6       port.impl.float                         浮点
-J.3.7       port.impl.array                         数组与函数
-J.3.8       port.impl.hint                          提示
-J.3.9       port.impl.struct                        结构，联合，枚举和位域
-J.3.10      port.impl.qual                          限定符
-J.3.11      port.impl.pp                            预处理指令
-J.3.12      port.impl.lib                           库函数
-J.3.13      port.impl.arch                          架构
-J.4         port.locale                             语言环境特定行为
-J.5         port.ext                                通用扩展
-J.5.1       port.ext.args                           环境参数
-J.5.2       port.ext.specid                         特殊化标识符
-J.5.3       port.ext.idlen                          标识符长度与大小写
-J.5.4       port.ext.scope                          标识符作用域
-J.5.5       port.ext.writable                       可写字符串
-J.5.6       port.ext.other                          其他算术类型
-J.5.7       port.ext.fctptr                         函数指针转换
-J.5.8       port.ext.extbf                          扩展位域类型
-J.5.9       port.ext.fortan                         fortan关键字
-J.5.10      port.ext.asm                            asm关键字
-J.5.11      port.ext.mulextn                        多重外部定义
-J.5.12      port.ext.predef                         预定义宏名
-J.5.13      port.ext.fpflag                         浮点状态位
-J.5.14      port.ext.sigarg                         信号处理的额外参数
-J.5.15      port.ext.mode                           额外的流类型和文件打开模式
-J.5.16      port.ext.fpos                           定义的文件位置指标
-J.5.17      port.ext.mathrpt                        数学错误报告
-K           bound                                   （规范）边界检查接口
-L           analyze                                 （规范）可分析性
-L.1         analyze.scope                           范围
-L.2         analyze.def                             定义
-L.3         analyze.req                             要求
+1 scope
+2 refs
+3 defns
+3.1 defns.access
+3.2 defns.align
+3.3 defns.arg
+3.4 defns.behav
+3.4.1 defns.impldef
+3.4.2 defns.locale
+3.4.3 defns.undef
+3.4.4 defns.unspec
+3.5 defns.bit
+3.6 defns.byte
+3.7 defns.achar
+3.7.1 defns.bchar
+3.7.2 defns.mbchar
+3.7.3 defns.wchar
+3.8 defns.constr
+3.9 defns.rnd
+3.10 defns.diag
+3.11 defns.fwdref
+3.12 defns.impl
+3.13 defns.limit
+3.14 defns.loc
+3.15 defns.object
+3.16 defns.param
+3.17 defns.recprac
+3.18 defns.rtconstr
+3.19 defns.value
+3.19.1 defns.implval
+3.19.2 defns.indeterval
+3.19.3 defns.unspecval
+3.20 defns.traprepr
+3.20.1 defns.trap
+3.21 defns.ceil
+3.22 defns.floor
+4 conform
+5 env
+5.1 env.concept
+5.1.1 env.concept.trans
+5.1.1.1 evn.concept.trans.struct
+5.1.1.2 env.concept.trans.phase
+5.1.1.3 env.concept.trans.diag
+5.1.2 env.concept.exec
+5.1.2.1 env.concept.exec.free
+5.1.2.2 env.concept.exec.hosted
+5.1.2.2.1 env.concept.exec.hosted.start
+5.1.2.2.2 env.concept.exec.hosted.exec
+5.1.2.2.3 env.concept.exec.hosted.term
+5.1.2.3 env.concept.exec.exec
+5.1.2.4 env.concept.exec.thread
+5.2 env.env
+5.2.1 env.env.charset
+5.2.1.1 env.env.charset.trigraph
+5.2.1.2 env.env.charset.multibyte
+5.2.2 env.env.display
+5.2.3 env.env.sig
+5.2.4 env.env.limit
+5.2.4.1 env.env.limit.trans
+5.2.4.2 env.env.limit.num
+5.2.4.2.1 env.env.limits.num.int
+5.2.4.2.2 env.env.limits.num.float
+6 lang
+6.1 lang.notation
+6.2 lang.concept
+6.2.1 lang.concept.scope
+6.2.2 lang.concept.link
+6.2.3 lang.concept.namespace
+6.2.4 lang.concept.storage
+6.2.5 lang.concept.type
+6.2.6 lang.concept.repr
+6.2.6.1 lang.concept.repr.general
+6.2.6.2 lang.concept.repr.int
+6.2.7 lang.concept.compat
+6.2.8 lang.concept.align
+6.3 lang.conv
+6.3.1 lang.conv.arith
+6.3.1.1 lang.conv.arith.rank
+6.3.1.2 lang.conv.arith.bool
+6.3.1.3 lang.conv.arith.signed
+6.3.1.4 lang.conv.arith.fpint
+6.3.1.5 lang.conv.arith.double
+6.3.1.6 lang.conv.arith.cmpl
+6.3.1.7 lang.conv.arith.rcmpl
+6.3.1.8 lang.conv.arith.usualarith
+6.3.2 lang.conv.other
+6.3.2.1 lang.conv.other.desig
+6.3.2.2 lang.conv.other.void
+6.3.2.3 lang.conv.other.ptr
+6.4 lang.lex
+6.4.1 lang.lex.keyword
+6.4.2 lang.lex.id
+6.4.2.1 lang.lex.id.general
+6.4.2.2 lang.lex.id.predef
+6.4.3 lang.lex.univ
+6.4.4 lang.lex.const
+6.4.4.1 lang.lex.const.int
+6.4.4.2 lang.lex.const.float
+6.4.4.3 lang.lex.const.enum
+6.4.4.4 lang.lex.const.char
+6.4.5 lang.lex.str
+6.4.6 lang.lex.punct
+6.4.7 lang.lex.header
+6.4.8 lang.lex.ppnum
+6.4.9 lang.lex.comment
+6.5 lang.expr
+6.5.1 lang.expr.prim
+6.5.1.1 lang.expr.prim.generic
+6.5.2 lang.expr.post
+6.5.2.1 lang.expr.post.sub
+6.5.2.2 lang.expr.post.call
+6.5.2.3 lang.expr.post.mem
+6.5.2.4 lang.expr.post.incr
+6.5.2.5 lang.expr.post.cmpd
+6.5.3 lang.expr.unary
+6.5.3.1 lang.expr.unary.incr
+6.5.3.2 lang.expr.unary.addr
+6.5.3.3 lang.expr.unary.arith
+6.5.3.4 lang.expr.unary.sizeof
+6.5.4 lang.expr.cast
+6.5.5 lang.expr.mul
+6.5.6 lang.expr.add
+6.5.7 lang.expr.shift
+6.5.8 lang.expr.rel
+6.5.9 lang.expr.eq
+6.5.10 lang.expr.and
+6.5.11 lang.expr.xor
+6.5.12 lang.expr.or
+6.5.13 lang.expr.land
+6.5.14 lang.expr.lor
+6.5.15 lang.expr.cond
+6.5.16 lang.expr.assign
+6.5.16.1 lang.expr.assign.simple
+6.5.16.2 lang.expr.assign.cmpd
+6.5.17 lang.expr.comma
+6.6 lang.constexpr
+6.7 lang.dcl
+6.7.1 lang.dcl.stc
+6.7.2 lang.dcl.type
+6.7.2.1 lang.dcl.type.struct
+6.7.2.2 lang.dcl.type.enum
+6.7.2.3 lang.dcl.type.tag
+6.7.2.4 lang.dcl.type.atom
+6.7.3 lang.dcl.qual
+6.7.3.1 lang.dcl.qual.restrict
+6.7.4 lang.dcl.fct
+6.7.5 lang.dcl.align
+6.7.6 lang.dcl.decl
+6.7.6.1 lang.dcl.decl.ptr
+6.7.6.2 lang.dcl.decl.array
+6.7.6.3 lang.dcl.decl.fct
+6.7.7 lang.dcl.typename
+6.7.8 lang.dcl.typedef
+6.7.9 lang.dcl.init
+6.7.10 lang.dcl.assert
+6.8 lang.stmt
+6.8.1 lang.stmt.label
+6.8.2 lang.stmt.cmpd
+6.8.3 lang.stmt.expr
+6.8.4 lang.stmt.sel
+6.8.4.1 lang.stmt.sel.if
+6.8.4.2 lang.stmt.sel.switch
+6.8.5 lang.stmt.iter
+6.8.5.1 lang.stmt.iter.while
+6.8.5.2 lang.stmt.iter.do
+6.8.5.3 lang.stmt.iter.for
+6.8.6 lang.stmt.jmp
+6.8.6.1 lang.stmt.jmp.goto
+6.8.6.2 lang.stmt.jmp.cont
+6.8.6.3 lang.stmt.jmp.brk
+6.8.6.4 lang.stmt.jmp.ret
+6.9 lang.extn
+6.9.1 lang.extn.fct
+6.9.2 lang.extn.obj
+6.10 lang.ppdir
+6.10.1 lang.ppdir.condinc
+6.10.2 lang.ppdir.inc
+6.10.3 lang.ppdir.macro
+6.10.3.1 lang.ppdir.macro.subst
+6.10.3.2 lang.ppdir.macro.stringize
+6.10.3.3 lang.ppdir.macro.concat
+6.10.3.4 lang.ppdir.macro.rescan
+6.10.3.5 lang.ppdir.macro.scope
+6.10.4 lang.ppdir.line
+6.10.5 lang.ppdir.error
+6.10.6 lang.ppdir.pragma
+6.10.7 lang.ppdir.null
+6.10.8 lang.ppdir.predef
+6.10.8.1 lang.ppdir.predef.mand
+6.10.8.2 lang.ppdir.predef.env
+6.10.8.3 lang.ppdir.predef.cond
+6.10.9 lang.ppdir.pragmaop
+6.11 lang.dir
+6.11.1 lang.dir.float
+6.11.2 lang.dir.link
+6.11.3 lang.dir.extn
+6.11.4 lang.dir.escape
+6.11.5 lang.dir.stc
+6.11.6 lang.dir.fctdecl
+6.11.7 lang.dir.fctdef
+6.11.8 lang.dir.pragma
+6.11.9 lang.dir.predef
+7 lib
+7.1 lib.intro
+7.1.1 lib.intro.term
+7.1.2 lib.intro.header
+7.1.3 lib.intro.reserved
+7.1.4 lib.intro.use
+7.2 lib.diag
+7.2.1 lib.diag.prog
+7.2.1.1 lib.diag.prog.assert
+7.3 lib.cmplx
+7.3.1 lib.cmplx.intro
+7.3.2 lib.cmplx.conv
+7.3.3 lib.cmplx.branch
+7.3.4 lib.cmplx.range
+7.3.5 lib.cmplx.trig
+7.3.5.1 lib.cmplx.trig.cacos
+7.3.5.2 lib.cmplx.trig.casin
+7.3.5.3 lib.cmplx.trig.catan
+7.3.5.4 lib.cmplx.trig.ccos
+7.3.5.5 lib.cmplx.trig.csin
+7.3.5.6 lib.cmplx.trig.ctan
+7.3.6 lib.cmplx.hyper
+7.3.6.1 lib.cmplx.hyper.cacosh
+7.3.6.2 lib.cmplx.hyper.casinh
+7.3.6.3 lib.cmplx.hyper.catanh
+7.3.6.4 lib.cmplx.hyper.ccosh
+7.3.6.5 lib.cmplx.hyper.csinh
+7.3.6.6 lib.cmplx.hyper.ctanh
+7.3.7 lib.cmplx.exp
+7.3.7.1 lib.cmplx.exp.cexp
+7.3.7.2 lib.cmplx.exp.clog
+7.3.8 lib.cmplx.power
+7.3.8.1 lib.cmplx.power.cabs
+7.3.8.2 lib.cmplx.power.cpow
+7.3.8.3 lib.cmplx.power.csqrt
+7.3.9 lib.cmplx.manip
+7.3.9.1 lib.cmplx.manip.carg
+7.3.9.2 lib.cmplx.manip.cimag
+7.3.9.3 lib.cmplx.manip.cmplx
+7.3.9.4 lib.cmplx.manip.conj
+7.3.9.5 lib.cmplx.manip.cproj
+7.3.9.6 lib.cmplx.manip.creal
+7.4 lib.char
+7.4.1 lib.char.class
+7.4.1.1 lib.char.class.isalnum
+7.4.1.2 lib.char.class.isalpha
+7.4.1.3 lib.char.class.isblank
+7.4.1.4 lib.char.class.iscntrl
+7.4.1.5 lib.char.class.isdigit
+7.4.1.6 lib.char.class.isgraph
+7.4.1.7 lib.char.class.islower
+7.4.1.8 lib.char.class.isprint
+7.4.1.9 lib.char.class.ispunct
+7.4.1.10 lib.char.class.isspace
+7.4.1.11 lib.char.class.isupper
+7.4.1.12 lib.char.class.isxdigit
+7.4.2 lib.char.case
+7.4.2.1 lib.char.case.tolower
+7.4.2.2 lib.char.case.toupper
+7.5 lib.error
+7.6 lib.fpenv
+7.6.1 lib.fpenv.acc
+7.6.2 lib.fpenv.except
+7.6.2.1 lib.fpenv.except.clear
+7.6.2.2 lib.fpenv.except.get
+7.6.2.3 lib.fpenv.except.raise
+7.6.2.4 lib.fpenv.except.set
+7.6.2.5 lib.fpenv.except.test
+7.6.3 lib.fpenv.rnd
+7.6.3.1 lib.fpenv.rnd.get
+7.6.3.2 lib.fpenv.rnd.set
+7.6.4 lib.fpenv.env
+7.6.4.1 lib.fpenv.env.get
+7.6.4.2 lib.fpenv.env.hldex
+7.6.4.3 lib.fpenv.env.set
+7.6.4.4 lib.fpenv.env.upd
+7.7 lib.float
+7.8 lib.intfmt
+7.8.1 lib.intfmt.macro
+7.8.2 lib.intfmt.width
+7.8.2.1 lib.intfmt.width.abs
+7.8.2.2 lib.intfmt.width.div
+7.8.2.3 lib.intfmt.width.str
+7.8.2.4 lib.intfmt.width.wcs
+7.9 lib.altspell
+7.10 lib.intsize
+7.11 lib.locale
+7.11.1 lib.locale.cntr
+7.11.1.1 lib.locale.cntr.set
+7.11.2 lib.locale.numconv
+7.11.2.1 lib.locale.numconv.conv
+7.12 lib.math
+7.12.1 lib.math.error
+7.12.2 lib.math.fpcont
+7.12.3 lib.math.class
+7.12.3.1 lib.math.class.fp
+7.12.3.2 lib.math.class.finite
+7.12.3.3 lib.math.class.inf
+7.12.3.4 lib.math.class.nan
+7.12.3.5 lib.math.class.normal
+7.12.3.6 lib.math.class.sign
+7.12.4 lib.math.trig
+7.12.4.1 lib.math.trig.acos
+7.12.4.2 lib.math.trig.asin
+7.12.4.3 lib.math.trig.atan
+7.12.4.4 lib.math.trig.atan2
+7.12.4.5 lib.math.trig.cos
+7.12.4.6 lib.math.trig.sin
+7.12.4.7 lib.math.trig.tan
+7.12.5 lib.math.hyper
+7.12.5.1 lib.math.hyper.acosh
+7.12.5.2 lib.math.hyper.asinh
+7.12.5.3 lib.math.hyper.atanh
+7.12.5.4 lib.math.hyper.cosh
+7.12.5.5 lib.math.hyper.sinh
+7.12.5.6 lib.math.hyper.tanh
+7.12.6 lib.math.exp
+7.12.6.1 lib.math.exp.exp
+7.12.6.2 lib.math.exp.exp2
+7.12.6.3 lib.math.exp.expm1
+7.12.6.4 lib.math.exp.frexp
+7.12.6.5 lib.math.exp.ilogb
+7.12.6.6 lib.math.exp.ldexp
+7.12.6.7 lib.math.exp.log
+7.12.6.8 lib.math.exp.log10
+7.12.6.9 lib.math.exp.log1 p
+7.12.6.10 lib.math.exp.log2
+7.12.6.11 lib.math.exp.logb
+7.12.6.12 lib.math.exp.modf
+7.12.6.13 lib.math.exp.scalbn
+7.12.7 lib.math.power
+7.12.7.1 lib.math.power.cbrt
+7.12.7.2 lib.math.power.fabs
+7.12.7.3 lib.math.power.hypot
+7.12.7.4 lib.math.power.pow
+7.12.7.5 lib.math.power.sqrt
+7.12.8 lib.math.gamma
+7.12.8.1 lib.math.gamma.erf
+7.12.8.2 lib.math.gamma.erfc
+7.12.8.3 lib.math.gamma.lgamma
+7.12.8.4 lib.math.gamma.tgamma
+7.12.9 lib.math.near
+7.12.9.1 lib.math.near.ceil
+7.12.9.2 lib.math.near.flr
+7.12.9.3 lib.math.near.nearby
+7.12.9.4 lib.math.near.rint
+7.12.9.5 lib.math.near.lrint
+7.12.9.6 lib.math.near.rnd
+7.12.9.7 lib.math.near.lrnd
+7.12.9.8 lib.math.near.trunc
+7.12.10 lib.math.rem
+7.12.10.1 lib.math.rem.fmod
+7.12.10.2 lib.math.rem.rem
+7.12.10.3 lib.math.rem.remquo
+7.12.11 lib.math.manip
+7.12.11.1 lib.math.manip.cpysign
+7.12.11.2 lib.math.manip.nan
+7.12.11.3 lib.math.manip.nxtafter
+7.12.11.4 lib.math.manip.nxttwd
+7.12.12 lib.math.minmax
+7.12.12.1 lib.math.minmax.fdim
+7.12.12.2 lib.math.minmax.fmax
+7.12.12.3 lib.math.minmax.fmin
+7.12.13 lib.math.fma
+7.12.13.1 lib.math.fma.fma
+7.12.14 lib.math.cmpm
+7.12.14.1 lib.math.cmpm.grt
+7.12.14.2 lib.math.cmpm.grteq
+7.12.14.3 lib.math.cmpm.ls
+7.12.14.4 lib.math.cmpm.lseq
+7.12.14.5 lib.math.cmpm.lsgrt
+7.12.14.6 lib.math.cmpm.unord
+7.13 lib.jmp
+7.13.1 lib.jmp.save
+7.13.1.1 lib.jmp.save.set
+7.13.2 lib.jmp.rstr
+7.13.2.1 lib.jmp.rstr.lngjmp
+7.14 lib.sig
+7.14.1 lib.sig.spec
+7.14.1.1 lib.sig.spec.sgnl
+7.14.2 lib.sig.send
+7.14.2.1 lib.sig.send.raise
+7.15 lib.align
+7.16 lib.vararg
+7.16.1 lib.vararg.macro
+7.16.1.1 lib.vararg.macro.arg
+7.16.1.2 lib.vararg.macro.cpy
+7.16.1.3 lib.vararg.macro.end
+7.16.1.4 lib.vararg.macro.start
+7.17 lib.atom
+7.17.1 lib.atom.intro
+7.17.2 lib.atom.init
+7.17.2.1 lib.atom.init.var
+7.17.2.2 lib.atom.init.atom
+7.17.3 lib.atom.order
+7.17.3.1 lib.atom.order.kill
+7.17.4 lib.atom.fence
+7.17.4.1 lib.atom.fence.thread
+7.17.4.2 lib.atom.fence.signal
+7.17.5 lib.atom.lckfree
+7.17.5.1 lib.atom.lckfree.is
+7.17.6 lib.atom.int
+7.17.7 lib.atom.op
+7.17.7.1 lib.atom.op.store
+7.17.7.2 lib.atom.op.load
+7.17.7.3 lib.atom.op.ex
+7.17.7.4 lib.atom.op.cmpex
+7.17.7.5 lib.atom.op.fetch
+7.17.8 lib.atom.flag
+7.17.8.1 lib.atom.flag.test
+7.17.8.2 lib.atom.flag.clear
+7.18 lib.bool
+7.19 lib.def
+7.20 lib.int
+7.20.1 lib.int.int
+7.20.1.1 lib.int.int.exact
+7.20.1.2 lib.int.int.min
+7.20.1.3 lib.int.int.fast
+7.20.1.4 lib.int.int.ptr
+7.20.1.5 lib.int.int.max
+7.20.2 lib.int.lmt
+7.20.2.1 lib.int.lmt.exact
+7.20.2.2 lib.int.lmt.min
+7.20.2.3 lib.int.lmt.fast
+7.20.2.4 lib.int.lmt.ptr
+7.20.2.5 lib.int.lmt.max
+7.20.3 lib.int.olmt
+7.20.4 lib.int.macro
+7.20.4.1 lib.int.macro.min
+7.20.4.2 lib.int.macro.max
+7.21 lib.io
+7.21.1 lib.io.intro
+7.21.2 lib.io.stream
+7.21.3 lib.io.file
+7.21.4 lib.io.fileop
+7.21.4.1 lib.io.fileop.rm
+7.21.4.2 lib.io.fileop.mv
+7.21.4.3 lib.io.fileop.tmp
+7.21.4.4 lib.io.fileop.tmpnam
+7.21.5 lib.io.acc
+7.21.5.1 lib.io.acc.close
+7.21.5.2 lib.io.acc.flsh
+7.21.5.3 lib.io.acc.open
+7.21.5.4 lib.io.acc.reopen
+7.21.5.5 lib.io.acc.buf
+7.21.5.6 lib.io.acc.vbuf
+7.21.6 lib.io.fmt
+7.21.6.1 lib.io.fmt.fprintf
+7.21.6.2 lib.io.fmt.fscanf
+7.21.6.3 lib.io.fmt.printf
+7.21.6.4 lib.io.fmt.scanf
+7.21.6.5 lib.io.fmt.snprintf
+7.21.6.6 lib.io.fmt.sprintf
+7.21.6.7 lib.io.fmt.sscanf
+7.21.6.8 lib.io.fmt.vfprintf
+7.21.6.9 lib.io.fmt.vfscanf
+7.21.6.10 lib.io.fmt.vprintf
+7.21.6.11 lib.io.fmt.vscanf
+7.21.6.12 lib.io.fmt.vsnprintf
+7.21.6.13 lib.io.fmt.vsprintf
+7.21.6.14 lib.io.fmt.vsscanf
+7.21.7 lib.io.char
+7.21.7.1 lib.io.char.fgetc
+7.21.7.2 lib.io.char.fgets
+7.21.7.3 lib.io.char.fputc
+7.21.7.4 lib.io.char.fputs
+7.21.7.5 lib.io.char.getc
+7.21.7.6 lib.io.char.getchar
+7.21.7.7 lib.io.char.putc
+7.21.7.8 lib.io.char.putchar
+7.21.7.9 lib.io.char.puts
+7.21.7.10 lib.io.char.ungetc
+7.21.8 lib.io.direct
+7.21.8.1 lib.io.direct.fread
+7.21.8.2 lib.io.direct.fwrite
+7.21.9 lib.io.pos
+7.21.9.1 lib.io.pos.fgetpos
+7.21.9.2 lib.io.pos.fseek
+7.21.9.3 lib.io.pos.fsetpos
+7.21.9.4 lib.io.pos.ftell
+7.21.9.5 lib.io.pos.rewind
+7.21.10 lib.io.error
+7.21.10.1 lib.io.error.clr
+7.21.10.2 lib.io.error.feof
+7.21.10.3 lib.io.error.ferr
+7.21.10.4 lib.io.error.perr
+7.22 lib.util
+7.22.1 lib.util.conv
+7.22.1.1 lib.util.conv.atof
+7.22.1.2 lib.util.conv.atoi
+7.22.1.3 lib.util.conv.strtod
+7.22.1.4 lib.util.conv.strtol
+7.22.2 lib.util.rand
+7.22.2.1 lib.util.rand.rand
+7.22.2.2 lib.util.rand.srand
+7.22.3 lib.util.mem
+7.22.3.1 lib.util.mem.alloc
+7.22.3.2 lib.util.mem.calloc
+7.22.3.3 lib.util.mem.free
+7.22.3.4 lib.util.mem.malloc
+7.22.3.5 lib.util.mem.realloc
+7.22.4 lib.util.comm
+7.22.4.1 lib.util.comm.abort
+7.22.4.2 lib.util.comm.atexit
+7.22.4.3 lib.util.comm.atquick
+7.22.4.4 lib.util.comm.exit
+7.22.4.5 lib.util.comm.Exit
+7.22.4.6 lib.util.comm.getenv
+7.22.4.7 lib.util.comm.quick
+7.22.4.8 lib.util.comm.sys
+7.22.5 lib.util.search
+7.22.5.1 lib.util.search.bsearch
+7.22.5.2 lib.util.search.qsort
+7.22.6 lib.util.int
+7.22.6.1 lib.util.int.abs
+7.22.6.2 lib.util.int.div
+7.22.7 lib.util.mbchar
+7.22.7.1 lib.util.mbchar.mblen
+7.22.7.2 lib.util.mbchar.mbtowc
+7.22.7.3 lib.util.mbchar.wctomb
+7.22.8 lib.util.mbstr
+7.22.8.1 lib.util.mbstr.mbstowcs
+7.22.8.2 lib.util.mbstr.wcstombs
+7.23 lib.noret
+7.24 lib.str
+7.24.1 lib.str.conv
+7.24.2 lib.str.cpy
+7.24.2.1 lib.str.cpy.memcpy
+7.24.2.2 lib.str.cpy.memmv
+7.24.2.3 lib.str.cpy.strcpy
+7.24.2.4 lib.str.cpy.strncpy
+7.24.3 lib.str.concat
+7.24.3.1 lib.str.concat.strcat
+7.24.3.2 lib.str.concat.strncat
+7.24.4 lib.str.cmp
+7.24.4.1 lib.str.cmp.memcmp
+7.24.4.2 lib.str.cmp.strcmp
+7.24.4.3 lib.str.cmp.strcoll
+7.24.4.4 lib.str.cmp.strncmp
+7.24.4.5 lib.str.cmp.strxfrm
+7.24.5 lib.str.search
+7.24.5.1 lib.str.search.memchr
+7.24.5.2 lib.str.search.strchr
+7.24.5.3 lib.str.search.strcspn
+7.24.5.4 lib.str.search.strpbrk
+7.24.5.5 lib.str.search.strrchr
+7.24.5.6 lib.str.search.strspn
+7.24.5.7 lib.str.search.strstr
+7.24.5.8 lib.str.search.strtok
+7.24.6 lib.str.misc
+7.24.6.1 lib.str.misc.memset
+7.24.6.2 lib.str.misc.strerror
+7.24.6.3 lib.str.misc.strlen
+7.25 lib.tgmath
+7.26 lib.thrd
+7.26.1 lib.thrd.intro
+7.26.2 lib.thrd.init
+7.26.2.1 lib.thrd.init.callonce
+7.26.3 lib.thrd.cond
+7.26.3.1 lib.thrd.cond.brdcst
+7.26.3.2 lib.thrd.cond.destry
+7.26.3.3 lib.thrd.cond.init
+7.26.3.4 lib.thrd.cond.signl
+7.26.3.5 lib.thrd.cond.twait
+7.26.3.6 lib.thrd.cond.wait
+7.26.4 lib.thrd.mtx
+7.26.4.1 lib.thrd.mtx.destry
+7.26.4.2 lib.thrd.mtx.init
+7.26.4.3 lib.thrd.mtx.lck
+7.26.4.4 lib.thrd.mtx.tlck
+7.26.4.5 lib.thrd.mtx.trylck
+7.26.4.6 lib.thrd.mtx.unlck
+7.26.5 lib.thrd.thrd
+7.26.5.1 lib.thrd.thrd.create
+7.26.5.2 lib.thrd.thrd.cur
+7.26.5.3 lib.thrd.thrd.dtch
+7.26.5.4 lib.thrd.thrd.eq
+7.26.5.5 lib.thrd.thrd.exit
+7.26.5.6 lib.thrd.thrd.join
+7.26.5.7 lib.thrd.thrd.slp
+7.26.5.8 lib.thrd.thrd.yld
+7.26.6 lib.thrd.stor
+7.26.6.1 lib.thrd.stor.create
+7.26.6.2 lib.thrd.stor.del
+7.26.6.3 lib.thrd.stor.get
+7.26.6.4 lib.thrd.stor.set
+7.27 lib.time
+7.27.1 lib.time.comp
+7.27.2 lib.time.manip
+7.27.2.1 lib.time.manip.clk
+7.27.2.2 lib.time.manip.diff
+7.27.2.3 lib.time.manip.mk
+7.27.2.4 lib.time.manip.tm
+7.27.2.5 lib.time.manip.spec
+7.27.3 lib.time.conv
+7.27.3.1 lib.time.conv.asc
+7.27.3.2 lib.time.conv.ctm
+7.27.3.3 lib.time.conv.gmtm
+7.27.3.4 lib.time.conv.local
+7.27.3.5 lib.time.conv.strf
+7.28 lib.uchar
+7.28.1 lib.uchar.conv
+7.28.1.1 lib.uchar.conv.mbrtoc16
+7.28.1.2 lib.uchar.conv.c16 rtomb
+7.28.1.3 lib.uchar.conv.mbrtoc32
+7.28.1.4 lib.uchar.conv.c32 rtomb
+7.29 lib.wchar
+7.29.1 lib.wchar.intro
+7.29.2 lib.wchar.fmt
+7.29.2.1 lib.wchar.fmt.fwp
+7.29.2.2 lib.wchar.fmt.fws
+7.29.2.3 lib.wchar.fmt.swp
+7.29.2.4 lib.wchar.fmt.sws
+7.29.2.5 lib.wchar.fmt.vfwp
+7.29.2.6 lib.wchar.fmt.vfws
+7.29.2.7 lib.wchar.fmt.vswp
+7.29.2.8 lib.wchar.fmt.vsws
+7.29.2.9 lib.wchar.fmt.vwp
+7.29.2.10 lib.wchar.fmt.vws
+7.29.2.11 lib.wchar.fmt.wp
+7.29.2.12 lib.wchar.fmt.ws
+7.29.3 lib.wchar.io
+7.29.3.1 lib.wchar.io.fgetwc
+7.29.3.2 lib.wchar.io.fgetws
+7.29.3.3 lib.wchar.io.fputwc
+7.29.3.4 lib.wchar.io.fputws
+7.29.3.5 lib.wchar.io.fwide
+7.29.3.6 lib.wchar.io.getwc
+7.29.3.7 lib.wchar.io.getwchar
+7.29.3.8 lib.wchar.io.putwc
+7.29.3.9 lib.wchar.io.putwchar
+7.29.3.10 lib.wchar.io.ungetwc
+7.29.4 lib.wchar.general
+7.29.4.1 lib.wchar.general.numconv
+7.29.4.1.1 lib.wchar.general.numconv.dfld
+7.29.4.1.2 lib.wchar.general.numconv.lull
+7.29.4.2 lib.wchar.general.copy
+7.29.4.2.1 lib.wchar.general.copy.wcscpy
+7.29.4.2.2 lib.wchar.general.copy.wcsncpy
+7.29.4.2.3 lib.wchar.general.copy.wmemcpy
+7.29.4.2.4 lib.wchar.general.copy.wmemmv
+7.29.4.3 lib.wchar.general.concat
+7.29.4.3.1 lib.wchar.general.concat.wcscat
+7.29.4.3.2 lib.wchar.general.concat.wcsncat
+7.29.4.4 lib.wchar.general.comp
+7.29.4.4.1 lib.wchar.general.comp.wcscmp
+7.29.4.4.2 lib.wchar.general.comp.wcscoll
+7.29.4.4.3 lib.wchar.general.comp.wcsncmp
+7.29.4.4.4 lib.wchar.general.comp.wcsxfrm
+7.29.4.4.5 lib.wchar.general.comp.wmemcmp
+7.29.4.5 lib.wchar.general.search
+7.29.4.5.1 lib.wchar.general.search.wcschr
+7.29.4.5.2 lib.wchar.general.search.wcscspn
+7.29.4.5.3 lib.wchar.general.search.wcspbrk
+7.29.4.5.4 lib.wchar.general.search.wcsrchr
+7.29.4.5.5 lib.wchar.general.search.wcsspn
+7.29.4.5.6 lib.wchar.general.search.wcsstr
+7.29.4.5.7 lib.wchar.general.search.wcstok
+7.29.4.5.8 lib.wchar.general.search.wmemchr
+7.29.4.6 lib.wchar.general.misc
+7.29.4.6.1 lib.wchar.general.misc.wcslen
+7.29.4.6.2 lib.wchar.general.misc.wmemset
+7.29.5 lib.wchar.time
+7.29.5.1 lib.wchar.time.wcsftime
+7.29.6 lib.wchar.conv
+7.29.6.1 lib.wchar.conv.single
+7.29.6.1.1 lib.wchar.conv.single.btowc
+7.29.6.1.2 lib.wchar.conv.single.wctob
+7.29.6.2 lib.wchar.conv.state
+7.29.6.2.1 lib.wchar.conv.state.mbsinit
+7.29.6.3 lib.wchar.conv.crstrt
+7.29.6.3.1 lib.wchar.conv.crstrt.mbrlen
+7.29.6.3.2 lib.wchar.conv.crstrt.mbrtowc
+7.29.6.3.3 lib.wchar.conv.crstrt.wcrtomb
+7.29.6.4 lib.wchar.conv.srstrt
+7.29.6.4.1 lib.wchar.conv.srstrt.mbsrtowcs
+7.29.6.4.2 lib.wchar.conv.srstrt.wcsrtombs
+7.30 lib.wctype
+7.30.1 lib.wctype.intro
+7.30.2 lib.wctype.class
+7.30.2.1 lib.wctype.class.fct
+7.30.2.1.1 lib.wctype.class.fct.iswalnum
+7.30.2.1.2 lib.wctype.class.fct.iswalpha
+7.30.2.1.3 lib.wctype.class.fct.iswblank
+7.30.2.1.4 lib.wctype.class.fct.iswcntrl
+7.30.2.1.5 lib.wctype.class.fct.iswdigit
+7.30.2.1.6 lib.wctype.class.fct.iswgraph
+7.30.2.1.7 lib.wctype.class.fct.iswlower
+7.30.2.1.8 lib.wctype.class.fct.iswprint
+7.30.2.1.9 lib.wctype.class.fct.iswpunct
+7.30.2.1.10 lib.wctype.class.fct.iswspace
+7.30.2.1.11 lib.wctype.class.fct.iswupper
+7.30.2.1.12 lib.wctype.class.fct.iswxdigit
+7.30.2.2 lib.wctype.class.ext
+7.30.2.2.1 lib.wctype.class.ext.iswctype
+7.30.2.2.2 lib.wctype.class.ext.wctype
+7.30.3 lib.wctype.case
+7.30.3.1 lib.wctype.case.fct
+7.30.3.2 lib.wctype.case.ext
+7.31 lib.dir
+7.31.1 lib.dir.cmplx
+7.31.2 lib.dir.ctype
+7.31.3 lib.dir.errno
+7.31.4 lib.dir.fenv
+7.31.5 lib.dir.inttype
+7.31.6 lib.dir.locale
+7.31.7 lib.dir.sig
+7.31.8 lib.dir.atom
+7.31.9 lib.dir.bool
+7.31.10 lib.dir.int
+7.31.11 lib.dir.io
+7.31.12 lib.dir.util
+7.31.13 lib.dir.str
+7.31.14 lib.dir.time
+7.31.15 lib.dir.thread
+7.31.16 lib.dir.wchar
+7.31.17 lib.dir.wctype
+A synsum
+A.1 synsum.lex
+A.1.1 synsum.lex.elem
+A.1.2 synsum.lex.keyword
+A.1.3 synsum.lex.id
+A.1.4 synsum.lex.uchar
+A.1.5 synsum.lex.const
+A.1.6 synsum.lex.str
+A.1.7 synsum.lex.punct
+A.1.8 synsum.lex.header
+A.1.9 synsum.lex.ppnum
+A.2 synsum.phrase
+A.2.1 synsum.phrase.expr
+A.2.2 synsum.phrase.dcl
+A.2.3 synsum.phrase.stmt
+A.2.4 synsum.phrase.extdef
+A.3 synsum.pp
+B libsum
+B.1 libsum.diag
+B.2 libsum.cmplx
+B.3 libsum.char
+B.4 libsum.error
+B.5 libsum.fpenv
+B.6 libsum.float
+B.7 libsum.intfmt
+B.8 libsum.altspell
+B.9 libsum.intsize
+B.10 libsum.locale
+B.11 libsum.math
+B.12 libsum.jmp
+B.13 libsum.sig
+B.14 libsum.align
+B.15 libsum.vararg
+B.16 libsum.atom
+B.17 libsum.bool
+B.18 libsum.def
+B.19 libsum.int
+B.20 libsum.io
+B.21 libsum.util
+B.22 libsum.noret
+B.23 libsum.str
+B.24 libsum.tgmath
+B.25 libsum.thread
+B.26 libsum.time
+B.27 libsum.uchar
+B.28 libsum.wchar
+B.29 libsum.wctype
+C seq
+D uchar
+D.1 uchar.range
+D.2 uchar.disallowed
+E limit
+F fparith
+G comparith
+H indeparith
+H.1 indeparith.intro
+H.2 indeparith.type
+H.2.1 indeparith.type.bool
+H.2.2 indeparith.type.int
+H.2.2.1 indeparith.type.int.op
+H.2.3 indeparith.type.float
+H.2.4 indeparith.type.float.parm
+H.2.5 indeparith.type.float.op
+H.2.6 indeparith.type.float.rnd
+H.2.7 indeparith.type.conv
+H.3 indeparith.note
+H.3.1 indeparith.note.alt
+H.3.1.1 indeparith.note.alt.ind
+H.3.1.2 indeparith.note.alt.trap
+I warn
+J port
+J.1 port.unspec
+J.2 port.undef
+J.3 port.impl
+J.3.1 port.impl.trans
+J.3.2 port.impl.env
+J.3.3 port.impl.id
+J.3.4 port.impl.char
+J.3.5 port.impl.int
+J.3.6 port.impl.float
+J.3.7 port.impl.array
+J.3.8 port.impl.hint
+J.3.9 port.impl.struct
+J.3.10 port.impl.qual
+J.3.11 port.impl.pp
+J.3.12 port.impl.lib
+J.3.13 port.impl.arch
+J.4 port.locale
+J.5 port.ext
+J.5.1 port.ext.args
+J.5.2 port.ext.specid
+J.5.3 port.ext.idlen
+J.5.4 port.ext.scope
+J.5.5 port.ext.writable
+J.5.6 port.ext.other
+J.5.7 port.ext.fctptr
+J.5.8 port.ext.extbf
+J.5.9 port.ext.fortan
+J.5.10 port.ext.asm
+J.5.11 port.ext.mulextn
+J.5.12 port.ext.predef
+J.5.13 port.ext.fpflag
+J.5.14 port.ext.sigarg
+J.5.15 port.ext.mode
+J.5.16 port.ext.fpos
+J.5.17 port.ext.mathrpt
+K bound
+L analyze
+L.1 analyze.scope
+L.2 analyze.def
+L.3 analyze.req

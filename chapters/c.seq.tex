@@ -1,1 +1,26 @@
 \chptr{（信息）序列点}{seq}
+
+\paragraph{}
+以下为\ref{env.concept.exec.exec}中所述的序列点：
+\begin{itemize}
+  \item{函数调用中函数指示符和实参的计算和实际调用之间。
+    （\ref{lang.expr.post.call}）。}
+  \item{以下运算符的第一和第二操作数的计算之间：逻辑与\tm{\&\&}
+    （\ref{lang.expr.land}）；逻辑或\tm{||}（\ref{lang.expr.lor}）；逗号\tm{,}
+    （\ref{lang.expr.comma}）。}
+  \item{条件运算符\tm{?:}的第一操作数和第二或第三操作数中任一个的计算之间
+    （\ref{lang.expr.cond}）。}
+  \item{全声明子之后：声明子（\ref{lang.dcl.decl}）。}
+  \item{在全表达式的计算和下一个要计算的全表达式之间。以下为全表达式：不属于复合
+    字面值（\ref{lang.dcl.init}）的初始化；表达式语句中的表达式
+    （\ref{lang.stmt.expr}）；选择语句的控制表达式（\tm{if}或\tm{switch}）
+    （\ref{lang.stmt.sel}）；\tm{while}或\tm{do}语句的控制表达式
+    （\ref{lang.stmt.iter}）；\tm{for}语句的每个（可选）表达式
+    （\ref{lang.stmt.iter.for}）；\tm{return}语句的（可选）表达式
+    （\ref{lang.stmt.jmp}）。}
+  \item{库函数返回之前（\ref{lib.intro.use}）。}
+  \item{关联于每个格式化的输入/输出函数转换说明符的操作之后（\ref{lib.io.fmt}，
+    \ref{lib.wchar.fmt}）。}
+  \item{每次调用比较函数之前和之后，以及对比较函数的任何调用和作为参数传递给该调
+    用的对象的任何移动之间（\ref{lib.util.search}）。}
+\end{itemize}

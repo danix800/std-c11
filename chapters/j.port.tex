@@ -1,41 +1,810 @@
 \chptr{（信息）可移植性问题}{port}
 
+\paragraph{}
+本附录收集了该标准中出现的一些关于可移植性的信息。
+
 \sect{未指定行为}{port.unspec}
+\paragraph{}
+以下为未指定行为：
+\begin{itemize} % 58
+\newcounter{itmcntr}
+\newcommand{\itm}[1]{\stepcounter{itmcntr}\item{#1
+  \marginpar{\tsup{(\thesection.\theitmcntr)}}}}
+
+  \itm{静态初始化的方式和时间（\ref{env.concept.exec}）。}
+  \itm{如果\tm{main}的返回类型与\tm{int}不兼容，返回宿主环境的终止状态
+    （\ref{env.concept.exec.hosted.term}）。}
+  \itm{当接收到信号而中断抽象机的处理时不是无锁原子对象和不是\tm{volatile}    \\
+    \tm{sig\_atomic\_t}类型对象的值以及浮点环境的状态
+    （\ref{env.concept.exec.exec}）。}
+  \itm{当活动位置位于行的最后位置时，写入打印字符后显示设备的行为
+    （\ref{env.env.display}）。}
+  \itm{当活动位置位于行的初始位置时，写了退格字符后显示设备的行为
+    （\ref{env.env.display}）。}
+  \itm{当活动位置位于或超过最后定义的水平制表位时，写入水平制表符后显示设备的行
+    为（\ref{env.env.display}）。}
+  \itm{当活动位置位于或超过最后定义的垂直制表位时，写入垂直制表符后显示设备的行
+    为（\ref{env.env.display}）。}
+  \itm{不对应通用字符名的扩展源字符在外部标识符的有效初始字符中如何计数
+    （\ref{env.env.limit.trans}）。}
+  \itm{类型表示的许多方面（\ref{lang.concept.repr}）。}
+  \itm{在结构或联合中存储值时填充字节的值（\ref{lang.concept.repr.general}）。}
+  \itm{联合中不与最后存储值的成员相对应的字节的值
+    （\ref{lang.concept.repr.general}）。}
+  \itm{在具有多个对象表示形式的对象中存储值时使用的表示形式
+    （\ref{lang.concept.repr.general}）。}
+  \itm{整数表示的任何填充位的值（\ref{lang.concept.repr.int}）。}
+  \itm{某些运算符是否可以生成负零，以及当存储在对象中时，负零是否成为正常的零
+    （\ref{lang.concept.repr.int}）。}
+  \itm{两个字符串文本是否产生不同的数组（\ref{lang.lex.str}）。}
+  \itm{子表达式的计算顺序和副作用发生的顺序，除作为函数调用\tm{()}，\tm{\&\&}，
+    \tm{||}，\tm{?:}和逗号运算符（\ref{lang.expr}）。}
+  \itm{在函数调用时计算函数指示符，参数和参数中的子表达式的顺序
+    （\ref{lang.expr.post.call}）。}
+  \itm{复合字面值初始化列表表达式中副作用的顺序（\ref{lang.expr.post.cmpd}）。}
+  \itm{赋值运算符中操作数的求值顺序（\ref{lang.expr.assign}）。}
+  \itm{分配用于存储位域的可寻址存储单元的对齐（\ref{lang.dcl.type.struct}）。}
+  \itm{调用内联函数时使用内联函数还是该函数的外部定义（\ref{lang.dcl.fct}）。}
+  \itm{当大小表达式是\tm{sizeof}运算符操作数的一部分并且更改大小表达式的值不会
+    影响运算符的结果，是否对大小表达式进行计算（\ref{lang.dcl.decl.array}）。}
+  \itm{初始化中初始化列表表达式中任何副作用的出现顺序（\ref{lang.dcl.init}）。}
+  \itm{函数参数的存储布局（\ref{lang.extn.fct}）。}
+  \itm{当完全展开的宏替换列表包含函数式宏名称作为其最后一个预处理标记且源文件中
+    的下一个预处理标记是\tm{(}，并且该函数式宏的完全展开替换以第一个宏的名称结束
+    且来自源文件中的下一个预处理标记仍然是\tm{(}，是否被视为嵌套替换
+    （\ref{lang.ppdir.macro}）。}
+  \itm{宏替换过程中\tm{\#}和\tm{\#\#}操作的计算顺序
+    （\ref{lang.ppdir.macro.stringize}，\ref{lang.ppdir.macro.concat}）。}
+  \itm{当执行从以\tm{FENV\_ACCESS}``关''翻译的程序段进入到以\tm{FENV\_ACCESS}
+    ``开''翻译的程序段时浮点状态标志的状态（\ref{lib.fpenv.acc}）。}
+  \itm{除F.8.6中所述，\tm{feraiseexcept}发起浮点异常的顺序
+    （\ref{lib.fpenv.except.raise}）。}
+  \itm{\tm{math\_errhandling}是宏还是具有外部链接的标识符（\ref{lib.math}）。}
+  \itm{当指定值不是浮点数的时候\tm{frexp}函数的结果
+    （\ref{lib.math.exp.frexp}）。}
+  \itm{当正确值处于返回类型范围外时\tm{ilogb}函数的数值结果
+    （\ref{lib.math.exp.ilogb}，F.10.3.5）。}
+  \itm{当值超过范围时的舍入结果（\ref{lib.math.near.lrint}，
+    \ref{lib.math.near.lrnd}，F.10.6.5）。}
+  \itm{当\tm{y}为零时\tm{remquo}函数存于\tm{quo}所指对象中的值
+    （\ref{lib.math.rem.remquo}）。}
+  \itm{用比语义类型更宽的格式表示的比较宏参数是否转换成该语义类型
+    （\ref{lib.math.cmpm}）。}
+  \itm{\tm{setjmp}是宏还是带外部链接的标识符（\ref{lib.jmp}）。}
+  \itm{\tm{va\_copy}和\tm{va\_end}是宏还是带外部链接的标识符
+    （\ref{lib.vararg.macro}）。}
+  \itm{当一个非规范浮点数字使用转换说明符\tm{a}或\tm{A}打印时小数点前的十六进制
+    数字（\ref{lib.io.fmt.fprintf}，\ref{lib.wchar.fmt.fwp}）。}
+  \itm{在为文本流成功调用\tm{ungetc}函数后，或为任何流成功调用\tm{ungetwc}函数
+    后，直到所有回推字符被读取或丢弃，文件位置指示符的值
+    （\ref{lib.io.char.ungetc}，\ref{lib.wchar.io.ungetwc}）。}
+  \itm{由\tm{fgetpos}函数所存值的细节（\ref{lib.io.pos.fgetpos}）。}
+  \itm{为文本流调用\tm{ftell}函数返回值的细节（\ref{lib.io.pos.ftell}）。}
+  \itm{\tm{strtod}，\tm{strtof}，\tm{strtold}，\tm{wcstod}，\tm{wcstof}和
+    \tm{wcstold}函数是将负号序列直接转换成负数，还是通过转换对应无符号序列的结果
+    取反（\ref{lib.util.conv.strtod}，\ref{lib.wchar.general.numconv.dfld}）。}
+  \itm{连续调用\tm{calloc}，\tm{malloc}和\tm{realloc}函数所分配内存的顺序和连续
+    性（\ref{lib.util.mem}）。}
+  \itm{当成功调用\tm{calloc}，\tm{malloc}和\tm{realloc}函数请求分配0字节所分配
+    的内存量（\ref{lib.util.mem}）。}
+  \itm{未在\tm{exit}函数调用之前调用\tm{atexit}函数是否能成功
+    （\ref{lib.util.comm.atexit}）。}
+  \itm{未在\tm{quick\_exit}函数调用之前调用\tm{at\_quick\_exit}函数是否能成功
+    （\ref{lib.util.comm.atquick}）。}
+  \itm{当两个元素比较相等时\tm{bsearch}函数匹配哪一个
+    （\ref{lib.util.search.bsearch}）。}
+  \itm{\tm{qsort}函数排序数组中两个元素比较相等时的顺序
+    （\ref{lib.util.search.qsort}）。}
+  \itm{\tm{time}函数返回的日历时间的编码（\ref{lib.time.manip.tm}）。}
+  \itm{如果被转换时间值在正常范围外，\tm{strftime}或\tm{wcsftime}函数所存的字符
+    （\ref{lib.time.conv.strf}，\ref{lib.wchar.time.wcsftime}）。}
+  \itm{如果不对应于扩展字符集成员的\tm{wchar\_t}值出现在用于
+    \ref{lib.time.manip}或\ref{lib.wchar.time}中的函数的格式字符串中，且所指定的
+    语义不要求该值由\tm{wcrtomb}处理，是否发生编码错误
+    （\ref{lib.wchar.intro}）。}
+  \itm{出现编码错误后的转换状态（\ref{lib.wchar.conv.crstrt.mbrtowc}，
+    \ref{lib.wchar.conv.crstrt.wcrtomb}，\ref{lib.wchar.conv.srstrt.mbsrtowcs}，
+    \ref{lib.wchar.conv.srstrt.wcsrtombs}）。}
+  \itm{在IEC 60559浮点到整型转换中当发生``无效''浮点异常时的结果值（F.4）。}
+  \itm{非整型IEC 60559浮点值到整型转换是否发出``不准确''浮点异常（F.4）。}
+  \itm{在IEC 60559合规实现中\tm{<math.h>}里的库函数是否或何时发出``不准确''浮点
+    异常（F.10）。}
+  \itm{在IEC 60559合规实现中\tm{<math.h>}里的库函数是否或何时发出``下溢出''浮点
+    异常（F.10）。}
+  \itm{\tm{frexp}用于NaN或无穷时所存的指数值（F.10.3.4）。}
+  \itm{如果舍入值在返回类型范围外，\tm{lrint}，\tm{llrint}，\tm{lround}和
+    \tm{llround}函数所返回的数值结果（F.10.6.7）。}
+  \itm{IEC 60559合规实现中多个数学函数在某些特殊情况下的\tm{complex}结果的一部
+    分的符号（G.6.1.1，G.6.2.2，G.6.2.3，G.6.2.4，G.6.2.5，G.6.2.6，G.6.3.1，
+    G.6.4.2）。}
+\end{itemize}
 
 \sect{未定义行为}{port.undef}
+\paragraph{}
+以下情况下行为未定义：
+\begin{itemize} % 203
+\setcounter{itmcntr}{0}
+\newcommand{\itm}[2]{\stepcounter{itmcntr}\item{#1（#2）。
+  \marginpar{\tsup{(\thesection.\theitmcntr)}}}}
+
+  \itm{违反了出现在约束之外的``应该''或``不应该''要求}{第\ref{conform}章}
+  \itm{非空源文件不以前面直接跟上反斜杠字符的新行字符结尾，或以部分预处理标记或
+  注释结束}{\ref{env.concept.trans.phase}}
+  \itm{标记连接产生匹配通用字符名语法的字符序列}{\ref{env.concept.trans.phase}}
+  \itm{宿主环境中的程序未使用指定形式之一定义\tm{main}函数}
+  {\ref{env.concept.exec.hosted.start}}
+  \itm{程序执行包括数据竞争}{\ref{env.concept.exec.thread}}
+  \itm{源文件中遇到不在基本源字符集中的字符，除了出现在标识符、字符常量、字符串
+  文本、头名称、注释或不转换成标记的预处理标记}{\ref{env.env.charset}}
+  \itm{标识符、注释、字符串文本、字符常量或头名称包含无效的多字节字符，或者未以
+  初始升档状态开始和结束。}{\ref{env.env.charset.multibyte}}
+  \itm{同一翻译单元中同一个标识符即有内部链接又有外部链接}
+  {\ref{lang.concept.link}}
+  \itm{在对象生命期外引用对象}{\ref{lang.concept.storage}}
+  \itm{使用指向生命期已结束的对象的指针}{\ref{lang.concept.storage}}
+  \itm{自动存储期对象的值不确定的情况下使用其值}{\ref{lang.concept.storage}，
+  \ref{lang.dcl.init}，\ref{lang.stmt}}
+  \itm{陷阱表示使用非也字符类型的左值表达式读取}{\ref{lang.concept.repr.general}}
+  \itm{使用非字符类型左值表达式修改对象的一部分，该副作用产生陷阱表示}
+  {\ref{lang.concept.repr.general}}
+  \itm{某些运算符的操作数可能产生负零，但实现不支持负零}
+  {\ref{lang.concept.repr.int}}
+  \itm{同一对象或函数的两个声明指定不兼容对象}{\ref{lang.concept.compat}}
+  \itm{程序需要变长数组类型的兼容类型形式，该数组的大小由不求值表达式指定}
+  {\ref{lang.concept.compat}}
+  \itm{转换成整型或从整型转换产生可表示范围外的值}{\ref{lang.conv.arith.fpint}}
+  \itm{从一个浮点类型降级到另一个产生可表示范围外的值}
+  {\ref{lang.conv.arith.double}}
+  \itm{求值时左值不指代对象}{\ref{lang.conv.other.desig}}
+  \itm{不完整类型非数组左值用于需要指代对象值的上下文中}
+  {\ref{lang.conv.other.desig}}
+  \itm{指代可能使用\tm{register}存储类声明的自动存储期对象的左值用于需要指代对象
+  值的上下文中，但该对象未初始化}{\ref{lang.conv.other.desig}}
+  \itm{具有数组类型的左值被转换成指向数组初始元素的指针，且数组对象具有寄存器存
+  储类}{\ref{lang.conv.other.desig}}
+  \itm{尝试使用void表达式的值，或隐式或显式转换（除转换成\tm{void}）应用于void表
+  达式}{\ref{lang.conv.other.void}}
+  \itm{指针转换成整型产生可表示范围外的值}{\ref{lang.conv.other.ptr}}
+  \itm{两个指针间转换产生不正确对齐的结果}{\ref{lang.conv.other.ptr}}
+  \itm{指针用于调用与所引用类型不兼容的函数}{\ref{lang.conv.other.ptr}}
+  \itm{标记化过程中逻辑源行里遇到一个不匹配的\tm{\sq}或\tm{\dq}字符}
+  {\ref{lang.lex}}
+  \itm{一个保留关键字标记在翻译阶段\ref{tpit7}或翻译阶段\ref{tpit8}中用于除关键
+  字以外的目的}{\ref{lang.lex.keyword}}
+  \itm{标识符里的通用字符名不指代指定范围内的字符}{\ref{lang.lex.id.general}}
+  \itm{标识符的首字符为指代数字的通用字符名}{\ref{lang.lex.id.general}}
+  \itm{两标识符仅无效字符不同}{\ref{lang.lex.id.general}}
+  \itm{显式声明标识符\tm{\_\_func\_\_}}{\ref{lang.lex.id.predef}}
+  \itm{程序尝试修改字符串字面值}{\ref{lang.lex.str}}
+  \itm{在头名字预处理标记中，分隔符\tm{\tl}和\tm{\tg}间出现字符\tm{\sq}、
+  \tm{\bs}、\tm{\dq}、\tm{//}或\tm{/*}，或者分隔符\tm{\dq}之间出现字符\tm{\sq}、
+  \tm{\bs}、\tm{//}或\tm{/*}}{\ref{lang.lex.header}}
+  \itm{标量对象上的一个副作用，相对于同一标量对象上的一个不同的副作用，或使用该
+  标量对象值的值计算是无序的}{\ref{lang.expr}}
+  \itm{表达式求值时出现异常条件}{\ref{lang.expr}}
+  \itm{对象所存值由可允许类型以外的左值访问}{\ref{lang.expr}}
+  \itm{对作用域内无函数原型的函数调用，实参数目不等于形参数目}
+  {\ref{lang.expr.post.call}}
+  \itm{对作用域内无函数原型但该函数使用原型定义的函数调用，要么原型以省略号结果
+  或提升后的实参类型不兼容于形参类型}{\ref{lang.expr.post.call}}
+  \itm{对作用域内无函数原型且该函数未使用原型定义的函数调用，提升后的实参类型不
+  兼容于提升后的形参类型（某些情况例外）}{\ref{lang.expr.post.call}}
+  \itm{函数使用不兼容于指代被调函数的表达式所指向的（表达式）类型}
+  {\ref{lang.expr.post.call}}
+  \itm{访问原子结构或联合的成员}{\ref{lang.expr.post.mem}}
+  \itm{一元\tm{*}运算符的操作数具有无效值}{\ref{lang.expr.unary.addr}}
+  \itm{指针被转换成非整型或非指针类型}{\ref{lang.expr.cast}}
+  \itm{\tm{/}或\tm{\%}运算符的第二操作数的值为零}{\ref{lang.expr.mul}}
+  \itm{对指向数组对象内部或刚越过该数组对象的指针进行加或减一个整型，产生一个不
+  指向该数组对象内部或刚越过同一数组对象的结果}{\ref{lang.expr.add}}
+  \itm{对指向数组对象内部或刚越过该数组对象的指针进行加或减一个整型，产生一个刚
+  越过同一数组对象的结果，而该结果被用作一元运算符\tm{*}的操作数，且该运算符被求
+  值}{\ref{lang.expr.add}}
+  \itm{不指向同一数组对象内部或刚越过该数组对象的指针进行减法}
+  {\ref{lang.expr.add}}
+  \itm{越界的数组下标，即使使用给定下标明显能访问某对象（如声明
+  \tm{int a[4][5]}，左值表达式\tm{a[1][7]}中所示）}{\ref{lang.expr.add}}
+  \itm{两指针相减的结果不能由\tm{ptrdiff\_t}类型对象表示}{\ref{lang.expr.add}}
+  \itm{表达式使用负数或大于等于提升表达式宽度的量进行移位}
+  {\ref{lang.expr.shift}}
+  \itm{提升后为有符号类型的表达式被左移，而表达式的值为负或移位的结果不能由提升
+  后的类型表示}{\ref{lang.expr.shift}}
+  \itm{未指向同一聚合或联合的指针（或刚越过同一数组对象）使用关系运算符进行比较}
+  {\ref{lang.expr.rel}}
+  \itm{对象被赋给未准确重合的对象，或准确重合但类型不兼容的对象}
+  {\ref{lang.expr.assign.simple}}
+  \itm{要求为整型常量表达式的表达式不具有整型；具有不是整型常量的操作数，枚举常
+  量，字符常量，结果为整型常量的\tm{sizeof}表达式，\tm{\_Alignof}表达式，或直接
+  转换浮点常量的操作数；或包含除算术类型到整型以外的转换（\tm{sizeof}和
+  \tm{\_Alignof}操作数之外）}{\ref{lang.constexpr}}
+  \itm{算术常量表达式不具有算术类型；具有不是整型常量、浮点常量、枚举常量、字符
+  常量、结果为整型常量的\tm{sizeof}表达式、或\tm{\_Alignof}表达式的操作数；或包
+  含除算术类型到算术类型以外的转换（\tm{sizeof}和\tm{\_Alignof}操作数之外）}
+  {\ref{lang.constexpr}}
+  \itm{在创建地址常量时，对象的值使用数组下标\tm{[]}，成员访问\tm{.}或\tm{->}，
+  取址\tm{\&}或间接\tm{*}运算符或指针转换访问}{\ref{lang.constexpr}}
+  \itm{对象的标识符声明为无链接，而对象类型在声明子之后或如果有初始化在其
+  init-declartor之后不完整}{\ref{lang.dcl}}
+  \itm{块作用域内使用除\tm{extern}外的显式存储类说明符声明函数}
+  {\ref{lang.dcl.stc}}
+  \itm{结构或联合定义为无任何命名成员（包括匿名结构和联合间接指定的成员）}
+  {\ref{lang.dcl.type.struct}}
+  \itm{尝试访问，或产生刚好越过结构的灵活数组成员，而所引用对象未给该数组提供元
+  素}{\ref{lang.dcl.type.struct}}
+  \itm{当需要完整类型时，同一作用域内定义内容的标签的声明声明了一个不完整结构或
+  联合类型}{\ref{lang.dcl.type.tag}}
+  \itm{尝试通过非const限定类型的左值修改定义为const限定类型的对象}
+  {\ref{lang.dcl.qual}}
+  \itm{尝试通过非volatile限定类型左值引用volatile限定类型定义的对象}
+  {\ref{lang.dcl.qual}}
+  \itm{函数类型规范中包含任何的限定符}{\ref{lang.dcl.qual}}
+  \itm{需要两类型为兼容类型而不包含兼容类型的等价限定版本}{\ref{lang.dcl.qual}}
+  \itm{已修改对象通过指向const限定类型的restrict限定指针访问，或通过其他指针和
+  restrict限定指针访问，而两者均不是基于同一对象}{\ref{lang.dcl.qual.restrict}}
+  \itm{restrict限定指针被赋予基于另一受限指针，其关联块即不在关联该指针的块前开
+  始执行，也不在赋值前结束}{\ref{lang.dcl.qual.restrict}}
+  \itm{带外部链接的函数使用\tm{inline}函数说明符声明，但未在同一翻译单元内定义}
+  {\ref{lang.dcl.fct}}
+  \itm{使用\tm{\_Noreturn}说明符声明的函数返回到其调用者}{\ref{lang.dcl.fct}}
+  \itm{对象定义有对齐说明符，而该对象的另一声明具有不同的对齐说明符}
+  {\ref{lang.dcl.align}}
+  \itm{不同翻译单元中的同一个对象声明具有不同对齐说明符}{\ref{lang.dcl.align}}
+  \itm{需要兼容的两指针类型未等价限定，或不是指向兼容类型的指针}
+  {\ref{lang.dcl.decl.ptr}}
+  \itm{数组声明的大小表达式不是常量表达式且在程序执行时计算为非正值}
+  {\ref{lang.dcl.decl.array}}
+  \itm{在需要两数组类型兼容的上下文中，它们不具有兼容的元素类型，或大小说明符计
+  算为不相等的值}{\ref{lang.dcl.decl.array}}
+  \itm{数组形参声明的\tm{[}和\tm{]}之间包含关键字\tm{static}，而对应的实参不提供
+  访问第一元素，且具有至少指定数目元素的数组}{\ref{lang.dcl.decl.fct}}
+  \itm{存储类说明符或类型限定符修改作为函数参数类型列表的关键字\tm{void}}
+  {\ref{lang.dcl.decl.fct}}
+  \itm{在需要两函数类型兼容的上下文中，它们不具有兼容返回类型，或它们的参数与省
+  略号终结符或参数类型和数目的使用不一致（在缺省参数提升后，当无参数类型列表或当
+  一个类型由使用标识符列表的函数定义指定）}{\ref{lang.dcl.decl.fct}}
+  \itm{使用结构或联合的无名成员的值}{\ref{lang.dcl.init}}
+  \itm{标量初始化即不是单个表达式也不是括号括起来的单个表达式}
+  {\ref{lang.dcl.init}}
+  \itm{具有自动存储期的结构或联合对象的初始化即不是初始化列表也不是具有兼容结构
+  或联合类型的单个表达式}{\ref{lang.dcl.init}}
+  \itm{聚合或联合的初始化，除使用字符串字面值初始化数组，不是括号包含的元素或成
+  员初始化}{\ref{lang.dcl.init}}
+  \itm{使用带外部链接的标识符，但程序中不存在恰好一个该标识符的外部定义，或该标
+  识符未被使用但存在该标识符的多个外部定义}{\ref{lang.extn}}
+  \itm{函数定义包含标识符列表，但参数类型未在下面的声明列表中声明}
+  {\ref{lang.extn.fct}}
+  \itm{函数定义中调整后的参数类型不是完整对象类型}{\ref{lang.extn.fct}}
+  \itm{接受可变参数的函数未使用以省略号结尾的参数类型列表定义}
+  {\ref{lang.extn.fct}}
+  \itm{到达终止函数的\tm{\}}，且函数调用值被调用者使用}{\ref{lang.extn.fct}}
+  \itm{内部链接且具有不完整类型的对象标识符使用尝试性定义来声明}
+  {\ref{lang.extn.obj}}
+  \itm{在\tm{\#if}或\tm{\#elif}预处理指令展开中产生\tm{defined}标记，或
+  \tm{defined}一元运算符的使用不匹配宏替换前指定的两种形式之一}
+  {\ref{lang.ppdir.condinc}}
+  \itm{宏展开后的\tm{\#inlcude}预处理指令不匹配两种头名形式之一}
+  {\ref{lang.ppdir.inc}}
+  \itm{\tm{\#include}预处理指令中的字符序列不以字母开关}{\ref{lang.ppdir.inc}}
+  \itm{宏实参列表中存在可作为预处理指令的预处理标记序列}{\ref{lang.ppdir.macro}}
+  \itm{预处理运算符\tm{\#}不结果不是有效字符串文本}
+  {\ref{lang.ppdir.macro.stringize}}
+  \itm{预处理运算符\tm{\#\#}的结果不是有效预处理标记}
+  {\ref{lang.ppdir.macro.concat}}
+  \itm{展开后产生的\tm{\#line}预处理指令不匹配两种有效形式之一，或其数字序列为零
+  或大于2147483647的数字}{\ref{lang.ppdir.line}}
+  \itm{遇到文档说明为引起翻译失败的非\tm{STDC \#pragma}预处理指令，或其他形式的
+  未定义行为}{\ref{lang.ppdir.pragma}}
+  \itm{\tm{\#pragma STDC}预处理指令不匹配有效形式之一}{\ref{lang.ppdir.pragma}}
+  \itm{预定义宏名或标识符\tm{defined}作为\tm{\#define}或\tm{\#undef}预处理指令的
+  主体}{\ref{lang.ppdir.predef}}
+  \itm{除明确允许（如\tm{memmove}）外，尝试通过使用库函数拷贝重叠对象}
+  {第\ref{lib}章}
+  \itm{未作为实现的一部分提供的标准头之一的同名文件出现在搜索包含源文件的任何标
+  准位置}{\ref{lib.intro.header}}
+  \itm{在外部声明或定义中包含头}{\ref{lib.intro.header}}
+  \itm{指定某些标准头声明或定义的函数、对象、类型或宏在声明或声明它的宏被包含之
+  前使用}{\ref{lib.intro.header}}
+  \itm{包含标准头的同时定义与关键字同名的宏}{\ref{lib.intro.header}}
+  \itm{程序尝试声明库函数，而不是通过标准头，且声明不具有外部链接}
+  {\ref{lib.intro.header}}
+  \itm{程序声明或定义除\ref{lib.intro.use}中允许的保留字}
+  {\ref{lib.intro.reserved}}
+  \itm{程序移除以下划线开始跟上大写字母或另一个下划线的宏名}
+  {\ref{lib.intro.reserved}}
+  \itm{库函数参数具有无效值或变参函数未预期的类型}{\ref{lib.intro.use}}
+  \itm{传递给库函数数组参数的指针不具有使得所有地址计算和函数访问有效的值}
+  {\ref{lib.intro.use}}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+  \itm{<++>}{<++>}
+\end{itemize}<++>
 
 \sect{实现定义行为}{port.impl}
+\paragraph{}
+合规实现要求记录其在本节所列每个领域的行为选择。以下为实现定义：
+
 \ssect{翻译}{port.impl.trans}
+\begin{itemize} %2
+  \item[\textbf{1}\hspace{5pt}---]{诊断如何识别（\ref{defns.diag}，
+    \ref{env.concept.trans.diag}）。}
+  \item{翻译阶段\ref{tpit3}中，保留除新行以外的空白字符非空序列还是使用一个空格
+    替换（\ref{env.concept.trans.phase}）。}
+\end{itemize}
+
 \ssect{环境}{port.impl.env}
+\begin{itemize} % 12
+  \item[\textbf{1}\hspace{5pt}---]{翻译阶段\ref{tpit1}中物理源文件多字节字符与源
+    字符集之间的映射（\ref{env.concept.trans.phase}）。}
+  \item{自由式环境中程序启动时所调函数的名字与类型
+    （\ref{env.concept.exec.free}）。}
+  \item{自由式环境中终止程序的效果（\ref{env.concept.exec.free}）。}
+  \item{\tm{main}函数可能使用的可选定义方式
+    （\ref{env.concept.exec.hosted.start}）。}
+  \item{\tm{main}的参数\tm{argv}所指向的字符串的值
+    （\ref{env.concept.exec.hosted.start}）。}
+  \item{交互式设备的构成（\ref{env.concept.exec.exec}）。}
+  \item{自由式环境中程序是否可以有多个线程（\ref{env.concept.exec.thread}）。}
+  \item{信号集合，其语义及缺省处理（\ref{lib.sig}）。}
+  \item{除\tm{SIGFPE}，\tm{SIGILL}和\tm{SIGSEGV}外，对应于计算异常的信号值
+    （\ref{lib.sig.spec.sgnl}）。}
+  \item{程序启动时等价于执行\tm{signal(sig, SIG\_IGN);}的信号
+    （\ref{lib.sig.spec.sgnl}）。}
+  \item{环境名集合和\tm{getenv}函数所用的环境列表的更改方法
+    （\ref{lib.util.comm.getenv}）。}
+  \item{\tm{system}函数的字符串执行方式（\ref{lib.util.comm.sys}）。}
+\end{itemize}
+
 \ssect{标识符}{port.impl.id}
+\begin{itemize} %2
+  \item[\textbf{1}\hspace{5pt}---]{哪些额外宽字符可以出现在标识符中以及它们与通
+    用字符名的对应关系（\ref{lang.lex.id}）。}
+  \item{标识符中有效初始字符数（\ref{env.env.limit.trans}，
+    \ref{lang.lex.id}）。}
+\end{itemize}
+
 \ssect{字符}{port.impl.char}
+\begin{itemize} % 13
+  \item[\textbf{1}\hspace{5pt}---]{字节位数（\ref{defns.byte}）。}
+  \item{执行字符集成员的值（\ref{env.env.charset}）。}
+  \item{为每个标准字母转义序列产生的执行字符集成员的唯一值
+    （\ref{env.env.display}）。}
+  \item{除基本执行字符集成员外的任何字符存于\tm{char}对象的值
+    （\ref{lang.concept.type}）。}
+  \item{\tm{signed char}或\tm{unsigned char}中哪一个与``普通''\tm{char}具有相同
+    范围、表示和行为（\ref{lang.concept.type}，\ref{lang.conv.arith.rank}）。}
+  \item{源字符集成员到执行字符集成员的映射（字符常量与字符串文本中）
+    （\ref{lang.lex.const.char}，\ref{env.concept.trans.phase}）。}
+  \item{包含多于一个字符或包含不能映射到单字节执行字符的字符或转换序列的整型字符
+    常量（\ref{lang.lex.const.char}）。}
+  \item{包含多于一个多字节字符，或包含映射到扩展执行字符集成员的一个多字节字符，
+    或包含不能由扩展执行字符集表示的多字节字符或转义序列的宽字符常量的值
+    （\ref{lang.lex.const.char}）。}
+  \item{用于将由单个多字节字符组成的宽字符常量转换为相应的宽字符代码的当前区域设
+    置，该多字节字符映射到扩展执行字符集的成员。（\ref{lang.lex.const.char}）。}
+  \item{是否可以连接不同前缀的宽字符串文字标记，以及如果可以，对生成的多字节字符
+    序列如何进行处理（\ref{lang.lex.str}）。}
+  \item{用于将宽字符文本转换为对应宽字符码的当前区域设置
+    （\ref{lang.lex.str}）。}
+  \item{包括执行字符集不可表示的多字符字符或转义序列的字符串文本的值
+    （\ref{lang.lex.str}）。}
+  \item{在对应的标准编码宏（\tm{\_\_STDC\_ISO\_10646\_\_}，
+    \tm{\_\_STDC\_UTF\_16\_\_}或\tm{\_\_STDC\_UTF\_32\_\_}）未定义的情况下任何
+    \tm{wchar\_t}，\tm{char16\_t}和\tm{char32\_t}的编码
+    （\ref{lang.ppdir.predef.env}）。}
+\end{itemize}
+
 \ssect{整型}{port.impl.int}
+\begin{itemize} % 5
+  \item[\textbf{1}\hspace{5pt}---]{实现中的任何扩展整型
+    （\ref{lang.concept.type}）。}
+  \item{有符号整型使用符号与量值、二补码还是一补码表示，以及非常值是陷阱表示还是
+    普通值（\ref{lang.concept.repr.int}）。}
+  \item{任何扩展整型相对另一具有相同精度的扩展整型的阶
+    （\ref{lang.conv.arith.rank}）。}
+  \item{转换整型到有符号整型，当值不能由该类型对象表示时的结果或所产生的信号
+    （\ref{lang.conv.arith.signed}）。}
+  \item{一些按位操作在有符号整型上的结果（\ref{lang.expr}）。}
+\end{itemize}
+
 \ssect{浮点}{port.impl.float}
+\begin{itemize} % 11
+  \item[\textbf{1}\hspace{5pt}---]{\tm{<math.h>}和\tm{<complex.h>}中返回浮点结果
+    的库函数和浮点操作的准确性（\ref{env.env.limits.num.float}）。}
+  \item{由\tm{<stdio.h>}，\tm{<stdlib.h>}和\tm{<wchar.h>}中的库函数所进行的浮点
+    内部表示和字符串表示之间的转换的准确性（\ref{env.env.limits.num.float}）。}
+  \item{由\tm{FLT\_ROUNDS}的非标准值所刻画的舍入行为
+    （\ref{env.env.limits.num.float}）。}
+  \item{由\tm{FLT\_EVAL\_METHOD}的非标准负值所刻画的求值方法
+    （\ref{env.env.limits.num.float}）。}
+  \item{当整型转换成不能确切表示原值的浮点数时的舍入方向
+    （\ref{lang.conv.arith.fpint}）。}
+  \item{当浮点数转换成更窄的浮点数时的舍入方向
+    （\ref{lang.conv.arith.double}）。}
+  \item{如何为某些浮点常量选取与最近可表示值直接相邻的最近可表示值或最大、最小可
+    表示值（\ref{lang.lex.const.float}）。}
+  \item{当未被\tm{FP\_CONTRACT} pragma禁止时浮点表达式是否以及如何压缩
+    （\ref{lang.expr}）。}
+  \item{\tm{FENV\_ACCESS} pragma的缺省状态（\ref{lib.fpenv.acc}）。}
+  \item{额外的浮点异常、舍入模式，环境以及分类，以及它们的宏名
+    （\ref{lib.fpenv}，\ref{lib.math}）。}
+  \item{\tm{FP\_CONTRACT} pragma的缺省状态（\ref{lib.math.fpcont}）。}
+\end{itemize}
+
 \ssect{数组与函数}{port.impl.array}
+\begin{itemize}
+  \item[\textbf{1}\hspace{5pt}---]{转换指针到整型或反之的结果
+    （\ref{lang.conv.other.ptr}）。}
+  \item{指向同一数组的两个元素的指针相减的结果大小（\ref{lang.expr.add}）。}
+\end{itemize}
+
 \ssect{提示}{port.impl.hint}
+\begin{itemize}
+  \item[\textbf{1}\hspace{5pt}---]{\tm{register}存储类说明符所推荐的有效程度
+    （\ref{lang.dcl.stc}）。}
+  \item{使用\tm{inline}函数说明符所作推荐的有效程度（\ref{lang.dcl.fct}）。}
+\end{itemize}
+
 \ssect{结构，联合，枚举和位域}{port.impl.struct}
+\begin{itemize} % 7
+  \item[\textbf{1}\hspace{5pt}---]{``普通''\tm{int}位域是作为\tm{signed int}还是
+    作为\tm{unsigned int}位域（\ref{lang.dcl.type}，
+    \ref{lang.dcl.type.struct}）。}
+  \item{除\tm{\_Bool}，\tm{signed int}和\tm{unsigned int}外允许的位域类型
+    （\ref{lang.dcl.type.struct}）。}
+  \item{是否允许原子类型的位域（\ref{lang.dcl.type.struct}）。}
+  \item{位域是否可跨存储单元边界（\ref{lang.dcl.type.struct}）。}
+  \item{单元内位域的分配顺序（\ref{lang.dcl.type.struct}）。}
+  \item{结构的非位域成员的对齐（\ref{lang.dcl.type.struct}）。除非一个实现所写的
+    二进制数据被另一个实现读取外不应该有问题。}
+  \item{与每一个枚举类型兼容的整型（\ref{lang.dcl.type.enum}）。}
+\end{itemize}
+
 \ssect{限定符}{port.impl.qual}
+\begin{itemize}
+  \item[\textbf{1}\hspace{5pt}---]{volatile限定类型对象的访问的构成
+    （\ref{lang.dcl.qual}）。}
+\end{itemize}
+
 \ssect{预处理指令}{port.impl.pp}
+\begin{itemize} % 11
+  \item[\textbf{1}\hspace{5pt}---]{\tm{\#pragma}指令中，识别头名预处理标记的位置
+    （\ref{lang.lex}，\ref{lang.lex.header}）。}
+  \item{两种头名形式中的序列如何映射到头或外部源文件名
+    （\ref{lang.lex.header}）。}
+  \item{控制条件包含的常量表达式中的字符常量值是否匹配执行字符集中的相同字符常量
+    值（\ref{lang.ppdir.condinc}）。}
+  \item{控制条件包含的单字符字符常量值是否可以有负值
+    （\ref{lang.ppdir.condinc}）。}
+  \item{搜索包含的由\tm{< >}分隔的头的位置，及如何指定位置或如何标识头
+    （\ref{lang.ppdir.inc}）。}
+  \item{如何为包含\tm{\dq \dq}分隔的头搜索命名源文件（\ref{lang.ppdir.inc}）。}
+  \item{\tm{\#include}指令中的预处理标记（可能产生于宏展开）组合成头名称的方法
+    （\ref{lang.ppdir.inc}）。}
+  \item{\tm{\#include}处理的嵌套限制（\ref{lang.ppdir.inc}）。}
+  \item{\tm{\#}运算符是否在字符常量或字符串文本中开始一个通用字符名的\tm{\bs}前
+    插入一个\tm{\bs}（\ref{lang.ppdir.macro.stringize}）。}
+  \item{每一个识别的非\tm{STDC \#pragma}指令的行为（\ref{lang.ppdir.pragma}）。}
+  \item{当翻译日期和时间不可用的时候\tm{\_\_DATE\_\_}和\tm{\_\_TIME\_\_}的定义
+    （\ref{lang.ppdir.predef.mand}）。}
+\end{itemize}
+
 \ssect{库函数}{port.impl.lib}
+\begin{itemize}
+\setcounter{itmcntr}{0}
+\newcommand{\itm}[2]{\stepcounter{itmcntr}\item{#1（#2）。
+  \marginpar{\tsup{(\thesection.\theitmcntr)}}}}
+
+  \item[\textbf{1}\hspace{5pt}---]{\stepcounter{itmcntr}除第\ref{conform}章所要
+  求的最小集外，自由式实现可用的任何库函数（\ref{env.concept.exec.free}）。}
+  \marginpar{\tsup{(\thesection.\theitmcntr)}}
+
+  \itm{\tm{assert}宏所打印的诊断信息的格式}{\ref{lib.diag.prog.assert}}
+  \itm{\tm{fegetexceptflag}函数所存的浮点状态标志的表示}
+  {\ref{lib.fpenv.except.get}}
+  \itm{\tm{feraiseexcept}函数是否引发除``上溢''或``下溢''浮点异常外的``不准确''
+  浮点异常}{\ref{lib.fpenv.except.raise}}
+  \itm{除字符串\tm{\dq{}C\dq}和\tm{\dq\dq}外可以传给\tm{setlocale}函数的第二个参
+  数}{\ref{lib.locale.cntr.set}}
+  \itm{当\tm{FLT\_EVAL\_METHOD}宏的值小于0时，\tm{float\_t}和\tm{double\_t}所定
+  义类型}{\ref{lib.math}}
+  \itm{除本标准要求外，数学函数域错误}{\ref{lib.math.error}}
+  \itm{域错或极错时数学函数的返回值}{\ref{lib.math.error}}
+  \itm{下溢范围错时数学函数的返回值，当整型表达式
+  \tm{math\_errhandling \& MATH\_ERRNO}非零时\tm{errno}是否设置为宏\tm{ERANGE}的
+  值，以及当整型表达式\tm{math\_errhandling \& MATH\_ERREXCEPT}非零时是否引发
+  ``下溢''浮点异常}{\ref{lib.math.error}}
+  \itm{当\tm{fmod}函数第二个参数为零时返回域错还是零}{\ref{lib.math.rem.fmod}}
+  \itm{当\tm{fremainder}函数第二个参数为零时返回域错还是零}
+  {\ref{lib.math.rem.rem}}
+  \itm{??}{\ref{<++>}}
+  \itm{当\tm{remquo}函数第二个参数为零时返回域错还是零}
+  {\ref{lib.math.rem.remquo}}
+  \itm{信号处理程序调用前是否执行\tm{signal(sig, SIG\_DFL)}的等价，如果不执行，
+  所执行信息是否阻塞}{\ref{lib.sig.spec.sgnl}}
+  \itm{宏\tm{NULL}展开的零指针常量}{\ref{lib.def}}
+  \itm{文本流最后一行是否需要终止的新行字符}{\ref{lib.io.stream}}
+  \itm{写入文本流直接跟在新行字符前的空白在读入时是否出现}{\ref{lib.io.stream}}
+  \itm{扩充到写入二进制流数据末尾的零字符的数目}{\ref{lib.io.stream}}
+  \itm{扩展模式的流文件指示器初始置于文件开始还是结束处}{\ref{lib.io.file}}
+  \itm{写入文本流是否使关联文件在写入点后被截断}{\ref{lib.io.file}}
+  \itm{文件缓存的特性}{\ref{lib.io.file}}
+  \itm{零长文件是否真实存在}{\ref{lib.io.file}}
+  \itm{<++>}{\ref{<++>}}
+  \itm{<++>}{\ref{<++>}}
+  \itm{<++>}{\ref{<++>}}
+  \itm{<++>}{\ref{<++>}}
+  \itm{<++>}{\ref{<++>}}
+  \itm{<++>}{\ref{<++>}}
+  \itm{<++>}{\ref{<++>}}
+  \itm{<++>}{\ref{<++>}}
+  \itm{<++>}{\ref{<++>}}
+  \itm{<++>}{\ref{<++>}}
+  \itm{<++>}{\ref{<++>}}
+  \itm{<++>}{\ref{<++>}}
+  \itm{<++>}{\ref{<++>}}
+  \itm{<++>}{\ref{<++>}}
+  \itm{<++>}{\ref{<++>}}
+  \itm{<++>}{\ref{<++>}}
+  \itm{<++>}{\ref{<++>}}
+  \itm{<++>}{\ref{<++>}}
+  \itm{<++>}{\ref{<++>}}
+  \itm{<++>}{\ref{<++>}}
+  \itm{<++>}{\ref{<++>}}
+  \itm{<++>}{\ref{<++>}}
+  \itm{<++>}{\ref{<++>}}
+  \itm{<++>}{\ref{<++>}}
+  \itm{<++>}{\ref{<++>}}
+  \itm{<++>}{\ref{<++>}}
+  \itm{<++>}{\ref{<++>}}
+  \itm{<++>}{\ref{<++>}}
+  \itm{<++>}{\ref{<++>}}
+  \itm{<++>}{\ref{<++>}}
+  \itm{<++>}{\ref{<++>}}
+  \itm{<++>}{\ref{<++>}}
+  \itm{<++>}{\ref{<++>}}
+  \itm{<++>}{\ref{<++>}}
+\end{itemize}<++>
+
 \ssect{架构}{port.impl.arch}
+\begin{itemize} %6
+  \item[\textbf{1}\hspace{5pt}---]{赋给头\tm{<float.h>}，\tm{<limits.h>}和
+    \tm{<stdint.h>}中所指定宏的值或表达式（\ref{env.env.limit.num}，
+    \ref{lib.int.lmt}，\ref{lib.int.olmt}）。}
+  \item{尝试从从非关联线程间接访问自动或线程存储期对象的结果
+    （\ref{lang.concept.storage}）。}
+  \item{对象内字节数，顺序和编码（本标准中未显式指明时）
+    （\ref{lang.concept.repr.general}）。}
+  \item{是否支持扩展对齐，以及支持它们的上下文（\ref{lang.concept.align}）。}
+  \item{如果存在，除对基本类型使用\tm{\_Alignof}表达式所返回值外的有效对齐值
+    （\ref{lang.concept.align}）。}
+  \item{\tm{sizeof}和\tm{\_Alignof}运算符的结果值
+    （\ref{lang.expr.unary.sizeof}）。}
+\end{itemize}
 
 \sect{语言环境特定行为}{port.locale}
+\paragraph{}
+宿主环境的以下特性为语言环境特定的，且要求实现加以文档化：
+\begin{itemize} %15
+  \item{除基本字符集外额外的源和执行字符集成员（\ref{env.env.charset}）。}
+  \item{执行字符集中除基本字符集外额外的宽字符是否存在，语义和表示
+    （\ref{env.env.charset.multibyte}）。}
+  \item{用于编码宽字符的升档状态（\ref{env.env.charset.multibyte}）。}
+  \item{连续打印字符的书写方向（\ref{env.env.display}）。}
+  \item{小数点字符（\ref{lib.intro.term}）。}
+  \item{打印字符集（\ref{lib.char}，\ref{lib.wctype.class}）。}
+  \item{控制字符集（\ref{lib.char}，\ref{lib.wctype.class}）。}
+  \item{以下函数所测试的字符集：\tm{isalpha}，\tm{isblank}，\tm{islower}，
+    \tm{ispunct}，\tm{isspace}，\tm{isupper}，\tm{iswalpha}，\tm{iswblank}，
+    \tm{iswlower}，\tm{iswpunct}，\tm{iswspace}或\tm{iswupper}
+    （\ref{lib.char.class.isalpha}，\ref{lib.char.class.isblank}，
+    \ref{lib.char.class.islower}，\ref{lib.char.class.ispunct}，
+    \ref{lib.char.class.isspace}，\ref{lib.char.class.isupper}，
+    \ref{lib.wctype.class.fct.iswalpha}，\ref{lib.wctype.class.fct.iswblank}，
+    \ref{lib.wctype.class.fct.iswlower}，\ref{lib.wctype.class.fct.iswpunct}，
+    \ref{lib.wctype.class.fct.iswspace}，
+    \ref{lib.wctype.class.fct.iswupper}）。}
+  \item{本地环境（\ref{lib.locale.cntr.set}）。}
+  \item{数值转换函数所接受的额外主体序列（\ref{lib.wchar.general.numconv}）。}
+  \item{执行字符集的转换序列（\ref{lib.str.cmp.strcoll}，
+    \ref{lib.wchar.general.comp.wcscoll}）。}
+  \item{由\tm{strerror}函数所设置的错误消息字符串内容
+    （\ref{lib.str.misc.strerror}）。}
+  \item{时间和日期的格式（\ref{lib.time.conv.strf}，
+    \ref{lib.wchar.time.wcsftime}）。}
+  \item{\tm{towctrans}函数所支持的字符映射（\ref{lib.wctype.intro}）。}
+  \item{\tm{iswctype}函数所支持的字符分类（\ref{lib.wctype.intro}）。}
+\end{itemize}
 
 \sect{通用扩展}{port.ext}
+\paragraph{}
+以下扩展在许多系统中被广泛使用，但并非可移植到所有实现中。包含任何可能导致严格合
+规程序失效的扩展将导致实现不合规。这些扩展的例子包括新的关键字、标准头中声明的额
+外库函数，或者名称不以下划线开头的预定义宏。
+
 \ssect{环境参数}{port.ext.args}
-\ssect{特殊化标识符}{port.ext.specid}
+\paragraph{}
+在宿主环境中，\tm{main}函数接收第三个参数\tm{char*envp[]}，该参数指向以零结尾的
+\tm{char}指针数组，每个指针指向一个字符串，该字符串提供有关程序执行环境的信息
+（\ref{env.concept.exec.hosted.start}）。
+
+\ssect{特殊标识符}{port.ext.specid}
+\paragraph{}
+除下划线\tm{\_}、字母和数字之外，不属于基本源字符集的字符（如美元符号\tm{\$}，或
+国家字符集中的字符）可能出现在标识符中（\ref{lang.lex.id}）。
+
 \ssect{标识符长度与大小写}{port.ext.idlen}
+\paragraph{}
+标识符中所有字符（无论是否为外部链接）均有效（\ref{lang.lex.id}）。
+
 \ssect{标识符作用域}{port.ext.scope}
-\ssect{可写字符串}{port.ext.writable}
+\paragraph{}
+函数标识符，或声明中包含关键字\tm{extern}的对象标识符，具有文件作用域
+（\ref{lang.concept.scope}）。
+
+\ssect{可写字符串文本}{port.ext.writable}
+\paragraph{}
+字符串文本可写（这种情况下，等价字符串文本应该代表不同对象）
+（\ref{lang.lex.str}）。
+
 \ssect{其他算术类型}{port.ext.other}
+\paragraph{}
+定义了其他算术类型，如\tm{\_\_int128}或\tm{double double}，以及它们的适当转换
+（\ref{lang.concept.type}、\ref{lang.conv.arith}）。与\tm{long double}相比，其他
+浮点类型的范围或精度可能更大，可用于计算其他浮点类型的表达式，也可用于定义
+\tm{float\_t}或\tm{double\_t}。其他浮点类型的范围或精度也可能小于\tm{float}。
+
 \ssect{函数指针转换}{port.ext.fctptr}
+\paragraph{}
+指向对象或\tm{void}的指针可以转换为指向函数的指针，从而允许作为函数以调用数据
+（\ref{lang.expr.cast}）。
+
+\paragraph{}
+指向函数的指针可以转换为指向对象的指针或\tm{void}，从而允许检查或修改函数（如由
+调试器）（\ref{lang.expr.cast}）。
+
 \ssect{扩展位域类型}{port.ext.extbf}
+\paragraph{}
+位字段可以用除\tm{\_Bool}、\tm{unsigned int}或\tm{signed int}之外的类型声明，并
+具有适当的最大宽度（\ref{lang.dcl.type.struct}）。
+
 \ssect{fortan关键字}{port.ext.fortan}
+\paragraph{}
+函数声明中可以使用\tm{fortran}函数说明符来指示应生成适用于FORTRAN的调用，或者生
+成外部名称的其他表示形式（\ref{lang.dcl.fct}）。
+
 \ssect{asm关键字}{port.ext.asm}
+\paragraph{}
+\tm{asm}关键字可用于将汇编语言直接插入转换器输出（\ref{lang.stmt}）。最常见的实
+现是通过如下形式的语句：                                                      \\
+\mbox{\hspace{4em}\tm{asm (} \nt{character-string-literal} \tm{);}}
+
 \ssect{多重外部定义}{port.ext.mulextn}
+\paragraph{}
+对象标识符的外部定义可以有多个，可以使用或不使用关键字\tm{extern}；如果定义不一
+致，或者初始化多个，则行为未定义（\ref{lang.extn.obj}）。
+
 \ssect{预定义宏名}{port.ext.predef}
+\paragraph{}
+翻译开始前由实现定义的描述翻译和执行环境的不以下划线开头的宏名称
+（\ref{lang.ppdir.predef}）。
+
 \ssect{浮点状态位}{port.ext.fpflag}
+\paragraph{}
+对由\tm{atexit}函数注册的函数进行所有调用后正常终止时，如果设置了任何浮点状态标
+志（请参见\ref{lib.util.comm.exit}），则实现会将一些指示此事实的诊断写入
+\tm{stderr}流，如果该流仍处于打开状态。
+
 \ssect{信号处理的额外参数}{port.ext.sigarg}
+\paragraph{}
+除了信号号码之外，还使用其他参数调用特定信号的处理程序
+（\ref{lib.sig.spec.sgnl}）。
+
 \ssect{额外的流类型和文件打开模式}{port.ext.mode}
+\paragraph{}
+支持额外的文件到流的映射（\ref{lib.io.stream}，\ref{lib.io.stream}）。
+
+\paragraph{}
+额外的文件打开模式可以由字符指定附加到\tm{fopen}函数的\tm{mode}参数中
+（\ref{lib.io.acc.open}）。
+
 \ssect{定义的文件位置指标}{port.ext.fpos}
+\paragraph{}
+对于文本流，每次成功调用\tm{ungetc}或\tm{ungetwc}函数时，文件位置指标都会递减，
+除非在调用之前其值为零（\ref{lib.io.char.ungetc}，\ref{lib.wchar.io.ungetwc}）。
+
 \ssect{数学错误报告}{port.ext.mathrpt}
+\paragraph{}
+在\tm{<complex.h>}和\tm{<math.h>}中声明的函数引发\tm{SIGFPE}以报告错误，
+而不是设置\tm{errno}或引发浮点异常（\ref{lib.cmplx}，\ref{lib.math}）。
