@@ -217,6 +217,8 @@
   量，字符常量，结果为整型常量的\tm{sizeof}表达式，\tm{\_Alignof}表达式，或直接
   转换浮点常量的操作数；或包含除算术类型到整型以外的转换（\tm{sizeof}和
   \tm{\_Alignof}操作数之外）}{\ref{lang.constexpr}}
+  \itm{初始化中的常量表达式不是或不求值为以下之一：算术常量表达式、零指针常量、
+  地址常量或完整对象类型地址常量加或减一个整型常量表达式}{\ref{lang.constexpr}}
   \itm{算术常量表达式不具有算术类型；具有不是整型常量、浮点常量、枚举常量、字符
   常量、结果为整型常量的\tm{sizeof}表达式、或\tm{\_Alignof}表达式的操作数；或包
   含除算术类型到算术类型以外的转换（\tm{sizeof}和\tm{\_Alignof}操作数之外）}
@@ -314,102 +316,213 @@
   \itm{库函数参数具有无效值或变参函数未预期的类型}{\ref{lib.intro.use}}
   \itm{传递给库函数数组参数的指针不具有使得所有地址计算和函数访问有效的值}
   {\ref{lib.intro.use}}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-  \itm{<++>}{<++>}
-\end{itemize}<++>
+  \itm{禁用宏定义\tm{assert}以访问实际函数}{\ref{lib.diag}}
+  \itm{\tm{assert}宏的参数不具有标量类型}{\ref{lib.diag}}
+  \itm{\tm{CX\_LIMITED\_RANGE}，\tm{FENV\_ACCESS}或\tm{FP\_CONTRACT} pragma用于
+  除外部声明之外的任何上下文中，或复合语句内所有显式声明和语句之前}
+  {\ref{lib.cmplx.range}，\ref{lib.fpenv.acc}，\ref{lib.math.fpcont}}
+  \itm{字符处理函数参数的值即不等于\tm{EOF}的值也不能由\tm{unsigned char}表示}
+  {\ref{lib.char}}
+  \itm{禁用\tm{errno}宏以访问实际对象，或程序定义标识符名为\tm{errno}}
+  {\ref{lib.error}}
+  \itm{程序的某部分测试浮点状态标志，设置浮点控制模式或在非缺省模式设置下运行，
+  但程序在\tm{FENV\_ACCESS} pragma为``关''的状态下翻译}{\ref{lib.fpenv.acc}}
+  \itm{提供浮点状态标志访问的函数之一的异常掩码参数值不是通过浮点异常宏的按位或
+  获取的非零值}{\ref{lib.fpenv.except}}
+  \itm{\tm{fesetexceptflag}函数用于设置不是由调用\tm{fegetexceptflag}函数所指定
+  的浮点状态标志，该函数提供对应的\tm{fexcept\_t}对象}
+  {\ref{lib.fpenv.except.set}}
+  \itm{\tm{fesetevn}或\tm{feupdateenv}的参数即不是调用\tm{fegetenv}或
+  \tm{feholdexcept}所设置的对象，也不是环境宏}{\ref{lib.fpenv.env.set}，
+  \ref{lib.fpenv.env.upd}}
+  \itm{整型算术或转换函数的结果值不能表示}{\ref{lib.intfmt.width.abs}，
+  \ref{lib.intfmt.width.div}，\ref{lib.intfmt.width.str}，
+  \ref{lib.intfmt.width.wcs}，\ref{lib.util.int.abs}，\ref{lib.util.int.div}，
+  \ref{lib.util.conv}}
+  \itm{程序修改\tm{setlocale}函数返回值所指向的字符串}
+  {\ref{lib.locale.cntr.set}}
+  \itm{程序修改\tm{localeconv}函数返回值所指向的结构}
+  {\ref{lib.locale.numconv.conv}}
+  \itm{禁用宏定义\tm{math\_errhandling}或程序定义标识符名为
+  \tm{math\_errhandling}}{\ref{lib.math}}
+  \itm{浮点分类或比较宏的参数不是实浮点类型}{\ref{lib.math.class}，
+  \ref{lib.math.cmpm}}
+  \itm{禁用\tm{setjmp}宏定义以访问实际函数，或程序定义外部标识符名为\tm{setjmp}}
+  {\ref{lib.jmp}}
+  \itm{\tm{setjmp}宏调用出现在不允许的上下文中}{\ref{lib.jmp.rstr.lngjmp}}
+  \itm{调用\tm{longjmp}函数恢复不存在的环境}{\ref{lib.jmp.rstr.lngjmp}}
+  \itm{\tm{longjmp}后，尝试访问自动存储期对象值，该对象不具有volatile限定类型，
+  局部于包含对应的\tm{setjmp}宏调用，在\tm{setjmp}和\tm{longjmp}调用之间被修改}
+  {\ref{lib.jmp.rstr.lngjmp}}
+  \itm{程序指定信号处理函数的无效指针}{\ref{lib.sig.spec.sgnl}}
+  \itm{当信号对应于计算异常时，信号处理函数返回}{\ref{lib.sig.spec.sgnl}}
+  \itm{响应\tm{SIGFPE}，\tm{SIGILL}，\tm{SIGSEGV}，或任何其他对应于计算异常的实
+  现定义值的信号处理调用返回}{\ref{lib.sig.spec.sgnl}}
+  \itm{调用\tm{abort}或\tm{raise}函数产生信号，而信号处理程序调用\tm{raise}函数}
+  {\ref{lib.sig.spec.sgnl}}
+  \itm{出现除调用\tm{abort}或\tm{raise}函数所产生的信号，信号处理程序引用的静态
+  或线程存储期、非无锁原子对象、除向声明为\tm{volatile sig\_atomic\_t}的对象分配
+  值以外的对象，或调用标准库中除\tm{abort}、\tm{\_Exit}、\tm{quick\_exit}或
+  \tm{signal}函数以外的任何函数（对于相同的信号数）}{\ref{lib.sig.spec.sgnl}}
+  \itm{除调用\tm{abort}或\tm{raise}函数所产生的信号，以及对应信号处理程序获取到
+  一个返回自\tm{signal}函数调用的\tm{SIG\_ERR}外，产生信号后引用\tm{errno}的值}
+  {\ref{lib.sig.spec.sgnl}}
+  \itm{异步信号处理程序产生信号}{\ref{lib.sig.spec.sgnl}}
+  \itm{多线程程序使用\tm{signed}函数}{\ref{lib.sig.spec.sgnl}}
+  \itm{可变参数函数尝试不通过合适声明并初始化的\tm{va\_list}对象，或在调用
+  \tm{va\_start}宏前访问其可变参数}{\ref{lib.vararg}，\ref{lib.vararg.macro.arg}
+  ，\ref{lib.vararg.macro.start}}
+  \itm{使用传递给函数的参数\tm{ap}调用宏\tm{va\_arg}，该函数使用相同的参数调用宏
+  \tm{va\_arg}}{\ref{lib.vararg}}
+  \itm{禁用宏定义\tm{va\_start}，\tm{va\_arg}，\tm{va\_copy}或\tm{va\_end}以访问
+  实际函数，或程序定义标识符名为\tm{va\_copy}或\tm{va\_end}}
+  {\ref{lib.vararg.macro}}
+  \itm{\tm{va\_start}或\tm{va\_copy}宏调用在同函数内没有对应的\tm{va\_end}调用，
+  或反之}{\ref{lib.vararg.macro}，\ref{lib.vararg.macro.cpy}，
+  \ref{lib.vararg.macro.end}，\ref{lib.vararg.macro.start}}
+  \itm{\tm{va\_arg}宏的类型参数不是可通过简单\tm{*}后缀获取的指向该类型对象的指
+  针}{\ref{lib.vararg.macro.arg}}
+  \itm{当实际并没有下一个参数的时候调用\tm{va\_arg}宏，或指定与下一个实参的提升
+  类型不兼容的类型，除了某些例外情况}{\ref{lib.vararg.macro.arg}}
+  \itm{调用\tm{va\_copy}或\tm{va\_start}宏初始化\tm{va\_list}，该\tm{va\_list}之
+  前已由任一个宏初始化过，且没有对同一\tm{va\_list}调用过\tm{va\_end}宏}
+  {\ref{lib.vararg.macro.cpy}，\ref{lib.vararg.macro.start}}
+  \itm{\tm{va\_start}宏的参数\nt{parmN}使用\tm{register}存储类声明，具有函数或数
+  组类型，或具有不兼容于应用缺省参数提升后所产生类型的类型}
+  {\ref{lib.vararg.macro.start}}
+  \itm{\tm{offsetof}宏的成员指代参数为作用于\nt{type}参数的\tm{.}运算符的无效右
+  操作数，或指代位字段}{\ref{lib.def}}
+  \itm{整型常量宏之一的参数不是十进制，八进制或十六进制常量，或其值超过对应类型
+  的限制}{\ref{lib.int.macro}}
+  \itm{字节输入/输出函数应用于面向宽字符的流，或宽字符输入/输出函数应用于面向字
+  节的流}{\ref{lib.io.stream}}
+  \itm{使用除最新写入面向宽流的宽字符之外的文件的任何部分}{\ref{lib.io.stream}}
+  \itm{关联文件关闭以后使用指向\tm{FILE}对象的指针值}{\ref{lib.io.file}}
+  \itm{\tm{fflush}的流指向输入流或指向更新流，其中最新操作为输入}
+  {\ref{lib.io.acc.flsh}}
+  \itm{调用\tm{fopen}函数时由\tm{mode}参数所指向的字符串不严格匹配所指定的字符序
+  列}{\ref{lib.io.acc.open}}
+  \itm{更新流上的输出操作跟上输入操作，中间没有调用\tm{fflush}函数或文件定位函数
+  ，或更新流上的输入操作跟上输出操作，中间有调用文件定位函数}
+  {\ref{lib.io.acc.open}}
+  \itm{尝试使用调用\tm{setvbuf}函数时所提供的数组内容}{\ref{lib.io.acc.vbuf}}
+  \itm{调用格式化输入/输出函数之一时的格式参数不足，或参数具有不合适的类型}
+  {\ref{lib.io.fmt.fprintf}，\ref{lib.io.fmt.fscanf}，\ref{lib.wchar.fmt.fwp}，
+  \ref{lib.wchar.fmt.fws}}
+  \itm{调用格式化输入/输出函数之一或调用\tm{strftime}或\tm{wcsftime}函数中的格式
+  不是以初始升档状态开始且结束的有效宽字节字符序列}{\ref{lib.io.fmt.fprintf}，
+  \ref{lib.io.fmt.fscanf}，\ref{lib.time.conv.strf}，\ref{lib.wchar.fmt.fwp}，
+  \ref{lib.wchar.fmt.fws}，\ref{lib.wchar.time.wcsftime}}
+  \itm{调用格式化输出函数之一时，精度与除说明之外的转换说明符一起出现}
+  {\ref{lib.io.fmt.fprintf}，\ref{lib.wchar.fmt.fwp}}
+  \itm{格式化输出函数的转换规范使用星号表示参数提供的域宽或精度，但未提供对应参
+  数}{\ref{lib.io.fmt.fprintf}，\ref{lib.wchar.fmt.fwp}}
+  \itm{格式化输出函数的转换规范与除描述之外的转换说明符一起使用\tm{\#}或\tm{0}标
+  志}{\ref{lib.io.fmt.fprintf}，\ref{lib.wchar.fmt.fwp}}
+  \itm{格式化输入/输出函数的转换规范与除描述之外的转换说明符一起使用长度修改符}
+  {\ref{lib.io.fmt.fprintf}，\ref{lib.io.fmt.fscanf}，\ref{lib.wchar.fmt.fwp}，
+  \ref{lib.wchar.fmt.fws}}
+  \itm{格式化输出函数之一遇到\tm{s}转换说明符，而参数缺少零终结符（除非指定精度
+  不需要零终止）}{\ref{lib.io.fmt.fprintf}，\ref{lib.wchar.fmt.fwp}}
+  \itm{格式化输入/输出函数之一的\tm{n}转换说明符包括任何标志，一个禁止赋值字符，
+  一个位域或精度}{\ref{lib.io.fmt.fprintf}，\ref{lib.io.fmt.fscanf}，
+  \ref{lib.wchar.fmt.fwp}，\ref{lib.wchar.fmt.fws}}
+  \itm{格式化输入/输出函数遇到\tm{\%}转换说明符，但完整的转换规范不完全是
+  \tm{\%\%}}{\ref{lib.io.fmt.fprintf}，\ref{lib.io.fmt.fscanf}，
+  \ref{lib.wchar.fmt.fwp}，\ref{lib.wchar.fmt.fws}}
+  \itm{格式化输入/输出函数之一，或\tm{strftime}和\tm{wcsftime}函数的格式中有无效
+  转换规范}{\ref{lib.io.fmt.fprintf}，\ref{lib.io.fmt.fscanf}，
+  \ref{lib.time.conv.strf}，\ref{lib.wchar.fmt.fwp}，\ref{lib.wchar.fmt.fws}，
+  \ref{lib.wchar.time.wcsftime}}
+  \itm{格式化输出函数所传输（或写入数组，或本该写入数组）的字符或宽字符数大于
+  \tm{INT\_MAX}}{\ref{lib.io.fmt.fprintf}，\ref{lib.wchar.fmt.fwp}}
+  \itm{格式化输入函数所赋输入项数大于\tm{INT\_MAX}}{\ref{lib.io.fmt.fscanf}，
+  \ref{lib.wchar.fmt.fws}}
+  \itm{格式化输入函数之一的转换结果不能用对应对象表示，或所接受对象不具有合适类
+  型}{\ref{lib.io.fmt.fscanf}，\ref{lib.wchar.fmt.fws}}
+  \itm{格式化输入函数之一遇到一个\tm{c}，\tm{s}或\tm{[}输入说明符，对应参数所指
+  向的数组不够大以接受输入序列（及如果转换说明符为\tm{s}或\tm{[}还要能接受零终止
+  符）}{\ref{lib.io.fmt.fscanf}，\ref{lib.wchar.fmt.fws}}
+  \itm{格式化输入函数之一遇到带\tm{l}限定符的\tm{c}，\tm{s}或\tm{[}转换说明符，
+  但输入不是以初始升档状态开始的有效多字节字符序列}{\ref{lib.io.fmt.fscanf}，
+  \ref{lib.wchar.fmt.fws}}
+  \itm{格式化输入函数之一的\tm{\%p}转换输入项不是同程序执行早期生成的转换值}
+  {\ref{lib.io.fmt.fscanf}，\ref{lib.wchar.fmt.fws}}
+  \itm{\tm{vfprintf}，\tm{vfscanf}，\tm{vprintf}，\tm{vscanf}，\tm{vsnprintf}，
+  \tm{vsprintf}，\tm{vsscanf}，\tm{vfwprintf}，\tm{vfwscanf}，\tm{vswprintf}，
+  \tm{vswscanf}，\tm{vwprintf}或\tm{vwscanf}函数使用未正确初始化的\tm{va\_list}
+  参数进行调用，或在函数返回后使用该参数（除调用\tm{va\_end}）}
+  {\ref{lib.io.fmt.vfprintf}，\ref{lib.io.fmt.vfscanf}，
+  \ref{lib.io.fmt.vprintf}，\ref{lib.io.fmt.vscanf}，
+  \ref{lib.io.fmt.vsnprintf}，\ref{lib.io.fmt.vsprintf}，
+  \ref{lib.io.fmt.vsscanf}，\ref{lib.wchar.fmt.vfwp}，\ref{lib.wchar.fmt.vfws}，
+  \ref{lib.wchar.fmt.vswp}，\ref{lib.wchar.fmt.vsws}，\ref{lib.wchar.fmt.vwp}，
+  \ref{lib.wchar.fmt.vws}}
+  \itm{在发生读错误之后使用调用\tm{fgets}或\tm{fgetws}函数所提供的数组的内容}
+  {\ref{lib.io.char.fgets}，\ref{lib.wchar.io.fgetws}}
+  \itm{在调用\tm{ungetc}函数之后使用二进制流的文件位置指针，而其值在调用前为零}
+  {\ref{lib.io.char.ungetc}}
+  \itm{调用\tm{fread}或\tm{fwrite}函数发生错误后使用二进制流的文件位置指针}
+  {\ref{lib.io.direct.fread}，\ref{lib.io.direct.fwrite}}
+  \itm{使用由调用\tm{fread}函数所读取的部分元素}{\ref{lib.io.direct.fread}}
+  \itm{对文本流调用使用非零偏移调用\tm{fseek}函数，而该偏移不是之前由同文件所关
+  联的流上成功调用\tm{ftell}函数所返回，或\tm{whence}不是\tm{SEEK\_SET}}
+  {\ref{lib.io.pos.fseek}}
+  \itm{调用\tm{fsetpos}函数设置位置，而该位置不是之前由同文件所关联的流上成功调
+  用\tm{fgetpos}函数所返回的值}{\ref{lib.io.pos.fsetpos}}
+  \itm{使用零请求大小调用\tm{calloc}，\tm{malloc}或\tm{realloc}函数所返回的非零
+  指针被用来访问对象}{\ref{lib.util.mem}}
+  \itm{使用被\tm{free}或\tm{realloc}函数释放的空间的指针值}{\ref{lib.util.mem}}
+  \itm{\tm{aligned\_alloc}函数所请求对齐无效或实现不支持，或所请求大小不是对齐的
+  整数倍}{\ref{lib.util.mem.alloc}}
+  \itm{\tm{free}或\tm{realloc}不匹配之前的内存管理函数返回，或空间已被\tm{free}
+  或\tm{realloc}释放}{\ref{lib.util.mem.free}，\ref{lib.util.mem.realloc}}
+  \itm{使用\tm{malloc}函数所分配对象的值}{\ref{lib.util.mem.malloc}}
+  \itm{使用\tm{realloc}函数所分配新对象超过旧对象大小的部分的任何字节的值被使用}
+  {\ref{lib.util.mem.realloc}}
+  \itm{程序调用\tm{exit}或\tm{quick\_exit}函数超过一次，或同时调用两者}
+  {\ref{lib.util.comm.exit}，\ref{lib.util.comm.quick}}
+  \itm{在调用由\tm{atexit}或\tm{at\_quick\_exit}函数所注册的函数过程中调用
+  \tm{longjmp}函数，而这会终止所注册函数调用}{\ref{lib.util.comm.exit}，
+  \ref{lib.util.comm.quick}}
+  \itm{\tm{getenv}或\tm{strerror}函数所设置字符串被程序修改}
+  {\ref{lib.util.comm.getenv}，\ref{lib.str.misc.strerror}}
+  \itm{执行\tm{quick\_exit}函数时发生信号}{\ref{lib.util.comm.quick}}
+  \itm{通过\tm{system}函数以文档说明为会引起终止或其他形式的未定义行为的方式执行
+  指令}{\ref{lib.util.comm.sys}}
+  \itm{使用无效指针参数调用搜索或排序函数，即使元素个数为零}
+  {\ref{lib.util.search}}
+  \itm{搜索或排序函数所调用的比较函数改变所搜索或排序的数组内容，或返回不一致的
+  排序值}{\ref{lib.util.search}}
+  \itm{\tm{bsearch}函数所搜索的数组其元素无序}{\ref{lib.util.search.bsearch}}
+  \itm{当前转换状态在改变\tm{LC\_CTYPE}类别后用于多字节/宽字符转换函数}
+  {\ref{lib.util.mbchar}}
+  \itm{要求字符串或宽字符串函数越过对象结尾访问数组}{\ref{lib.str.conv}，
+  \ref{lib.wchar.general}}
+  \itm{字符串或宽字符串函数使用无效指针调用，即使其长度为零}{
+  \ref{lib.str.conv}，\ref{lib.wchar.general}}
+  \itm{调用\tm{strxfrm}，\tm{strftime}，\tm{wcsxfrm}或\tm{wcsftime}函数后使用目
+  标数组的内容，调用时所指定长度太小，不足以存放整个零终止结果}
+  {\ref{lib.str.cmp.strxfrm}，\ref{lib.time.conv.strf}，
+  \ref{lib.wchar.general.comp.wcsxfrm}，\ref{lib.wchar.time.wcsftime}}
+  \itm{第一次调用\tm{strtok}或\tm{wcstok}的第一个参数是零指针}
+  {\ref{lib.str.search.strtok}，\ref{lib.wchar.general.search.wcstok}}
+  \itm{类型泛型宏的参数类型与选择函数对应参数类型不兼容}{\ref{lib.tgmath}}
+  \itm{复参数作为泛型参数提供给不具有对应复函数的类型泛型宏}{\ref{lib.tgmath}}
+  \itm{传递给\tm{asctime}函数的分解时间的至少一个成员包含正常范围外的值，或所计
+  算的年份超过四位数字或小于1000}{\ref{lib.time.conv.asc}}
+  \itm{调用\tm{fwprintf}函数的对应于不带\tm{l}限定符的\tm{s}说明符的参数不指向以
+  初始升档状态开始的有效多字节字符序列}{\ref{lib.wchar.fmt.wp}}
+  \itm{调用\tm{wcstok}函数时，\tm{ptr}所指对象不是前一个针对同一宽字符串的调用所
+  存的值}{\ref{lib.wchar.general.search.wcstok}}
+  \itm{不正确使用\tm{mbstate\_t}对象}{\ref{lib.wchar.conv}}
+  \itm{宽字符分类或大小写映射函数的\tm{wint\_t}型参数值既不等于\tm{WEOF}也不能表
+  示为\tm{wchar\_t}}{\ref{lib.wctype.intro}}
+  \itm{使用与调用返回说明的\tm{wctype}函数所用类别不同的\tm{LC\_CTYPE}类别调用
+  \tm{iswctype}函数}{\ref{lib.wctype.class.ext.iswctype}}
+  \itm{使用与实际调用返回说明的\tm{wctrans}函数所用类别不同的\tm{LC\_CTYPE}类别
+  调用\tm{towctrans}函数}{\ref{lib.wctype.case.ext.towctrans}}
+\end{itemize}
 
 \sect{实现定义行为}{port.impl}
 \paragraph{}
@@ -592,27 +705,28 @@
 
   \itm{\tm{assert}宏所打印的诊断信息的格式}{\ref{lib.diag.prog.assert}}
   \itm{\tm{fegetexceptflag}函数所存的浮点状态标志的表示}
-  {\ref{lib.fpenv.except.get}}
+    {\ref{lib.fpenv.except.get}}
   \itm{\tm{feraiseexcept}函数是否引发除``上溢''或``下溢''浮点异常外的``不准确''
-  浮点异常}{\ref{lib.fpenv.except.raise}}
+    浮点异常}{\ref{lib.fpenv.except.raise}}
   \itm{除字符串\tm{\dq{}C\dq}和\tm{\dq\dq}外可以传给\tm{setlocale}函数的第二个参
-  数}{\ref{lib.locale.cntr.set}}
+    数}{\ref{lib.locale.cntr.set}}
   \itm{当\tm{FLT\_EVAL\_METHOD}宏的值小于0时，\tm{float\_t}和\tm{double\_t}所定
-  义类型}{\ref{lib.math}}
+    义类型}{\ref{lib.math}}
   \itm{除本标准要求外，数学函数域错误}{\ref{lib.math.error}}
   \itm{域错或极错时数学函数的返回值}{\ref{lib.math.error}}
   \itm{下溢范围错时数学函数的返回值，当整型表达式
-  \tm{math\_errhandling \& MATH\_ERRNO}非零时\tm{errno}是否设置为宏\tm{ERANGE}的
-  值，以及当整型表达式\tm{math\_errhandling \& MATH\_ERREXCEPT}非零时是否引发
-  ``下溢''浮点异常}{\ref{lib.math.error}}
+    \tm{math\_errhandling \& MATH\_ERRNO}非零时\tm{errno}是否设置为宏\tm{ERANGE}
+    的值，以及当整型表达式\tm{math\_errhandling \& MATH\_ERREXCEPT}非零时是否引
+    发``下溢''浮点异常}{\ref{lib.math.error}}
   \itm{当\tm{fmod}函数第二个参数为零时返回域错还是零}{\ref{lib.math.rem.fmod}}
   \itm{当\tm{fremainder}函数第二个参数为零时返回域错还是零}
-  {\ref{lib.math.rem.rem}}
-  \itm{??}{\ref{<++>}}
+    {\ref{lib.math.rem.rem}}
+  \itm{\tm{remquo}函数在减少商时使用的模以2为底的对数}
+    {\ref{lib.math.rem.remquo}}
   \itm{当\tm{remquo}函数第二个参数为零时返回域错还是零}
-  {\ref{lib.math.rem.remquo}}
+    {\ref{lib.math.rem.remquo}}
   \itm{信号处理程序调用前是否执行\tm{signal(sig, SIG\_DFL)}的等价，如果不执行，
-  所执行信息是否阻塞}{\ref{lib.sig.spec.sgnl}}
+    所执行信息是否阻塞}{\ref{lib.sig.spec.sgnl}}
   \itm{宏\tm{NULL}展开的零指针常量}{\ref{lib.def}}
   \itm{文本流最后一行是否需要终止的新行字符}{\ref{lib.io.stream}}
   \itm{写入文本流直接跟在新行字符前的空白在读入时是否出现}{\ref{lib.io.stream}}
@@ -621,41 +735,50 @@
   \itm{写入文本流是否使关联文件在写入点后被截断}{\ref{lib.io.file}}
   \itm{文件缓存的特性}{\ref{lib.io.file}}
   \itm{零长文件是否真实存在}{\ref{lib.io.file}}
-  \itm{<++>}{\ref{<++>}}
-  \itm{<++>}{\ref{<++>}}
-  \itm{<++>}{\ref{<++>}}
-  \itm{<++>}{\ref{<++>}}
-  \itm{<++>}{\ref{<++>}}
-  \itm{<++>}{\ref{<++>}}
-  \itm{<++>}{\ref{<++>}}
-  \itm{<++>}{\ref{<++>}}
-  \itm{<++>}{\ref{<++>}}
-  \itm{<++>}{\ref{<++>}}
-  \itm{<++>}{\ref{<++>}}
-  \itm{<++>}{\ref{<++>}}
-  \itm{<++>}{\ref{<++>}}
-  \itm{<++>}{\ref{<++>}}
-  \itm{<++>}{\ref{<++>}}
-  \itm{<++>}{\ref{<++>}}
-  \itm{<++>}{\ref{<++>}}
-  \itm{<++>}{\ref{<++>}}
-  \itm{<++>}{\ref{<++>}}
-  \itm{<++>}{\ref{<++>}}
-  \itm{<++>}{\ref{<++>}}
-  \itm{<++>}{\ref{<++>}}
-  \itm{<++>}{\ref{<++>}}
-  \itm{<++>}{\ref{<++>}}
-  \itm{<++>}{\ref{<++>}}
-  \itm{<++>}{\ref{<++>}}
-  \itm{<++>}{\ref{<++>}}
-  \itm{<++>}{\ref{<++>}}
-  \itm{<++>}{\ref{<++>}}
-  \itm{<++>}{\ref{<++>}}
-  \itm{<++>}{\ref{<++>}}
-  \itm{<++>}{\ref{<++>}}
-  \itm{<++>}{\ref{<++>}}
-  \itm{<++>}{\ref{<++>}}
-\end{itemize}<++>
+  \itm{组成有效文件名的规则}{\ref{lib.io.file}}
+  \itm{相同文件名是否可以同时打开多次}{\ref{lib.io.file}}
+  \itm{文件中多字节字符所用编码的本质和选择}{\ref{lib.io.file}}
+  \itm{\tm{remove}函数作用于打开文件的效果}{\ref{lib.io.fileop.rm}}
+  \itm{调用\tm{rename}函数前新文件名的文件已经存在的效果}
+    {\ref{lib.io.fileop.mv}}
+  \itm{程序异常终止时是否删除临时文件}{\ref{lib.io.fileop.tmp}}
+  \itm{允许哪种变更模式（如果有），以及在哪种情况下允许}
+    {\ref{lib.io.acc.reopen}}
+  \itm{打印无穷或NaN的风格，以及为NaN打印的任何n-char或n-wchar序列的意义}
+    {\ref{lib.io.fmt.fprintf}，\ref{lib.wchar.fmt.fwp}}
+  \itm{\tm{fprintf}或\tm{fwprintf}函数中的\tm{\%p}转换的输出}
+    {\ref{lib.io.fmt.fprintf}，\ref{lib.wchar.fmt.fwp}}
+  \itm{\tm{fscanf}或\tm{fwscanf}函数中，\tm{\%[}转换的扫描列表里，即不是第一个也
+    不是最后一个字符，也不是第一个字符为\tm{\^}时的第二个字符的\tm{-}字符的解释}
+    {\ref{lib.io.fmt.fscanf}，\ref{lib.wchar.fmt.fwp}}
+  \itm{\tm{fscanf}和\tm{fwscanf}函数中\tm{\%p}转换匹配的序列集以及对应输入项的解
+    释}{\ref{lib.io.fmt.fscanf}，\ref{lib.wchar.fmt.fws}}
+  \itm{\tm{fgetpos}，\tm{fsetpos}或\tm{ftell}函数失败时所设置的宏\tm{errno}的值}
+    {\ref{lib.io.pos.fgetpos}，\ref{lib.io.pos.fsetpos}，\ref{lib.io.pos.ftell}}
+  \itm{表示由\tm{strtod}、\tm{strtof}、\tm{strtold}、\tm{wcstod}、\tm{wcstof}或
+  \tm{wcstold}函数转换的NaN的字符串中任何n-char或n-wchar序列的意义}
+    {\ref{lib.util.conv.strtod}，\ref{lib.wchar.general.numconv.dfld}}
+  \itm{当出现下溢出时\tm{strtod}、\tm{strtof}、\tm{strtold}、\tm{wcstod}、
+    \tm{wcstof}或\tm{wcstold}函数是否设置\tm{errno}为\tm{ERANGE}}
+    {\ref{lib.util.conv.strtod}，\ref{lib.wchar.general.numconv.dfld}}
+  \itm{当所请求大小为零时\tm{calloc}、\tm{malloc}和\tm{realloc}函数返回零指针还
+    是指向一个分配对象的指针}{\ref{lib.util.mem}}
+  \itm{当调用\tm{abort}或\tm{\_Exit}函数时，带有未写的缓存数据是否刷入，打开流是
+    否关闭，或临时文件是否删除}{\ref{lib.util.comm.abort}，
+    \ref{lib.util.comm.Exit}}
+  \itm{由\tm{abort}，\tm{exit}，\tm{\_Exit}或\tm{quick\_exit}函数返回宿主状态时
+    的终止状态}{\ref{lib.util.comm.abort}，\ref{lib.util.comm.exit}，
+    \ref{lib.util.comm.Exit}，\ref{lib.util.comm.quick}}
+  \itm{当参数不是零指针时\tm{system}函数的返回值}{\ref{lib.util.comm.sys}}
+  \itm{\tm{clock\_t}和\tm{time\_t}可表示时间的范围和精度}{\ref{lib.time}}
+  \itm{夏令时和本地时区}{\ref{lib.time.comp}}
+  \itm{\tm{clock}函数的纪年}{\ref{lib.time.manip.clk}}
+  \itm{\tm{TIME\_UTC}的纪年}{\ref{lib.time.manip.spec}}
+  \itm{\tm{\dq{}C\dq}语言环境中\tm{strftime}和\tm{wcsftime}函数的\tm{\%z}指示符
+    的替换字符串}{\ref{lib.time.conv.strf}，\ref{lib.wchar.time.wcsftime}}
+  \itm{除显式说明外，在IEC 60559合规实现中，\tm{<math.h>}中的函数是否遵循舍入方
+    向模式}{F.10}
+\end{itemize}
 
 \ssect{架构}{port.impl.arch}
 \begin{itemize} %6

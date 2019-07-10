@@ -699,6 +699,8 @@
 7.30.3 lib.wctype.case
 7.30.3.1 lib.wctype.case.fct
 7.30.3.2 lib.wctype.case.ext
+7.30.3.2.1 lib.wctype.case.ext.towctrans
+7.30.3.2.2 lib.wctype.case.ext.wctrans
 7.31 lib.dir
 7.31.1 lib.dir.cmplx
 7.31.2 lib.dir.ctype
