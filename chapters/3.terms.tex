@@ -1,9 +1,9 @@
 \chptr{术语、定义和符号}{defns}
 
 \paragraph{}
-在本文件中，以下术语和定义适用。其他术语在\textit{斜体}类型或语法规则左侧出现时
-定义。本国际标准中明确定义的术语不得推定为暗指其他地方定义的类似术语。本国际标准
-中未定义的术语应根据ISO/IEC 2382-1进行解释。本国际标准中未定义的数学符号应根据
+本文档使用以下术语和定义。其他术语在\textit{斜体}类型或语法规则左侧出现时定义。
+本国际标准中明确定义的术语不得推定为暗指其他地方定义的类似术语。本国际标准中未定
+义的术语应根据ISO/IEC 2382-1进行解释。本国际标准中未定义的数学符号应根据
 ISO 80000-2进行解释。
 
 \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
@@ -22,7 +22,7 @@ ISO 80000-2进行解释。
 \notes ``修改''包括所存的值与之前的值相同的情形。
 
 \paragraph{}
-\notes 不求值的表达式不访问对象。
+\notes 不发生计算的表达式不访问对象。
 
 \sect[]{对齐}{defns.align}
 \paragraph{}
@@ -37,8 +37,8 @@ ISO 80000-2进行解释。
 \begin{itemize}
   \item[]{实际参数}
   \item[]{实际参数（parameter）（弃用）}
-  \item[]{以逗号分隔的列表中的表达式，以函数调用表达式中的括号为界，或以逗号分隔
-    的列表中的一系列预处理标记，以类似函数的宏调用中的括号为界}
+  \item[]{逗号分隔列表中的表达式，以函数调用表达式中的括号为界，或逗号分隔列表中
+    的一系列预处理标记，以函数式宏调用中的括号为界}
 \end{itemize}
 
 \sect[]{行为}{defns.behav}
@@ -66,14 +66,14 @@ ISO 80000-2进行解释。
 \end{itemize}
 
 \paragraph{}
-\ex* 语言环境特定行为的一个示例是\tm{islower}函数是否为除26个小写拉丁字母之外的
+\ex* 语言环境特定行为的一个示例是\tm{islower}函数是否对除26个小写拉丁字母之外的
 字符返回真。
 
 \ssect{未定义行为}{defns.undef}
 \paragraph{}
 \texttt{undefined behavior}
 \begin{itemize}
-  \item[]{使用不可移植或错误程序结构或数据时的行为，本国际标准对此不作要求。}
+  \item[]{使用不可移植或错误的程序结构或数据时的行为，本国际标准对此不作要求。}
 \end{itemize}
 
 \paragraph{}
@@ -84,7 +84,7 @@ ISO 80000-2进行解释。
 \paragraph{}
 \ex* 未定义行为的一个例子是整数溢出时的行为。
 
-\ssect{未明确行为}{defns.unspec}
+\ssect{未指明行为}{defns.unspec}
 \paragraph{}
 \texttt{unspecified behavior}
 \begin{itemize}
@@ -93,13 +93,13 @@ ISO 80000-2进行解释。
 \end{itemize}
 
 \paragraph{}
-\ex* 未明确行为的一个例子是函数参数求值顺序。
+\ex* 未指明行为的一个例子是函数参数的计算顺序。
 
 \sect[]{位}{defns.bit}
 \paragraph{}
 \texttt{bit}
 \begin{itemize}
-  \item[]{执行环境中的数据存储单元，其大小足以容纳可能具有两个值之一的对象}
+  \item[]{执行环境中的数据存储单元，其大小可容纳具有二值之一的对象}
 \end{itemize}
 
 \paragraph{}
@@ -109,11 +109,11 @@ ISO 80000-2进行解释。
 \paragraph{}
 \texttt{byte}
 \begin{itemize}
-  \item[]{可寻址的数据存储单元，其大小足以容纳执行环境的基本字符集的任何成员。}
+  \item[]{可寻址的数据存储单元，其大小可容纳执行环境中基本字符集的任何成员。}
 \end{itemize}
 
 \paragraph{}
-\notes 对象的每个独立字节的地址可以唯一地表示。
+\notes 对象每个独立字节的地址可以唯一地表示。
 
 \paragraph{}
 \notes 字节由一个连续的位序列组成，其数目由实现定义。最低有效位称为\textit{低阶
@@ -130,7 +130,8 @@ ISO 80000-2进行解释。
 \paragraph{}
 \texttt{character}
 \begin{itemize}
-  \item[]{「C」适合字节的位表示法}
+  \item[]{单字节字符}
+  \item[]{「C」可存于字节中的位表示法}
 \end{itemize}
 
 \ssect{多字节字符}{defns.mbchar}
@@ -154,22 +155,22 @@ ISO 80000-2进行解释。
 \paragraph{}
 \texttt{constraint}
 \begin{itemize}
-  \item[]{语法或语义上的解释语言要素的限制}
+  \item[]{语法或语义上解释语言要素的限制}
 \end{itemize}
 
 \sect[]{恰当舍入结果}{defns.rnd}
 \paragraph{}
 \texttt{correctly rounded result}
 \begin{itemize}
-  \item[]{取决于当前的舍入模式，结果格式中最接近值的表示，该表示下的结果将给出无
-    限范围和精度}
+  \item[]{受限于当前的舍入模式，结果格式中最接近值的表示，该表示下的结果将给出不
+    受限范围和精度}
 \end{itemize}
 
 \sect[]{诊断消息}{defns.diag}
 \paragraph{}
 \texttt{diagnostic message}
 \begin{itemize}
-  \item[]{属于实现定义的实现消息输出子集的消息}
+  \item[]{属于由实现定义的输出信息子集中的信息}
 \end{itemize}
 
 \sect[]{前向引用}{defns.fwdref}
@@ -183,8 +184,8 @@ ISO 80000-2进行解释。
 \paragraph{}
 \texttt{implementation}
 \begin{itemize}
-  \item[]{在特定控制选项下的特定转换环境中运行的特定软件集，用于执行特定执行环境
-    中的程序转换并支持其中的函数执行}
+  \item[]{特定控制选项下在特定翻译环境中运行的特定软件集，用于执行特定执行环境
+    中的程序翻译并支持其中的函数执行}
 \end{itemize}
 
 \sect[]{实现限制}{defns.limit}
@@ -198,11 +199,11 @@ ISO 80000-2进行解释。
 \paragraph{}
 \texttt{memory location}
 \begin{itemize}
-  \item[]{标量类型对象或具有非零宽度相邻位域的最大序列}
+  \item[]{标量类型对象或具有非零宽度相邻位字段的最大序列}
 \end{itemize}
 
 \paragraph{}
-\notes 两个执行线程可以更新和访问单独的内存位置，而不会相互干扰。
+\notes 两个执行线程可以更新和访问独立的内存位置，而不会相互干扰。
 
 \paragraph{}
 \notes 位字段和相邻的非位字段成员位于不同的内存位置。这同样适用于两个位字段，如
@@ -220,10 +221,10 @@ ISO 80000-2进行解释。
       struct { int ee:8; } e;
     }
 \end{lstlisting}
-包括4个不同内存地址：成员\texttt{a}，位域\texttt{d}和\texttt{e.ee}每一个都不同内
-存地址，且可以并发修改而彼此不会相互影响。位域\texttt{b}和\texttt{c}一起构成第4
-个内存地址。位域\texttt{b}和\texttt{c}不能并发修改，但是\texttt{b}和\texttt{a}可
-以。
+包括4个不同内存地址：成员\texttt{a}，位字段\texttt{d}和\texttt{e.ee}每一个都不同
+内存地址，且可以并发修改而彼此不会相互影响。位字段\texttt{b}和\texttt{c}一起构成
+第4个内存地址。位字段\texttt{b}和\texttt{c}不能并发修改，但是\texttt{b}和
+\texttt{a}可以。
 
 \sect[]{对象}{defns.object}
 \paragraph{}
@@ -233,7 +234,8 @@ ISO 80000-2进行解释。
 \end{itemize}
 
 \paragraph{}
-\notes* 引用对象时，可以将其解释为具有特定类型；见\ref{lang.conv.other.desig}。
+\notes* 在引用对象时，可以将对象解释为具有某种特定类型；见
+\ref{lang.conv.other.desig}。
 
 \sect[]{形参}{defns.param}
 \paragraph{}
@@ -241,16 +243,16 @@ ISO 80000-2进行解释。
 \begin{itemize}
   \item[]{形式参数}
   \item[]{形式参数（argument）（弃用）}
-  \item[]{作为函数声明或定义的一部分声明的对象，该函数声明或定义在函数的条目中获
-    取值，或从逗号分隔列表中获取标识符，该列表由类似宏定义的函数中宏名称后面的括
-    号所限定。}
+  \item[]{作为函数声明或定义的一部分声明的对象，该函数声明或定义在函数的入口处获
+    取值，或从逗号分隔列表中获取标识符，该列表由函数式宏定义中宏名称后面的括号所
+    限定。}
 \end{itemize}
 
 \sect[]{推荐实践}{defns.recprac}
 \paragraph{}
 \texttt{recommended practice}
 \begin{itemize}
-  \item[]{强烈建议符合标准意图的规范，但对于某些实现来说可能不实用。}
+  \item[]{强烈建议以符合本标准意图的规范，但对于某些实现来说可能不实用。}
 \end{itemize}
 
 \sect[]{运行时约束}{defns.rtconstr}
@@ -261,7 +263,7 @@ ISO 80000-2进行解释。
 \end{itemize}
 
 \paragraph{}
-\notes 尽管术语类似，运行时约束不是第\ref{defns.constr}节所定义的约束种类，且在
+\notes 尽管术语类似，运行时约束不是第\ref{defns.constr}节所定义的约束类型，且在
 翻译时不需要诊断。
 
 \paragraph{}
@@ -272,7 +274,7 @@ ISO 80000-2进行解释。
 \paragraph{}
 \texttt{value}
 \begin{itemize}
-  \item[]{当解释为特定类型时的对象内容确切涵义}
+  \item[]{当解释为特定类型时的对象内容的确切涵义}
 \end{itemize}
 
 \ssect{实现定义值}{defns.implval}
@@ -311,7 +313,7 @@ ISO 80000-2进行解释。
 \end{itemize}
 
 \paragraph{}
-\notes* 在本国际标准中，当``陷阱''一词后面不紧跟``表示''时，这是预期用途。
+\notes* 在本国际标准中，当``陷阱''一词后面不紧跟``表示''时是指这种预期用途。
 \footnote{例如，``捕获或停止（如果支持）被禁用...''（F.8.2）。请注意，获取陷阱表
 示可能会执行陷阱，但不是必须执行（请参见\ref{lang.concept.repr.general}）。}
 

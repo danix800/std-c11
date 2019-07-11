@@ -42,8 +42,8 @@
   \itm{在函数调用时计算函数指示符，参数和参数中的子表达式的顺序
     （\ref{lang.expr.post.call}）。}
   \itm{复合字面值初始化列表表达式中副作用的顺序（\ref{lang.expr.post.cmpd}）。}
-  \itm{赋值运算符中操作数的求值顺序（\ref{lang.expr.assign}）。}
-  \itm{分配用于存储位域的可寻址存储单元的对齐（\ref{lang.dcl.type.struct}）。}
+  \itm{赋值运算符中操作数的计算顺序（\ref{lang.expr.assign}）。}
+  \itm{分配用于存储位字段的可寻址存储单元的对齐（\ref{lang.dcl.type.struct}）。}
   \itm{调用内联函数时使用内联函数还是该函数的外部定义（\ref{lang.dcl.fct}）。}
   \itm{当大小表达式是\tm{sizeof}运算符操作数的一部分并且更改大小表达式的值不会
     影响运算符的结果，是否对大小表达式进行计算（\ref{lang.dcl.decl.array}）。}
@@ -149,13 +149,13 @@
   {\ref{lang.concept.repr.general}}
   \itm{某些运算符的操作数可能产生负零，但实现不支持负零}
   {\ref{lang.concept.repr.int}}
-  \itm{同一对象或函数的两个声明指定不兼容对象}{\ref{lang.concept.compat}}
-  \itm{程序需要变长数组类型的兼容类型形式，该数组的大小由不求值表达式指定}
+  \itm{同一对象或函数的两个声明指定不兼容类型}{\ref{lang.concept.compat}}
+  \itm{程序需要变长数组类型的兼容类型形式，该数组的大小由不计算值的表达式指定}
   {\ref{lang.concept.compat}}
   \itm{转换成整型或从整型转换产生可表示范围外的值}{\ref{lang.conv.arith.fpint}}
   \itm{从一个浮点类型降级到另一个产生可表示范围外的值}
   {\ref{lang.conv.arith.double}}
-  \itm{求值时左值不指代对象}{\ref{lang.conv.other.desig}}
+  \itm{需要计算时左值不指代对象}{\ref{lang.conv.other.desig}}
   \itm{不完整类型非数组左值用于需要指代对象值的上下文中}
   {\ref{lang.conv.other.desig}}
   \itm{指代可能使用\tm{register}存储类声明的自动存储期对象的左值用于需要指代对象
@@ -181,7 +181,7 @@
   \tm{\bs}、\tm{//}或\tm{/*}}{\ref{lang.lex.header}}
   \itm{标量对象上的一个副作用，相对于同一标量对象上的一个不同的副作用，或使用该
   标量对象值的值计算是无序的}{\ref{lang.expr}}
-  \itm{表达式求值时出现异常条件}{\ref{lang.expr}}
+  \itm{表达式计算时出现异常条件}{\ref{lang.expr}}
   \itm{对象所存值由可允许类型以外的左值访问}{\ref{lang.expr}}
   \itm{对作用域内无函数原型的函数调用，实参数目不等于形参数目}
   {\ref{lang.expr.post.call}}
@@ -198,8 +198,8 @@
   \itm{对指向数组对象内部或刚越过该数组对象的指针进行加或减一个整型，产生一个不
   指向该数组对象内部或刚越过同一数组对象的结果}{\ref{lang.expr.add}}
   \itm{对指向数组对象内部或刚越过该数组对象的指针进行加或减一个整型，产生一个刚
-  越过同一数组对象的结果，而该结果被用作一元运算符\tm{*}的操作数，且该运算符被求
-  值}{\ref{lang.expr.add}}
+  越过同一数组对象的结果，而该结果被用作一元运算符\tm{*}的操作数，且计算该运算符
+  }{\ref{lang.expr.add}}
   \itm{不指向同一数组对象内部或刚越过该数组对象的指针进行减法}
   {\ref{lang.expr.add}}
   \itm{越界的数组下标，即使使用给定下标明显能访问某对象（如声明
@@ -217,7 +217,7 @@
   量，字符常量，结果为整型常量的\tm{sizeof}表达式，\tm{\_Alignof}表达式，或直接
   转换浮点常量的操作数；或包含除算术类型到整型以外的转换（\tm{sizeof}和
   \tm{\_Alignof}操作数之外）}{\ref{lang.constexpr}}
-  \itm{初始化中的常量表达式不是或不求值为以下之一：算术常量表达式、零指针常量、
+  \itm{初始化中的常量表达式不是或不计算为以下之一：算术常量表达式、零指针常量、
   地址常量或完整对象类型地址常量加或减一个整型常量表达式}{\ref{lang.constexpr}}
   \itm{算术常量表达式不具有算术类型；具有不是整型常量、浮点常量、枚举常量、字符
   常量、结果为整型常量的\tm{sizeof}表达式、或\tm{\_Alignof}表达式的操作数；或包
@@ -425,7 +425,7 @@
   \itm{格式化输出函数之一遇到\tm{s}转换说明符，而参数缺少零终结符（除非指定精度
   不需要零终止）}{\ref{lib.io.fmt.fprintf}，\ref{lib.wchar.fmt.fwp}}
   \itm{格式化输入/输出函数之一的\tm{n}转换说明符包括任何标志，一个禁止赋值字符，
-  一个位域或精度}{\ref{lib.io.fmt.fprintf}，\ref{lib.io.fmt.fscanf}，
+  一个位字段或精度}{\ref{lib.io.fmt.fprintf}，\ref{lib.io.fmt.fscanf}，
   \ref{lib.wchar.fmt.fwp}，\ref{lib.wchar.fmt.fws}}
   \itm{格式化输入/输出函数遇到\tm{\%}转换说明符，但完整的转换规范不完全是
   \tm{\%\%}}{\ref{lib.io.fmt.fprintf}，\ref{lib.io.fmt.fscanf}，
@@ -619,7 +619,7 @@
     内部表示和字符串表示之间的转换的准确性（\ref{env.env.limits.num.float}）。}
   \item{由\tm{FLT\_ROUNDS}的非标准值所刻画的舍入行为
     （\ref{env.env.limits.num.float}）。}
-  \item{由\tm{FLT\_EVAL\_METHOD}的非标准负值所刻画的求值方法
+  \item{由\tm{FLT\_EVAL\_METHOD}的非标准负值所刻画的计算方法
     （\ref{env.env.limits.num.float}）。}
   \item{当整型转换成不能确切表示原值的浮点数时的舍入方向
     （\ref{lang.conv.arith.fpint}）。}
@@ -649,18 +649,18 @@
   \item{使用\tm{inline}函数说明符所作推荐的有效程度（\ref{lang.dcl.fct}）。}
 \end{itemize}
 
-\ssect{结构，联合，枚举和位域}{port.impl.struct}
+\ssect{结构，联合，枚举和位字段}{port.impl.struct}
 \begin{itemize} % 7
-  \item[\textbf{1}\hspace{5pt}---]{``普通''\tm{int}位域是作为\tm{signed int}还是
-    作为\tm{unsigned int}位域（\ref{lang.dcl.type}，
+  \item[\textbf{1}\hspace{5pt}---]{``普通''\tm{int}位字段是作为\tm{signed int}还
+    是作为\tm{unsigned int}位字段（\ref{lang.dcl.type}，
     \ref{lang.dcl.type.struct}）。}
-  \item{除\tm{\_Bool}，\tm{signed int}和\tm{unsigned int}外允许的位域类型
+  \item{除\tm{\_Bool}，\tm{signed int}和\tm{unsigned int}外允许的位字段类型
     （\ref{lang.dcl.type.struct}）。}
-  \item{是否允许原子类型的位域（\ref{lang.dcl.type.struct}）。}
-  \item{位域是否可跨存储单元边界（\ref{lang.dcl.type.struct}）。}
-  \item{单元内位域的分配顺序（\ref{lang.dcl.type.struct}）。}
-  \item{结构的非位域成员的对齐（\ref{lang.dcl.type.struct}）。除非一个实现所写的
-    二进制数据被另一个实现读取外不应该有问题。}
+  \item{是否允许原子类型的位字段（\ref{lang.dcl.type.struct}）。}
+  \item{位字段是否可跨存储单元边界（\ref{lang.dcl.type.struct}）。}
+  \item{单元内位字段的分配顺序（\ref{lang.dcl.type.struct}）。}
+  \item{结构的非位字段成员的对齐（\ref{lang.dcl.type.struct}）。除非一个实现所写
+    的二进制数据被另一个实现读取外不应该有问题。}
   \item{与每一个枚举类型兼容的整型（\ref{lang.dcl.type.enum}）。}
 \end{itemize}
 
@@ -877,7 +877,7 @@
 指向函数的指针可以转换为指向对象的指针或\tm{void}，从而允许检查或修改函数（如由
 调试器）（\ref{lang.expr.cast}）。
 
-\ssect{扩展位域类型}{port.ext.extbf}
+\ssect{扩展位字段类型}{port.ext.extbf}
 \paragraph{}
 位字段可以用除\tm{\_Bool}、\tm{unsigned int}或\tm{signed int}之外的类型声明，并
 具有适当的最大宽度（\ref{lang.dcl.type.struct}）。
