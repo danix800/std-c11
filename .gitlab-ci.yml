@@ -1,0 +1,12 @@
+build:
+  stage: build
+  artifacts:
+    name: pdf
+    paths:
+      - ./*.pdf
+    expire_in: 1 week
+  script:
+    - xelatex c11.tex
+    - xelatex c11.tex
+  tags:
+    - xelatex
