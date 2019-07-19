@@ -1,627 +1,627 @@
 \chptr{标准库}{lib}
 
-\sect{引言}{lib.intro}
-\ssect{术语定义}{lib.intro.term}
-\ssect{标准头}{lib.intro.header}
-\ssect{保留标识符}{lib.intro.reserved}
-\ssect{库函数的使用}{lib.intro.use}
-
-\sect{诊断<assert.h>}{lib.diag}
-\ssect{程序诊断}{lib.diag.prog}
-\sssect{assert宏}{lib.diag.prog.assert}
-
-\sect{复算术<complex.h>}{lib.cmplx}
-\ssect{引言}{lib.cmplx.intro}
-\ssect{惯例}{lib.cmplx.conv}
-\ssect{分支切割}{lib.cmplx.branch}
-\ssect{CX\_LIMITED\_RANGE pragma}{lib.cmplx.range}
-
-\ssect{三角函数}{lib.cmplx.trig}
-\sssect{cacos函数}{lib.cmplx.trig.cacos}
-\sssect{casin函数}{lib.cmplx.trig.casin}
-\sssect{catan函数}{lib.cmplx.trig.catan}
-\sssect{ccos函数}{lib.cmplx.trig.ccos}
-\sssect{csin函数}{lib.cmplx.trig.csin}
-\sssect{ctan函数}{lib.cmplx.trig.ctan}
-
-\ssect{双曲函数}{lib.cmplx.hyper}
-\sssect{cacosh函数}{lib.cmplx.hyper.cacosh}
-\sssect{casinh函数}{lib.cmplx.hyper.casinh}
-\sssect{catanh函数}{lib.cmplx.hyper.catanh}
-\sssect{ccosh函数}{lib.cmplx.hyper.ccosh}
-\sssect{csinh函数}{lib.cmplx.hyper.csinh}
-\sssect{ctanh函数}{lib.cmplx.hyper.ctanh}
-
-\ssect{指数与对数函数}{lib.cmplx.exp}
-\sssect{cexp函数}{lib.cmplx.exp.cexp}
-\sssect{clog函数}{lib.cmplx.exp.clog}
-
-\ssect{幂与绝对值函数}{lib.cmplx.power}
-\sssect{cabs函数}{lib.cmplx.power.cabs}
-\sssect{cpow函数}{lib.cmplx.power.cpow}
-\sssect{csqrt函数}{lib.cmplx.power.csqrt}
-
-\ssect{复操作函数}{lib.cmplx.manip}
-\sssect{carg函数}{lib.cmplx.manip.carg}
-\sssect{cimag函数}{lib.cmplx.manip.cimag}
-\sssect{CMPLX宏}{lib.cmplx.manip.cmplx}
-\sssect{conj函数}{lib.cmplx.manip.conj}
-\sssect{cproj函数}{lib.cmplx.manip.cproj}
-\sssect{creal函数}{lib.cmplx.manip.creal}
-
-\sect{字符处理<ctype.h>}{lib.char}
-\ssect{字符分类函数}{lib.char.class}
-\sssect{isalnum函数}{lib.char.class.isalnum}
-\sssect{isalpha函数}{lib.char.class.isalpha}
-\sssect{isblank函数}{lib.char.class.isblank}
-\sssect{iscntrl函数}{lib.char.class.iscntrl}
-\sssect{isdigit函数}{lib.char.class.isdigit}
-\sssect{isgraph函数}{lib.char.class.isgraph}
-\sssect{islower函数}{lib.char.class.islower}
-\sssect{isprint函数}{lib.char.class.isprint}
-\sssect{ispunct函数}{lib.char.class.ispunct}
-\sssect{isspace函数}{lib.char.class.isspace}
-\sssect{isupper函数}{lib.char.class.isupper}
-\sssect{isxdigit函数}{lib.char.class.isxdigit}
-
-\ssect{字符大小写映射函数}{lib.char.case}
-\sssect{tolower函数}{lib.char.case.tolower}
-\sssect{toupper函数}{lib.char.case.toupper}
-
-\sect{错误处理<errno.h>}{lib.error}
-
-\sect{浮点环境<fenv.h>}{lib.fpenv}
-\ssect{FENV\_ACCESS pragma}{lib.fpenv.acc}
-
-\ssect{浮点异常}{lib.fpenv.except}
-\sssect{feclearexcept函数}{lib.fpenv.except.clear}
-\sssect{fegetexceptflag函数}{lib.fpenv.except.get}
-\sssect{feraiseexcept函数}{lib.fpenv.except.raise}
-\sssect{fesetexceptflag函数}{lib.fpenv.except.set}
-\sssect{fetestexcept函数}{lib.fpenv.except.test}
-
-\ssect{舍入}{lib.fpenv.rnd}
-\sssect{fegetround函数}{lib.fpenv.rnd.get}
-\sssect{fesetround函数}{lib.fpenv.rnd.set}
-
-\ssect{环境}{lib.fpenv.env}
-\sssect{fegetenv函数}{lib.fpenv.env.get}
-\sssect{feholdexcept函数}{lib.fpenv.env.hldex}
-\sssect{fesetenv函数}{lib.fpenv.env.set}
-\sssect{feupdateenv函数}{lib.fpenv.env.upd}
-
-\sect{浮点类型特征<float.h>}{lib.float}
-
-\sect{整型转换格式<inttypes.h>}{lib.intfmt}
-\ssect{格式说明符宏}{lib.intfmt.macro}
-
-\ssect{最大宽度整型函数}{lib.intfmt.width}
-\sssect{imaxabs函数}{lib.intfmt.width.abs}
-\sssect{imaxdiv函数}{lib.intfmt.width.div}
-\sssect{strtoimax函数}{lib.intfmt.width.str}
-\sssect{wcstoimax函数}{lib.intfmt.width.wcs}
-
-\sect{其他拼写<iso646.h>}{lib.altspell}
-
-\sect{整型大小<limits.h>}{lib.intsize}
-
-\sect{本地化<locale.h>}{lib.locale}
-\ssect{区域环境控制}{lib.locale.cntr}
-\sssect{setlocale函数}{lib.locale.cntr.set}
-\ssect{数值格式惯例查询}{lib.locale.numconv}
-\sssect{localeconv函数}{lib.locale.numconv.conv}
-
-\sect{数学<math.h>}{lib.math}
-\ssect{错误条件处理}{lib.math.error}
-\ssect{FP\_CONTRACT}{lib.math.fpcont}
-
-\ssect{分类宏}{lib.math.class}
-\sssect{fpclassify宏}{lib.math.class.fp}
-\sssect{isfinite宏}{lib.math.class.finite}
-\sssect{isinf宏}{lib.math.class.inf}
-\sssect{innan宏}{lib.math.class.nan}
-\sssect{isnormal宏}{lib.math.class.normal}
-\sssect{signbit宏}{lib.math.class.sign}
-
-\ssect{三角函数}{lib.math.trig}
-\sssect{acos函数}{lib.math.trig.acos}
-\sssect{asin函数}{lib.math.trig.asin}
-\sssect{atan函数}{lib.math.trig.atan}
-\sssect{atan2函数}{lib.math.trig.atan2}
-\sssect{cos函数}{lib.math.trig.cos}
-\sssect{sin函数}{lib.math.trig.sin}
-\sssect{tan函数}{lib.math.trig.tan}
-
-\ssect{双曲函数}{lib.math.hyper}
-\sssect{acosh函数}{lib.math.hyper.acosh}
-\sssect{asinh函数}{lib.math.hyper.asinh}
-\sssect{atanh函数}{lib.math.hyper.atanh}
-\sssect{cosh函数}{lib.math.hyper.cosh}
-\sssect{sinh函数}{lib.math.hyper.sinh}
-\sssect{tanh函数}{lib.math.hyper.tanh}
-
-\ssect{指数与对数函数}{lib.math.exp}
-\sssect{exp函数}{lib.math.exp.exp}
-\sssect{exp2函数}{lib.math.exp.exp2}
-\sssect{expm1函数}{lib.math.exp.expm1}
-\sssect{frexp函数}{lib.math.exp.frexp}
-\sssect{ilogb函数}{lib.math.exp.ilogb}
-\sssect{ldexp函数}{lib.math.exp.ldexp}
-\sssect{log函数}{lib.math.exp.log}
-\sssect{log10函数}{lib.math.exp.log10}
-\sssect{log1p函数}{lib.math.exp.log1p}
-\sssect{log2函数}{lib.math.exp.log2}
-\sssect{logb函数}{lib.math.exp.logb}
-\sssect{modf函数}{lib.math.exp.modf}
-\sssect{scalbn和scalbln函数}{lib.math.exp.scalbn}
-
-\ssect{幂与约对值函数}{lib.math.power}
-\sssect{cbrt函数}{lib.math.power.cbrt}
-\sssect{fabs函数}{lib.math.power.fabs}
-\sssect{hypot函数}{lib.math.power.hypot}
-\sssect{pow函数}{lib.math.power.pow}
-\sssect{sqrt函数}{lib.math.power.sqrt}
-
-\ssect{错误与gamma函数}{lib.math.gamma}
-\sssect{erf函数}{lib.math.gamma.erf}
-\sssect{erfc函数}{lib.math.gamma.erfc}
-\sssect{lgamma函数}{lib.math.gamma.lgamma}
-\sssect{tgamma函数}{lib.math.gamma.tgamma}
-
-\ssect{最近整数函数}{lib.math.near}
-\sssect{ceil函数}{lib.math.near.ceil}
-\sssect{floor函数}{lib.math.near.flr}
-\sssect{nearbyint函数}{lib.math.near.nearby}
-\sssect{rint函数}{lib.math.near.rint}
-\sssect{lrint和llrint函数}{lib.math.near.lrint}
-\sssect{round函数}{lib.math.near.rnd}
-\sssect{lround函数}{lib.math.near.lrnd}
-\sssect{trunc函数}{lib.math.near.trunc}
-
-\ssect{取余函数}{lib.math.rem}
-\sssect{fmod函数}{lib.math.rem.fmod}
-\sssect{remainder函数}{lib.math.rem.rem}
-\sssect{remquo函数}{lib.math.rem.remquo}
-
-\ssect{操作函数}{lib.math.manip}
-\sssect{copysign函数}{lib.math.manip.cpysign}
-\sssect{nan函数}{lib.math.manip.nan}
-\sssect{nextafter函数}{lib.math.manip.nxtafter}
-\sssect{nexttoward函数}{lib.math.manip.nxttwd}
-
-\ssect{最大，最小和正差函数}{lib.math.minmax}
-\sssect{fdim函数}{lib.math.minmax.fdim}
-\sssect{fmax函数}{lib.math.minmax.fmax}
-\sssect{fmin函数}{lib.math.minmax.fmin}
-
-\ssect{浮点乘加}{lib.math.fma}
-\sssect{fma函数}{lib.math.fma.fma}
-
-\ssect{比较宏}{lib.math.cmpm}
-\sssect{isgreater宏}{lib.math.cmpm.grt}
-\sssect{isgreaterequal宏}{lib.math.cmpm.grteq}
-\sssect{isless宏}{lib.math.cmpm.ls}
-\sssect{islessequal宏}{lib.math.cmpm.lseq}
-\sssect{islessgreater宏}{lib.math.cmpm.lsgrt}
-\sssect{isunordered宏}{lib.math.cmpm.unord}
-
-\sect{非局部跳转<setjmp.h>}{lib.jmp}
-\ssect{保存调用环境}{lib.jmp.save}
-\sssect{setjmp宏}{lib.jmp.save.set}
-
-\ssect{恢复调用环境}{lib.jmp.rstr}
-\sssect{longjmp函数}{lib.jmp.rstr.lngjmp}
-
-\sect{信号处理<signal.h>}{lib.sig}
-
-\ssect{指定信号处理}{lib.sig.spec}
-\sssect{signal函数}{lib.sig.spec.sgnl}
-
-\ssect{发送信号}{lib.sig.send}
-\sssect{raise函数}{lib.sig.send.raise}
-
-\sect{对齐<stdalign.h>}{lib.align}
-
-\sect{可变参数<stdarg.h>}{lib.vararg}
-\ssect{变参列表访问宏}{lib.vararg.macro}
-\sssect{va\_arg宏}{lib.vararg.macro.arg}
-\sssect{va\_copy宏}{lib.vararg.macro.cpy}
-\sssect{va\_end宏}{lib.vararg.macro.end}
-\sssect{va\_start宏}{lib.vararg.macro.start}
-
-\sect{原子<stdatomic.h>}{lib.atom}
-\ssect{引言}{lib.atom.intro}
-\ssect{初始化}{lib.atom.init}
-\sssect{ATOMIC\_VAR\_INIT宏}{lib.atom.init.var}
-\sssect{atomic\_init泛型函数}{lib.atom.init.atom}
-
-\ssect{顺序与一致性}{lib.atom.order}
-\sssect{kill\_dependency函数}{lib.atom.order.kill}
-
-\ssect{栅栏}{lib.atom.fence}
-\sssect{atomic\_thread\_fence}{lib.atom.fence.thread}
-\sssect{atomic\_signal\_fence}{lib.atom.fence.signal}
-
-\ssect{无锁属性}{lib.atom.lckfree}
-\sssect{atomic\_is\_lock\_free泛型函数}{lib.atom.lckfree.is}
-
-\ssect{原子整型}{lib.atom.int}
-
-\ssect{原子类型操作}{lib.atom.op}
-\sssect{atomic\_store泛型函数}{lib.atom.op.store}
-\sssect{atomic\_load泛型函数}{lib.atom.op.load}
-\sssect{atomic\_exchange泛型函数}{lib.atom.op.ex}
-\sssect{atomic\_compare\_exchange泛型函数}{lib.atom.op.cmpex}
-\sssect{atomic\_fetch和修改泛型函数}{lib.atom.op.fetch}
-
-\ssect{原子标志类型与操作}{lib.atom.flag}
-\sssect{atomic\_flag\_test\_and\_set函数}{lib.atom.flag.test}
-\sssect{atomic\_flag\_clear函数}{lib.atom.flag.clear}
-
-\sect{布尔类型与值<stdbool.h>}{lib.bool}
-\sect{通用定义<stddef.h>}{lib.def}
-
-\sect{整型<stdint.h>}{lib.int}
-\ssect{整型}{lib.int.int}
-\sssect{确切宽度整型}{lib.int.int.exact}
-\sssect{最小宽度整型}{lib.int.int.min}
-\sssect{最快的最小宽度整型}{lib.int.int.fast}
-\sssect{可存对象指针的整型}{lib.int.int.ptr}
-\sssect{最大宽度整型}{lib.int.int.max}
-
-\ssect{指定宽度整型的限制}{lib.int.lmt}
-\sssect{确切宽度整型限制}{lib.int.lmt.exact}
-\sssect{最小宽度整型限制}{lib.int.lmt.min}
-\sssect{最快的最小宽度整型限制}{lib.int.lmt.fast}
-\sssect{可存对象指针的整型限制}{lib.int.lmt.ptr}
-\sssect{最大宽度整型限制}{lib.int.lmt.max}
-
-\ssect{其他整型限制}{lib.int.olmt}
-\ssect{整型常量宏}{lib.int.macro}
-\sssect{最小宽度整型常量宏}{lib.int.macro.min}
-\sssect{最大宽度整型常量宏}{lib.int.macro.max}
-
-\sect{输入/输出<stdio.h>}{lib.io}
-\ssect{引言}{lib.io.intro}
-\ssect{流}{lib.io.stream}
-\ssect{文件}{lib.io.file}
-
-\ssect{文件操作}{lib.io.fileop}
-\sssect{remove函数}{lib.io.fileop.rm}
-\sssect{rename函数}{lib.io.fileop.mv}
-\sssect{tmpfile函数}{lib.io.fileop.tmp}
-\sssect{tmpnam函数}{lib.io.fileop.tmpnam}
-
-\ssect{文件访问操作}{lib.io.acc}
-\sssect{fclose函数}{lib.io.acc.close}
-\sssect{fflush函数}{lib.io.acc.flsh}
-\sssect{fopen函数}{lib.io.acc.open}
-\sssect{freopen函数}{lib.io.acc.reopen}
-\sssect{setbuf函数}{lib.io.acc.buf}
-\sssect{setvbuf函数}{lib.io.acc.vbuf}
-
-\ssect{格式化输入输出函数}{lib.io.fmt}
-\sssect{fprintf函数}{lib.io.fmt.fprintf}
-\sssect{fscanf函数}{lib.io.fmt.fscanf}
-\sssect{printf函数}{lib.io.fmt.printf}
-\sssect{scanf函数}{lib.io.fmt.scanf}
-\sssect{snprintf函数}{lib.io.fmt.snprintf}
-\sssect{sprintf函数}{lib.io.fmt.sprintf}
-\sssect{sscanf函数}{lib.io.fmt.sscanf}
-\sssect{vfprintf函数}{lib.io.fmt.vfprintf}
-\sssect{vfscanf函数}{lib.io.fmt.vfscanf}
-\sssect{vprintf函数}{lib.io.fmt.vprintf}
-\sssect{vscanf函数}{lib.io.fmt.vscanf}
-\sssect{vsnprintf函数}{lib.io.fmt.vsnprintf}
-\sssect{vsprintf函数}{lib.io.fmt.vsprintf}
-\sssect{vsscanf函数}{lib.io.fmt.vsscanf}
-
-\ssect{字符输入输出函数}{lib.io.char}
-\sssect{fgetc函数}{lib.io.char.fgetc}
-\sssect{fgets函数}{lib.io.char.fgets}
-\sssect{fputc函数}{lib.io.char.fputc}
-\sssect{fputs函数}{lib.io.char.fputs}
-\sssect{getc函数}{lib.io.char.getc}
-\sssect{getchar函数}{lib.io.char.getchar}
-\sssect{putc函数}{lib.io.char.putc}
-\sssect{putchar函数}{lib.io.char.putchar}
-\sssect{puts函数}{lib.io.char.puts}
-\sssect{ungetc函数}{lib.io.char.ungetc}
-
-\ssect{直接输入输出函数}{lib.io.direct}
-\sssect{fread函数}{lib.io.direct.fread}
-\sssect{fwrite函数}{lib.io.direct.fwrite}
-
-\ssect{文件定位函数}{lib.io.pos}
-\sssect{fgetpos函数}{lib.io.pos.fgetpos}
-\sssect{fseek函数}{lib.io.pos.fseek}
-\sssect{fsetpos函数}{lib.io.pos.fsetpos}
-\sssect{ftell函数}{lib.io.pos.ftell}
-\sssect{rewind函数}{lib.io.pos.rewind}
-
-\ssect{错误处理函数}{lib.io.error}
-\sssect{clearerr函数}{lib.io.error.clr}
-\sssect{feof函数}{lib.io.error.feof}
-\sssect{ferror函数}{lib.io.error.ferr}
-\sssect{perror函数}{lib.io.error.perr}
-
-\sect{实用工具函数<stdlib.h>}{lib.util}
-\ssect{数值转换函数}{lib.util.conv}
-\sssect{atof函数}{lib.util.conv.atof}
-\sssect{atoi，atol和atoll函数}{lib.util.conv.atoi}
-\sssect{strtod，strtof和strtold函数}{lib.util.conv.strtod}
-\sssect{strtol，strtoll，strtoul和strtoull函数}{lib.util.conv.strtol}
-
-\ssect{伪随机序列生成函数}{lib.util.rand}
-\sssect{rand函数}{lib.util.rand.rand}
-\sssect{srand函数}{lib.util.rand.srand}
-
-\ssect{内存管理函数}{lib.util.mem}
-\sssect{aligned\_alloc函数}{lib.util.mem.alloc}
-\sssect{calloc函数}{lib.util.mem.calloc}
-\sssect{free函数}{lib.util.mem.free}
-\sssect{malloc函数}{lib.util.mem.malloc}
-\sssect{realloc函数}{lib.util.mem.realloc}
-
-\ssect{环境通讯}{lib.util.comm}
-\sssect{abort函数}{lib.util.comm.abort}
-\sssect{atexit函数}{lib.util.comm.atexit}
-\sssect{at\_quick\_exit函数}{lib.util.comm.atquick}
-\sssect{exit函数}{lib.util.comm.exit}
-\sssect{\_Exit函数}{lib.util.comm.Exit}
-\sssect{getenv函数}{lib.util.comm.getenv}
-\sssect{quick\_exit函数}{lib.util.comm.quick}
-\sssect{system函数}{lib.util.comm.sys}
-
-\ssect{搜索与排序}{lib.util.search}
-\sssect{bsearch函数}{lib.util.search.bsearch}
-\sssect{qsort函数}{lib.util.search.qsort}
-
-\ssect{整型算术函数}{lib.util.int}
-\sssect{abs，labs和llabs函数}{lib.util.int.abs}
-\sssect{div，ldiv和lldiv函数}{lib.util.int.div}
-
-\ssect{多字节/宽字符转换函数}{lib.util.mbchar}
-\sssect{mblen函数}{lib.util.mbchar.mblen}
-\sssect{mbtowc函数}{lib.util.mbchar.mbtowc}
-\sssect{wctomb函数}{lib.util.mbchar.wctomb}
-
-\ssect{多字节/宽字符串转换函数}{lib.util.mbstr}
-\sssect{mbstowcs函数}{lib.util.mbstr.mbstowcs}
-\sssect{wcstombs函数}{lib.util.mbstr.wcstombs}
-
-\sect{\_Noreturn<stdnoreturn.h>}{lib.noret}
-
-\sect{字符串处理<string.h>}{lib.str}
-\ssect{字符串函数惯例}{lib.str.conv}
-
-\ssect{拷贝函数}{lib.str.cpy}
-\sssect{memcpy函数}{lib.str.cpy.memcpy}
-\sssect{memmove函数}{lib.str.cpy.memmv}
-\sssect{strcpy函数}{lib.str.cpy.strcpy}
-\sssect{strncpy函数}{lib.str.cpy.strncpy}
-
-\ssect{连接函数}{lib.str.concat}
-\sssect{strcat函数}{lib.str.concat.strcat}
-\sssect{strncat函数}{lib.str.concat.strncat}
-
-\ssect{比较函数}{lib.str.cmp}
-\sssect{memcmp函数}{lib.str.cmp.memcmp}
-\sssect{strcmp函数}{lib.str.cmp.strcmp}
-\sssect{strcoll函数}{lib.str.cmp.strcoll}
-\sssect{strncmp函数}{lib.str.cmp.strncmp}
-\sssect{strxfrm函数}{lib.str.cmp.strxfrm}
-
-\ssect{搜索函数}{lib.str.search}
-\sssect{memchr函数}{lib.str.search.memchr}
-\sssect{strchr函数}{lib.str.search.strchr}
-\sssect{strcspn函数}{lib.str.search.strcspn}
-\sssect{strpbrk函数}{lib.str.search.strpbrk}
-\sssect{strrchr函数}{lib.str.search.strrchr}
-\sssect{strspn函数}{lib.str.search.strspn}
-\sssect{strstr函数}{lib.str.search.strstr}
-\sssect{strtok函数}{lib.str.search.strtok}
-
-\ssect{其他函数}{lib.str.misc}
-\sssect{memset函数}{lib.str.misc.memset}
-\sssect{strerror函数}{lib.str.misc.strerror}
-\sssect{strlen函数}{lib.str.misc.strlen}
-
-\sect{泛型数学<tgmath.h>}{lib.tgmath}
-
-\sect{线程<threads.h>}{lib.thrd}
-\ssect{引言}{lib.thrd.intro}
-
-\ssect{初始化函数}{lib.thrd.init}
-\sssect{call\_once函数}{lib.thrd.init.callonce}
-
-\ssect{条件变量函数}{lib.thrd.cond}
-\sssect{cnd\_broadcast函数}{lib.thrd.cond.brdcst}
-\sssect{cnd\_destroy函数}{lib.thrd.cond.destry}
-\sssect{cnd\_init函数}{lib.thrd.cond.init}
-\sssect{cnd\_signal函数}{lib.thrd.cond.signl}
-\sssect{cnd\_timedwait函数}{lib.thrd.cond.twait}
-\sssect{cnd\_wait函数}{lib.thrd.cond.wait}
-
-\ssect{互斥函数}{lib.thrd.mtx}
-\sssect{mtx\_destroy函数}{lib.thrd.mtx.destry}
-\sssect{mtx\_init函数}{lib.thrd.mtx.init}
-\sssect{mtx\_lock函数}{lib.thrd.mtx.lck}
-\sssect{mtx\_timedlock函数}{lib.thrd.mtx.tlck}
-\sssect{mtx\_trylock函数}{lib.thrd.mtx.trylck}
-\sssect{mtx\_unlock函数}{lib.thrd.mtx.unlck}
-
-\ssect{线程函数}{lib.thrd.thrd}
-\sssect{thrd\_create函数}{lib.thrd.thrd.create}
-\sssect{thrd\_current函数}{lib.thrd.thrd.cur}
-\sssect{thrd\_detach函数}{lib.thrd.thrd.dtch}
-\sssect{thrd\_equal函数}{lib.thrd.thrd.eq}
-\sssect{thrd\_exit函数}{lib.thrd.thrd.exit}
-\sssect{thrd\_join函数}{lib.thrd.thrd.join}
-\sssect{thrd\_sleep函数}{lib.thrd.thrd.slp}
-\sssect{thrd\_yield函数}{lib.thrd.thrd.yld}
-
-\ssect{线程特定存储函数}{lib.thrd.stor}
-\sssect{tss\_create函数}{lib.thrd.stor.create}
-\sssect{tss\_delete函数}{lib.thrd.stor.del}
-\sssect{tss\_get函数}{lib.thrd.stor.get}
-\sssect{tss\_set函数}{lib.thrd.stor.set}
-
-\sect{日期和时间<time.h>}{lib.time}
-\ssect{时间组成}{lib.time.comp}
-
-\ssect{时间操作函数}{lib.time.manip}
-\sssect{clock函数}{lib.time.manip.clk}
-\sssect{difftime函数}{lib.time.manip.diff}
-\sssect{mktime函数}{lib.time.manip.mk}
-\sssect{time函数}{lib.time.manip.tm}
-\sssect{timespec\_get函数}{lib.time.manip.spec}
-
-\ssect{时间转换函数}{lib.time.conv}
-\sssect{asctime函数}{lib.time.conv.asc}
-\sssect{ctime函数}{lib.time.conv.ctm}
-\sssect{gmtime函数}{lib.time.conv.gmtm}
-\sssect{localtime函数}{lib.time.conv.local}
-\sssect{strftime函数}{lib.time.conv.strf}
-
-\sect{Unicode工具<uchar.h>}{lib.uchar}
-\ssect{可重启多字节/宽字符转换函数}{lib.uchar.conv}
-\sssect{mbrtoc16函数}{lib.uchar.conv.mbrtoc16}
-\sssect{c16rtomb函数}{lib.uchar.conv.c16rtomb}
-\sssect{mbrtoc32函数}{lib.uchar.conv.mbrtoc32}
-\sssect{c32rtomb函数}{lib.uchar.conv.c32rtomb}
-
-\sect{扩展多字节和宽字符工具<wchar.h>}{lib.wchar}
-\ssect{引言}{lib.wchar.intro}
-
-\ssect{格式化宽字符输入输出函数}{lib.wchar.fmt}
-\sssect{fwprintf函数}{lib.wchar.fmt.fwp}
-\sssect{fwscanf函数}{lib.wchar.fmt.fws}
-\sssect{swprintf函数}{lib.wchar.fmt.swp}
-\sssect{swscanf函数}{lib.wchar.fmt.sws}
-\sssect{vfwprintf函数}{lib.wchar.fmt.vfwp}
-\sssect{vfwscanf函数}{lib.wchar.fmt.vfws}
-\sssect{vswprintf函数}{lib.wchar.fmt.vswp}
-\sssect{vswscanf函数}{lib.wchar.fmt.vsws}
-\sssect{vwprintf函数}{lib.wchar.fmt.vwp}
-\sssect{vwscanf函数}{lib.wchar.fmt.vws}
-\sssect{wprintf函数}{lib.wchar.fmt.wp}
-\sssect{wscanf函数}{lib.wchar.fmt.ws}
-
-\ssect{宽字符输入输出函数}{lib.wchar.io}
-\sssect{fgetwc函数}{lib.wchar.io.fgetwc}
-\sssect{fgetws函数}{lib.wchar.io.fgetws}
-\sssect{fputwc函数}{lib.wchar.io.fputwc}
-\sssect{fputws函数}{lib.wchar.io.fputws}
-\sssect{fwide函数}{lib.wchar.io.fwide}
-\sssect{getwc函数}{lib.wchar.io.getwc}
-\sssect{getwchar函数}{lib.wchar.io.getwchar}
-\sssect{putwc函数}{lib.wchar.io.putwc}
-\sssect{putwchar函数}{lib.wchar.io.putwchar}
-\sssect{ungetwc函数}{lib.wchar.io.ungetwc}
-
-\ssect{通用宽字符串工具}{lib.wchar.general}
-\sssect{宽字符串数值转换函数}{lib.wchar.general.numconv}
-\ssssect{wcstod, wcstof, wcstold函数}{lib.wchar.general.numconv.dfld}
+                                                          \sect{引言}{lib.intro}
+                                                \ssect{术语定义}{lib.intro.term}
+                                                \ssect{标准头}{lib.intro.header}
+                                          \ssect{保留标识符}{lib.intro.reserved}
+                                             \ssect{库函数的使用}{lib.intro.use}
+
+                                                 \sect{诊断<assert.h>}{lib.diag}
+                                                 \ssect{程序诊断}{lib.diag.prog}
+                                         \sssect{assert宏}{lib.diag.prog.assert}
+
+                                             \sect{复算术<complex.h>}{lib.cmplx}
+                                                   \ssect{引言}{lib.cmplx.intro}
+                                                    \ssect{惯例}{lib.cmplx.conv}
+                                              \ssect{分支切割}{lib.cmplx.branch}
+                              \ssect{CX\_LIMITED\_RANGE pragma}{lib.cmplx.range}
+
+                                                \ssect{三角函数}{lib.cmplx.trig}
+                                        \sssect{cacos函数}{lib.cmplx.trig.cacos}
+                                        \sssect{casin函数}{lib.cmplx.trig.casin}
+                                        \sssect{catan函数}{lib.cmplx.trig.catan}
+                                          \sssect{ccos函数}{lib.cmplx.trig.ccos}
+                                          \sssect{csin函数}{lib.cmplx.trig.csin}
+                                          \sssect{ctan函数}{lib.cmplx.trig.ctan}
+
+                                               \ssect{双曲函数}{lib.cmplx.hyper}
+                                     \sssect{cacosh函数}{lib.cmplx.hyper.cacosh}
+                                     \sssect{casinh函数}{lib.cmplx.hyper.casinh}
+                                     \sssect{catanh函数}{lib.cmplx.hyper.catanh}
+                                       \sssect{ccosh函数}{lib.cmplx.hyper.ccosh}
+                                       \sssect{csinh函数}{lib.cmplx.hyper.csinh}
+                                       \sssect{ctanh函数}{lib.cmplx.hyper.ctanh}
+
+                                           \ssect{指数与对数函数}{lib.cmplx.exp}
+                                           \sssect{cexp函数}{lib.cmplx.exp.cexp}
+                                           \sssect{clog函数}{lib.cmplx.exp.clog}
+
+                                         \ssect{幂与绝对值函数}{lib.cmplx.power}
+                                         \sssect{cabs函数}{lib.cmplx.power.cabs}
+                                         \sssect{cpow函数}{lib.cmplx.power.cpow}
+                                       \sssect{csqrt函数}{lib.cmplx.power.csqrt}
+
+                                             \ssect{复操作函数}{lib.cmplx.manip}
+                                         \sssect{carg函数}{lib.cmplx.manip.carg}
+                                       \sssect{cimag函数}{lib.cmplx.manip.cimag}
+                                         \sssect{CMPLX宏}{lib.cmplx.manip.cmplx}
+                                         \sssect{conj函数}{lib.cmplx.manip.conj}
+                                       \sssect{cproj函数}{lib.cmplx.manip.cproj}
+                                       \sssect{creal函数}{lib.cmplx.manip.creal}
+
+                                              \sect{字符处理<ctype.h>}{lib.char}
+                                            \ssect{字符分类函数}{lib.char.class}
+                                    \sssect{isalnum函数}{lib.char.class.isalnum}
+                                    \sssect{isalpha函数}{lib.char.class.isalpha}
+                                    \sssect{isblank函数}{lib.char.class.isblank}
+                                    \sssect{iscntrl函数}{lib.char.class.iscntrl}
+                                    \sssect{isdigit函数}{lib.char.class.isdigit}
+                                    \sssect{isgraph函数}{lib.char.class.isgraph}
+                                    \sssect{islower函数}{lib.char.class.islower}
+                                    \sssect{isprint函数}{lib.char.class.isprint}
+                                    \sssect{ispunct函数}{lib.char.class.ispunct}
+                                    \sssect{isspace函数}{lib.char.class.isspace}
+                                    \sssect{isupper函数}{lib.char.class.isupper}
+                                  \sssect{isxdigit函数}{lib.char.class.isxdigit}
+
+                                       \ssect{字符大小写映射函数}{lib.char.case}
+                                     \sssect{tolower函数}{lib.char.case.tolower}
+                                     \sssect{toupper函数}{lib.char.case.toupper}
+
+                                             \sect{错误处理<errno.h>}{lib.error}
+
+                                              \sect{浮点环境<fenv.h>}{lib.fpenv}
+                                      \ssect{FENV\_ACCESS pragma}{lib.fpenv.acc}
+
+                                              \ssect{浮点异常}{lib.fpenv.except}
+                              \sssect{feclearexcept函数}{lib.fpenv.except.clear}
+                              \sssect{fegetexceptflag函数}{lib.fpenv.except.get}
+                              \sssect{feraiseexcept函数}{lib.fpenv.except.raise}
+                              \sssect{fesetexceptflag函数}{lib.fpenv.except.set}
+                                \sssect{fetestexcept函数}{lib.fpenv.except.test}
+
+                                                     \ssect{舍入}{lib.fpenv.rnd}
+                                      \sssect{fegetround函数}{lib.fpenv.rnd.get}
+                                      \sssect{fesetround函数}{lib.fpenv.rnd.set}
+
+                                                     \ssect{环境}{lib.fpenv.env}
+                                        \sssect{fegetenv函数}{lib.fpenv.env.get}
+                                  \sssect{feholdexcept函数}{lib.fpenv.env.hldex}
+                                        \sssect{fesetenv函数}{lib.fpenv.env.set}
+                                     \sssect{feupdateenv函数}{lib.fpenv.env.upd}
+
+                                         \sect{浮点类型特征<float.h>}{lib.float}
+
+                                     \sect{整型转换格式<inttypes.h>}{lib.intfmt}
+                                          \ssect{格式说明符宏}{lib.intfmt.macro}
+
+                                      \ssect{最大宽度整型函数}{lib.intfmt.width}
+                                      \sssect{imaxabs函数}{lib.intfmt.width.abs}
+                                      \sssect{imaxdiv函数}{lib.intfmt.width.div}
+                                    \sssect{strtoimax函数}{lib.intfmt.width.str}
+                                    \sssect{wcstoimax函数}{lib.intfmt.width.wcs}
+
+                                         \sect{其他拼写<iso646.h>}{lib.altspell}
+
+                                          \sect{整型大小<limits.h>}{lib.intsize}
+
+                                             \sect{本地化<locale.h>}{lib.locale}
+                                           \ssect{区域环境控制}{lib.locale.cntr}
+                                     \sssect{setlocale函数}{lib.locale.cntr.set}
+                                    \ssect{数值格式惯例查询}{lib.locale.numconv}
+                                \sssect{localeconv函数}{lib.locale.numconv.conv}
+
+                                                   \sect{数学<math.h>}{lib.math}
+                                            \ssect{错误条件处理}{lib.math.error}
+                                           \ssect{FP\_CONTRACT}{lib.math.fpcont}
+
+                                                  \ssect{分类宏}{lib.math.class}
+                                        \sssect{fpclassify宏}{lib.math.class.fp}
+                                      \sssect{isfinite宏}{lib.math.class.finite}
+                                            \sssect{isinf宏}{lib.math.class.inf}
+                                            \sssect{innan宏}{lib.math.class.nan}
+                                      \sssect{isnormal宏}{lib.math.class.normal}
+                                         \sssect{signbit宏}{lib.math.class.sign}
+
+                                                 \ssect{三角函数}{lib.math.trig}
+                                           \sssect{acos函数}{lib.math.trig.acos}
+                                           \sssect{asin函数}{lib.math.trig.asin}
+                                           \sssect{atan函数}{lib.math.trig.atan}
+                                         \sssect{atan2函数}{lib.math.trig.atan2}
+                                             \sssect{cos函数}{lib.math.trig.cos}
+                                             \sssect{sin函数}{lib.math.trig.sin}
+                                             \sssect{tan函数}{lib.math.trig.tan}
+
+                                                \ssect{双曲函数}{lib.math.hyper}
+                                        \sssect{acosh函数}{lib.math.hyper.acosh}
+                                        \sssect{asinh函数}{lib.math.hyper.asinh}
+                                        \sssect{atanh函数}{lib.math.hyper.atanh}
+                                          \sssect{cosh函数}{lib.math.hyper.cosh}
+                                          \sssect{sinh函数}{lib.math.hyper.sinh}
+                                          \sssect{tanh函数}{lib.math.hyper.tanh}
+
+                                            \ssect{指数与对数函数}{lib.math.exp}
+                                              \sssect{exp函数}{lib.math.exp.exp}
+                                            \sssect{exp2函数}{lib.math.exp.exp2}
+                                          \sssect{expm1函数}{lib.math.exp.expm1}
+                                          \sssect{frexp函数}{lib.math.exp.frexp}
+                                          \sssect{ilogb函数}{lib.math.exp.ilogb}
+                                          \sssect{ldexp函数}{lib.math.exp.ldexp}
+                                              \sssect{log函数}{lib.math.exp.log}
+                                          \sssect{log10函数}{lib.math.exp.log10}
+                                          \sssect{log1p函数}{lib.math.exp.log1p}
+                                            \sssect{log2函数}{lib.math.exp.log2}
+                                            \sssect{logb函数}{lib.math.exp.logb}
+                                            \sssect{modf函数}{lib.math.exp.modf}
+                               \sssect{scalbn和scalbln函数}{lib.math.exp.scalbn}
+
+                                          \ssect{幂与约对值函数}{lib.math.power}
+                                          \sssect{cbrt函数}{lib.math.power.cbrt}
+                                          \sssect{fabs函数}{lib.math.power.fabs}
+                                        \sssect{hypot函数}{lib.math.power.hypot}
+                                            \sssect{pow函数}{lib.math.power.pow}
+                                          \sssect{sqrt函数}{lib.math.power.sqrt}
+
+                                         \ssect{错误与gamma函数}{lib.math.gamma}
+                                            \sssect{erf函数}{lib.math.gamma.erf}
+                                          \sssect{erfc函数}{lib.math.gamma.erfc}
+                                      \sssect{lgamma函数}{lib.math.gamma.lgamma}
+                                      \sssect{tgamma函数}{lib.math.gamma.tgamma}
+
+                                             \ssect{最近整数函数}{lib.math.near}
+                                           \sssect{ceil函数}{lib.math.near.ceil}
+                                           \sssect{floor函数}{lib.math.near.flr}
+                                    \sssect{nearbyint函数}{lib.math.near.nearby}
+                                           \sssect{rint函数}{lib.math.near.rint}
+                                 \sssect{lrint和llrint函数}{lib.math.near.lrint}
+                                           \sssect{round函数}{lib.math.near.rnd}
+                                         \sssect{lround函数}{lib.math.near.lrnd}
+                                         \sssect{trunc函数}{lib.math.near.trunc}
+
+                                                  \ssect{取余函数}{lib.math.rem}
+                                            \sssect{fmod函数}{lib.math.rem.fmod}
+                                        \sssect{remainder函数}{lib.math.rem.rem}
+                                        \sssect{remquo函数}{lib.math.rem.remquo}
+
+                                                \ssect{操作函数}{lib.math.manip}
+                                   \sssect{copysign函数}{lib.math.manip.cpysign}
+                                            \sssect{nan函数}{lib.math.manip.nan}
+                                 \sssect{nextafter函数}{lib.math.manip.nxtafter}
+                                  \sssect{nexttoward函数}{lib.math.manip.nxttwd}
+
+                                   \ssect{最大，最小和正差函数}{lib.math.minmax}
+                                         \sssect{fdim函数}{lib.math.minmax.fdim}
+                                         \sssect{fmax函数}{lib.math.minmax.fmax}
+                                         \sssect{fmin函数}{lib.math.minmax.fmin}
+
+                                                  \ssect{浮点乘加}{lib.math.fma}
+                                              \sssect{fma函数}{lib.math.fma.fma}
+
+                                                   \ssect{比较宏}{lib.math.cmpm}
+                                         \sssect{isgreater宏}{lib.math.cmpm.grt}
+                                  \sssect{isgreaterequal宏}{lib.math.cmpm.grteq}
+                                             \sssect{isless宏}{lib.math.cmpm.ls}
+                                      \sssect{islessequal宏}{lib.math.cmpm.lseq}
+                                   \sssect{islessgreater宏}{lib.math.cmpm.lsgrt}
+                                     \sssect{isunordered宏}{lib.math.cmpm.unord}
+
+                                            \sect{非局部跳转<setjmp.h>}{lib.jmp}
+                                              \ssect{保存调用环境}{lib.jmp.save}
+                                             \sssect{setjmp宏}{lib.jmp.save.set}
+
+                                              \ssect{恢复调用环境}{lib.jmp.rstr}
+                                       \sssect{longjmp函数}{lib.jmp.rstr.lngjmp}
+
+                                              \sect{信号处理<signal.h>}{lib.sig}
+
+                                              \ssect{指定信号处理}{lib.sig.spec}
+                                          \sssect{signal函数}{lib.sig.spec.sgnl}
+
+                                                  \ssect{发送信号}{lib.sig.send}
+                                          \sssect{raise函数}{lib.sig.send.raise}
+
+                                              \sect{对齐<stdalign.h>}{lib.align}
+
+                                           \sect{可变参数<stdarg.h>}{lib.vararg}
+                                        \ssect{变参列表访问宏}{lib.vararg.macro}
+                                        \sssect{va\_arg宏}{lib.vararg.macro.arg}
+                                       \sssect{va\_copy宏}{lib.vararg.macro.cpy}
+                                        \sssect{va\_end宏}{lib.vararg.macro.end}
+                                    \sssect{va\_start宏}{lib.vararg.macro.start}
+
+                                              \sect{原子<stdatomic.h>}{lib.atom}
+                                                    \ssect{引言}{lib.atom.intro}
+                                                   \ssect{初始化}{lib.atom.init}
+                                 \sssect{ATOMIC\_VAR\_INIT宏}{lib.atom.init.var}
+                               \sssect{atomic\_init泛型函数}{lib.atom.init.atom}
+
+                                            \ssect{顺序与一致性}{lib.atom.order}
+                              \sssect{kill\_dependency函数}{lib.atom.order.kill}
+
+                                                    \ssect{栅栏}{lib.atom.fence}
+                           \sssect{atomic\_thread\_fence}{lib.atom.fence.thread}
+                           \sssect{atomic\_signal\_fence}{lib.atom.fence.signal}
+
+                                              \ssect{无锁属性}{lib.atom.lckfree}
+                    \sssect{atomic\_is\_lock\_free泛型函数}{lib.atom.lckfree.is}
+
+                                                  \ssect{原子整型}{lib.atom.int}
+
+                                               \ssect{原子类型操作}{lib.atom.op}
+                               \sssect{atomic\_store泛型函数}{lib.atom.op.store}
+                                 \sssect{atomic\_load泛型函数}{lib.atom.op.load}
+                               \sssect{atomic\_exchange泛型函数}{lib.atom.op.ex}
+                   \sssect{atomic\_compare\_exchange泛型函数}{lib.atom.op.cmpex}
+                         \sssect{atomic\_fetch和修改泛型函数}{lib.atom.op.fetch}
+
+                                       \ssect{原子标志类型与操作}{lib.atom.flag}
+                   \sssect{atomic\_flag\_test\_and\_set函数}{lib.atom.flag.test}
+                           \sssect{atomic\_flag\_clear函数}{lib.atom.flag.clear}
+
+                                        \sect{布尔类型与值<stdbool.h>}{lib.bool}
+                                              \sect{通用定义<stddef.h>}{lib.def}
+
+                                                  \sect{整型<stdint.h>}{lib.int}
+                                                       \ssect{整型}{lib.int.int}
+                                        \sssect{确切宽度整型}{lib.int.int.exact}
+                                          \sssect{最小宽度整型}{lib.int.int.min}
+                                   \sssect{最快的最小宽度整型}{lib.int.int.fast}
+                                    \sssect{可存对象指针的整型}{lib.int.int.ptr}
+                                          \sssect{最大宽度整型}{lib.int.int.max}
+
+                                         \ssect{指定宽度整型的限制}{lib.int.lmt}
+                                    \sssect{确切宽度整型限制}{lib.int.lmt.exact}
+                                      \sssect{最小宽度整型限制}{lib.int.lmt.min}
+                               \sssect{最快的最小宽度整型限制}{lib.int.lmt.fast}
+                                \sssect{可存对象指针的整型限制}{lib.int.lmt.ptr}
+                                      \sssect{最大宽度整型限制}{lib.int.lmt.max}
+
+                                              \ssect{其他整型限制}{lib.int.olmt}
+                                               \ssect{整型常量宏}{lib.int.macro}
+                                  \sssect{最小宽度整型常量宏}{lib.int.macro.min}
+                                  \sssect{最大宽度整型常量宏}{lib.int.macro.max}
+
+                                               \sect{输入/输出<stdio.h>}{lib.io}
+                                                      \ssect{引言}{lib.io.intro}
+                                                       \ssect{流}{lib.io.stream}
+                                                       \ssect{文件}{lib.io.file}
+
+                                                 \ssect{文件操作}{lib.io.fileop}
+                                           \sssect{remove函数}{lib.io.fileop.rm}
+                                           \sssect{rename函数}{lib.io.fileop.mv}
+                                         \sssect{tmpfile函数}{lib.io.fileop.tmp}
+                                       \sssect{tmpnam函数}{lib.io.fileop.tmpnam}
+
+                                                \ssect{文件访问操作}{lib.io.acc}
+                                           \sssect{fclose函数}{lib.io.acc.close}
+                                            \sssect{fflush函数}{lib.io.acc.flsh}
+                                             \sssect{fopen函数}{lib.io.acc.open}
+                                         \sssect{freopen函数}{lib.io.acc.reopen}
+                                             \sssect{setbuf函数}{lib.io.acc.buf}
+                                           \sssect{setvbuf函数}{lib.io.acc.vbuf}
+
+                                          \ssect{格式化输入输出函数}{lib.io.fmt}
+                                        \sssect{fprintf函数}{lib.io.fmt.fprintf}
+                                          \sssect{fscanf函数}{lib.io.fmt.fscanf}
+                                          \sssect{printf函数}{lib.io.fmt.printf}
+                                            \sssect{scanf函数}{lib.io.fmt.scanf}
+                                      \sssect{snprintf函数}{lib.io.fmt.snprintf}
+                                        \sssect{sprintf函数}{lib.io.fmt.sprintf}
+                                          \sssect{sscanf函数}{lib.io.fmt.sscanf}
+                                      \sssect{vfprintf函数}{lib.io.fmt.vfprintf}
+                                        \sssect{vfscanf函数}{lib.io.fmt.vfscanf}
+                                        \sssect{vprintf函数}{lib.io.fmt.vprintf}
+                                          \sssect{vscanf函数}{lib.io.fmt.vscanf}
+                                    \sssect{vsnprintf函数}{lib.io.fmt.vsnprintf}
+                                      \sssect{vsprintf函数}{lib.io.fmt.vsprintf}
+                                        \sssect{vsscanf函数}{lib.io.fmt.vsscanf}
+
+                                           \ssect{字符输入输出函数}{lib.io.char}
+                                           \sssect{fgetc函数}{lib.io.char.fgetc}
+                                           \sssect{fgets函数}{lib.io.char.fgets}
+                                           \sssect{fputc函数}{lib.io.char.fputc}
+                                           \sssect{fputs函数}{lib.io.char.fputs}
+                                             \sssect{getc函数}{lib.io.char.getc}
+                                       \sssect{getchar函数}{lib.io.char.getchar}
+                                             \sssect{putc函数}{lib.io.char.putc}
+                                       \sssect{putchar函数}{lib.io.char.putchar}
+                                             \sssect{puts函数}{lib.io.char.puts}
+                                         \sssect{ungetc函数}{lib.io.char.ungetc}
+
+                                         \ssect{直接输入输出函数}{lib.io.direct}
+                                         \sssect{fread函数}{lib.io.direct.fread}
+                                       \sssect{fwrite函数}{lib.io.direct.fwrite}
+
+                                                \ssect{文件定位函数}{lib.io.pos}
+                                        \sssect{fgetpos函数}{lib.io.pos.fgetpos}
+                                            \sssect{fseek函数}{lib.io.pos.fseek}
+                                        \sssect{fsetpos函数}{lib.io.pos.fsetpos}
+                                            \sssect{ftell函数}{lib.io.pos.ftell}
+                                          \sssect{rewind函数}{lib.io.pos.rewind}
+
+                                              \ssect{错误处理函数}{lib.io.error}
+                                         \sssect{clearerr函数}{lib.io.error.clr}
+                                            \sssect{feof函数}{lib.io.error.feof}
+                                          \sssect{ferror函数}{lib.io.error.ferr}
+                                          \sssect{perror函数}{lib.io.error.perr}
+
+                                         \sect{实用工具函数<stdlib.h>}{lib.util}
+                                             \ssect{数值转换函数}{lib.util.conv}
+                                           \sssect{atof函数}{lib.util.conv.atof}
+                              \sssect{atoi，atol和atoll函数}{lib.util.conv.atoi}
+                      \sssect{strtod，strtof和strtold函数}{lib.util.conv.strtod}
+           \sssect{strtol，strtoll，strtoul和strtoull函数}{lib.util.conv.strtol}
+
+                                       \ssect{伪随机序列生成函数}{lib.util.rand}
+                                           \sssect{rand函数}{lib.util.rand.rand}
+                                         \sssect{srand函数}{lib.util.rand.srand}
+
+                                              \ssect{内存管理函数}{lib.util.mem}
+                                 \sssect{aligned\_alloc函数}{lib.util.mem.alloc}
+                                        \sssect{calloc函数}{lib.util.mem.calloc}
+                                            \sssect{free函数}{lib.util.mem.free}
+                                        \sssect{malloc函数}{lib.util.mem.malloc}
+                                      \sssect{realloc函数}{lib.util.mem.realloc}
+
+                                                 \ssect{环境通讯}{lib.util.comm}
+                                         \sssect{abort函数}{lib.util.comm.abort}
+                                       \sssect{atexit函数}{lib.util.comm.atexit}
+                             \sssect{at\_quick\_exit函数}{lib.util.comm.atquick}
+                                           \sssect{exit函数}{lib.util.comm.exit}
+                                         \sssect{\_Exit函数}{lib.util.comm.Exit}
+                                       \sssect{getenv函数}{lib.util.comm.getenv}
+                                   \sssect{quick\_exit函数}{lib.util.comm.quick}
+                                          \sssect{system函数}{lib.util.comm.sys}
+
+                                             \ssect{搜索与排序}{lib.util.search}
+                                   \sssect{bsearch函数}{lib.util.search.bsearch}
+                                       \sssect{qsort函数}{lib.util.search.qsort}
+
+                                              \ssect{整型算术函数}{lib.util.int}
+                                 \sssect{abs，labs和llabs函数}{lib.util.int.abs}
+                                 \sssect{div，ldiv和lldiv函数}{lib.util.int.div}
+
+                                  \ssect{多字节/宽字符转换函数}{lib.util.mbchar}
+                                       \sssect{mblen函数}{lib.util.mbchar.mblen}
+                                     \sssect{mbtowc函数}{lib.util.mbchar.mbtowc}
+                                     \sssect{wctomb函数}{lib.util.mbchar.wctomb}
+
+                                 \ssect{多字节/宽字符串转换函数}{lib.util.mbstr}
+                                  \sssect{mbstowcs函数}{lib.util.mbstr.mbstowcs}
+                                  \sssect{wcstombs函数}{lib.util.mbstr.wcstombs}
+
+                                     \sect{\_Noreturn<stdnoreturn.h>}{lib.noret}
+
+                                            \sect{字符串处理<string.h>}{lib.str}
+                                            \ssect{字符串函数惯例}{lib.str.conv}
+
+                                                   \ssect{拷贝函数}{lib.str.cpy}
+                                         \sssect{memcpy函数}{lib.str.cpy.memcpy}
+                                         \sssect{memmove函数}{lib.str.cpy.memmv}
+                                         \sssect{strcpy函数}{lib.str.cpy.strcpy}
+                                       \sssect{strncpy函数}{lib.str.cpy.strncpy}
+
+                                                \ssect{连接函数}{lib.str.concat}
+                                      \sssect{strcat函数}{lib.str.concat.strcat}
+                                    \sssect{strncat函数}{lib.str.concat.strncat}
+
+                                                   \ssect{比较函数}{lib.str.cmp}
+                                         \sssect{memcmp函数}{lib.str.cmp.memcmp}
+                                         \sssect{strcmp函数}{lib.str.cmp.strcmp}
+                                       \sssect{strcoll函数}{lib.str.cmp.strcoll}
+                                       \sssect{strncmp函数}{lib.str.cmp.strncmp}
+                                       \sssect{strxfrm函数}{lib.str.cmp.strxfrm}
+
+                                                \ssect{搜索函数}{lib.str.search}
+                                      \sssect{memchr函数}{lib.str.search.memchr}
+                                      \sssect{strchr函数}{lib.str.search.strchr}
+                                    \sssect{strcspn函数}{lib.str.search.strcspn}
+                                    \sssect{strpbrk函数}{lib.str.search.strpbrk}
+                                    \sssect{strrchr函数}{lib.str.search.strrchr}
+                                      \sssect{strspn函数}{lib.str.search.strspn}
+                                      \sssect{strstr函数}{lib.str.search.strstr}
+                                      \sssect{strtok函数}{lib.str.search.strtok}
+
+                                                  \ssect{其他函数}{lib.str.misc}
+                                        \sssect{memset函数}{lib.str.misc.memset}
+                                    \sssect{strerror函数}{lib.str.misc.strerror}
+                                        \sssect{strlen函数}{lib.str.misc.strlen}
+
+                                           \sect{泛型数学<tgmath.h>}{lib.tgmath}
+
+                                                \sect{线程<threads.h>}{lib.thrd}
+                                                    \ssect{引言}{lib.thrd.intro}
+
+                                               \ssect{初始化函数}{lib.thrd.init}
+                                 \sssect{call\_once函数}{lib.thrd.init.callonce}
+
+                                             \ssect{条件变量函数}{lib.thrd.cond}
+                               \sssect{cnd\_broadcast函数}{lib.thrd.cond.brdcst}
+                                 \sssect{cnd\_destroy函数}{lib.thrd.cond.destry}
+                                      \sssect{cnd\_init函数}{lib.thrd.cond.init}
+                                   \sssect{cnd\_signal函数}{lib.thrd.cond.signl}
+                                \sssect{cnd\_timedwait函数}{lib.thrd.cond.twait}
+                                      \sssect{cnd\_wait函数}{lib.thrd.cond.wait}
+
+                                                  \ssect{互斥函数}{lib.thrd.mtx}
+                                  \sssect{mtx\_destroy函数}{lib.thrd.mtx.destry}
+                                       \sssect{mtx\_init函数}{lib.thrd.mtx.init}
+                                        \sssect{mtx\_lock函数}{lib.thrd.mtx.lck}
+                                  \sssect{mtx\_timedlock函数}{lib.thrd.mtx.tlck}
+                                  \sssect{mtx\_trylock函数}{lib.thrd.mtx.trylck}
+                                    \sssect{mtx\_unlock函数}{lib.thrd.mtx.unlck}
+
+                                                 \ssect{线程函数}{lib.thrd.thrd}
+                                 \sssect{thrd\_create函数}{lib.thrd.thrd.create}
+                                   \sssect{thrd\_current函数}{lib.thrd.thrd.cur}
+                                   \sssect{thrd\_detach函数}{lib.thrd.thrd.dtch}
+                                      \sssect{thrd\_equal函数}{lib.thrd.thrd.eq}
+                                     \sssect{thrd\_exit函数}{lib.thrd.thrd.exit}
+                                     \sssect{thrd\_join函数}{lib.thrd.thrd.join}
+                                     \sssect{thrd\_sleep函数}{lib.thrd.thrd.slp}
+                                     \sssect{thrd\_yield函数}{lib.thrd.thrd.yld}
+
+                                         \ssect{线程特定存储函数}{lib.thrd.stor}
+                                  \sssect{tss\_create函数}{lib.thrd.stor.create}
+                                     \sssect{tss\_delete函数}{lib.thrd.stor.del}
+                                        \sssect{tss\_get函数}{lib.thrd.stor.get}
+                                        \sssect{tss\_set函数}{lib.thrd.stor.set}
+
+                                             \sect{日期和时间<time.h>}{lib.time}
+                                                 \ssect{时间组成}{lib.time.comp}
+
+                                            \ssect{时间操作函数}{lib.time.manip}
+                                          \sssect{clock函数}{lib.time.manip.clk}
+                                      \sssect{difftime函数}{lib.time.manip.diff}
+                                          \sssect{mktime函数}{lib.time.manip.mk}
+                                            \sssect{time函数}{lib.time.manip.tm}
+                                 \sssect{timespec\_get函数}{lib.time.manip.spec}
+
+                                             \ssect{时间转换函数}{lib.time.conv}
+                                         \sssect{asctime函数}{lib.time.conv.asc}
+                                           \sssect{ctime函数}{lib.time.conv.ctm}
+                                         \sssect{gmtime函数}{lib.time.conv.gmtm}
+                                     \sssect{localtime函数}{lib.time.conv.local}
+                                       \sssect{strftime函数}{lib.time.conv.strf}
+
+                                          \sect{Unicode工具<uchar.h>}{lib.uchar}
+                             \ssect{可重启多字节/宽字符转换函数}{lib.uchar.conv}
+                                  \sssect{mbrtoc16函数}{lib.uchar.conv.mbrtoc16}
+                                  \sssect{c16rtomb函数}{lib.uchar.conv.c16rtomb}
+                                  \sssect{mbrtoc32函数}{lib.uchar.conv.mbrtoc32}
+                                  \sssect{c32rtomb函数}{lib.uchar.conv.c32rtomb}
+
+                               \sect{扩展多字节和宽字符工具<wchar.h>}{lib.wchar}
+                                                   \ssect{引言}{lib.wchar.intro}
+
+                                 \ssect{格式化宽字符输入输出函数}{lib.wchar.fmt}
+                                        \sssect{fwprintf函数}{lib.wchar.fmt.fwp}
+                                         \sssect{fwscanf函数}{lib.wchar.fmt.fws}
+                                        \sssect{swprintf函数}{lib.wchar.fmt.swp}
+                                         \sssect{swscanf函数}{lib.wchar.fmt.sws}
+                                      \sssect{vfwprintf函数}{lib.wchar.fmt.vfwp}
+                                       \sssect{vfwscanf函数}{lib.wchar.fmt.vfws}
+                                      \sssect{vswprintf函数}{lib.wchar.fmt.vswp}
+                                       \sssect{vswscanf函数}{lib.wchar.fmt.vsws}
+                                        \sssect{vwprintf函数}{lib.wchar.fmt.vwp}
+                                         \sssect{vwscanf函数}{lib.wchar.fmt.vws}
+                                          \sssect{wprintf函数}{lib.wchar.fmt.wp}
+                                           \sssect{wscanf函数}{lib.wchar.fmt.ws}
+
+                                        \ssect{宽字符输入输出函数}{lib.wchar.io}
+                                        \sssect{fgetwc函数}{lib.wchar.io.fgetwc}
+                                        \sssect{fgetws函数}{lib.wchar.io.fgetws}
+                                        \sssect{fputwc函数}{lib.wchar.io.fputwc}
+                                        \sssect{fputws函数}{lib.wchar.io.fputws}
+                                          \sssect{fwide函数}{lib.wchar.io.fwide}
+                                          \sssect{getwc函数}{lib.wchar.io.getwc}
+                                    \sssect{getwchar函数}{lib.wchar.io.getwchar}
+                                          \sssect{putwc函数}{lib.wchar.io.putwc}
+                                    \sssect{putwchar函数}{lib.wchar.io.putwchar}
+                                      \sssect{ungetwc函数}{lib.wchar.io.ungetwc}
+
+                                     \ssect{通用宽字符串工具}{lib.wchar.general}
+                        \sssect{宽字符串数值转换函数}{lib.wchar.general.numconv}
+           \ssssect{wcstod, wcstof, wcstold函数}{lib.wchar.general.numconv.dfld}
 \ssssect{wcstol, wcstoll, wcstoul, wcstoull函数}{lib.wchar.general.numconv.lull}
 
-\sssect{宽字符串拷贝函数}{lib.wchar.general.copy}
-\ssssect{wcscpy函数}{lib.wchar.general.copy.wcscpy}
-\ssssect{wcsncpy函数}{lib.wchar.general.copy.wcsncpy}
-\ssssect{wmemcpy函数}{lib.wchar.general.copy.wmemcpy}
-\ssssect{wmemmove函数}{lib.wchar.general.copy.wmemmv}
+                               \sssect{宽字符串拷贝函数}{lib.wchar.general.copy}
+                             \ssssect{wcscpy函数}{lib.wchar.general.copy.wcscpy}
+                           \ssssect{wcsncpy函数}{lib.wchar.general.copy.wcsncpy}
+                           \ssssect{wmemcpy函数}{lib.wchar.general.copy.wmemcpy}
+                           \ssssect{wmemmove函数}{lib.wchar.general.copy.wmemmv}
 
-\sssect{宽字符串连接函数}{lib.wchar.general.concat}
-\ssssect{wcscat函数}{lib.wchar.general.concat.wcscat}
-\ssssect{wcsncat函数}{lib.wchar.general.concat.wcsncat}
+                             \sssect{宽字符串连接函数}{lib.wchar.general.concat}
+                           \ssssect{wcscat函数}{lib.wchar.general.concat.wcscat}
+                         \ssssect{wcsncat函数}{lib.wchar.general.concat.wcsncat}
 
-\sssect{宽字符串比较函数}{lib.wchar.general.comp}
-\ssssect{wcscmp函数}{lib.wchar.general.comp.wcscmp}
-\ssssect{wcscoll函数}{lib.wchar.general.comp.wcscoll}
-\ssssect{wcsncmp函数}{lib.wchar.general.comp.wcsncmp}
-\ssssect{wcsxfrm函数}{lib.wchar.general.comp.wcsxfrm}
-\ssssect{wmemcmp函数}{lib.wchar.general.comp.wmemcmp}
+                               \sssect{宽字符串比较函数}{lib.wchar.general.comp}
+                             \ssssect{wcscmp函数}{lib.wchar.general.comp.wcscmp}
+                           \ssssect{wcscoll函数}{lib.wchar.general.comp.wcscoll}
+                           \ssssect{wcsncmp函数}{lib.wchar.general.comp.wcsncmp}
+                           \ssssect{wcsxfrm函数}{lib.wchar.general.comp.wcsxfrm}
+                           \ssssect{wmemcmp函数}{lib.wchar.general.comp.wmemcmp}
 
-\sssect{宽字符串搜索函数}{lib.wchar.general.search}
-\ssssect{wcschr函数}{lib.wchar.general.search.wcschr}
-\ssssect{wcscspn函数}{lib.wchar.general.search.wcscspn}
-\ssssect{wcspbrk函数}{lib.wchar.general.search.wcspbrk}
-\ssssect{wcsrchr函数}{lib.wchar.general.search.wcsrchr}
-\ssssect{wcsspn函数}{lib.wchar.general.search.wcsspn}
-\ssssect{wcsstr函数}{lib.wchar.general.search.wcsstr}
-\ssssect{wcstok函数}{lib.wchar.general.search.wcstok}
-\ssssect{wmemchr函数}{lib.wchar.general.search.wmemchr}
+                             \sssect{宽字符串搜索函数}{lib.wchar.general.search}
+                           \ssssect{wcschr函数}{lib.wchar.general.search.wcschr}
+                         \ssssect{wcscspn函数}{lib.wchar.general.search.wcscspn}
+                         \ssssect{wcspbrk函数}{lib.wchar.general.search.wcspbrk}
+                         \ssssect{wcsrchr函数}{lib.wchar.general.search.wcsrchr}
+                           \ssssect{wcsspn函数}{lib.wchar.general.search.wcsspn}
+                           \ssssect{wcsstr函数}{lib.wchar.general.search.wcsstr}
+                           \ssssect{wcstok函数}{lib.wchar.general.search.wcstok}
+                         \ssssect{wmemchr函数}{lib.wchar.general.search.wmemchr}
 
-\sssect{其他函数}{lib.wchar.general.misc}
-\ssssect{wcslen函数}{lib.wchar.general.misc.wcslen}
-\ssssect{wmemset函数}{lib.wchar.general.misc.wmemset}
+                                       \sssect{其他函数}{lib.wchar.general.misc}
+                             \ssssect{wcslen函数}{lib.wchar.general.misc.wcslen}
+                           \ssssect{wmemset函数}{lib.wchar.general.misc.wmemset}
 
-\ssect{宽字符时间转换函数}{lib.wchar.time}
-\sssect{wcsftime函数}{lib.wchar.time.wcsftime}
+                                      \ssect{宽字符时间转换函数}{lib.wchar.time}
+                                  \sssect{wcsftime函数}{lib.wchar.time.wcsftime}
 
-\ssect{扩展多字节/宽字符转换函数}{lib.wchar.conv}
-\sssect{单字节/宽字符转换函数}{lib.wchar.conv.single}
-\ssssect{btowc函数}{lib.wchar.conv.single.btowc}
-\ssssect{wctob函数}{lib.wchar.conv.single.wctob}
+                               \ssect{扩展多字节/宽字符转换函数}{lib.wchar.conv}
+                           \sssect{单字节/宽字符转换函数}{lib.wchar.conv.single}
+                                \ssssect{btowc函数}{lib.wchar.conv.single.btowc}
+                                \ssssect{wctob函数}{lib.wchar.conv.single.wctob}
 
-\sssect{转换状态函数}{lib.wchar.conv.state}
-\ssssect{mbsinit函数}{lib.wchar.conv.state.mbsinit}
+                                     \sssect{转换状态函数}{lib.wchar.conv.state}
+                             \ssssect{mbsinit函数}{lib.wchar.conv.state.mbsinit}
 
-\sssect{可重启多字节/宽字符转换函数}{lib.wchar.conv.crstrt}
-\ssssect{mbrlen函数}{lib.wchar.conv.crstrt.mbrlen}
-\ssssect{mbrtowc函数}{lib.wchar.conv.crstrt.mbrtowc}
-\ssssect{wcrtomb函数}{lib.wchar.conv.crstrt.wcrtomb}
+                     \sssect{可重启多字节/宽字符转换函数}{lib.wchar.conv.crstrt}
+                              \ssssect{mbrlen函数}{lib.wchar.conv.crstrt.mbrlen}
+                            \ssssect{mbrtowc函数}{lib.wchar.conv.crstrt.mbrtowc}
+                            \ssssect{wcrtomb函数}{lib.wchar.conv.crstrt.wcrtomb}
 
-\sssect{可重启多字节/宽字符串转换函数}{lib.wchar.conv.srstrt}
-\ssssect{mbsrtowcs函数}{lib.wchar.conv.srstrt.mbsrtowcs}
-\ssssect{wcsrtombs函数}{lib.wchar.conv.srstrt.wcsrtombs}
+                   \sssect{可重启多字节/宽字符串转换函数}{lib.wchar.conv.srstrt}
+                        \ssssect{mbsrtowcs函数}{lib.wchar.conv.srstrt.mbsrtowcs}
+                        \ssssect{wcsrtombs函数}{lib.wchar.conv.srstrt.wcsrtombs}
 
-\sect{宽字符分类和映射工具<wctype.h>}{lib.wctype}
-\ssect{引言}{lib.wctype.intro}
+                               \sect{宽字符分类和映射工具<wctype.h>}{lib.wctype}
+                                                  \ssect{引言}{lib.wctype.intro}
 
-\ssect{宽字符分类工具}{lib.wctype.class}
-\sssect{宽字符分类函数}{lib.wctype.class.fct}
-\ssssect{iswalnum函数}{lib.wctype.class.fct.iswalnum}
-\ssssect{iswalpha函数}{lib.wctype.class.fct.iswalpha}
-\ssssect{iswblank函数}{lib.wctype.class.fct.iswblank}
-\ssssect{iswcntrl函数}{lib.wctype.class.fct.iswcntrl}
-\ssssect{iswdigit函数}{lib.wctype.class.fct.iswdigit}
-\ssssect{iswgraph函数}{lib.wctype.class.fct.iswgraph}
-\ssssect{iswlower函数}{lib.wctype.class.fct.iswlower}
-\ssssect{iswprint函数}{lib.wctype.class.fct.iswprint}
-\ssssect{iswpunct函数}{lib.wctype.class.fct.iswpunct}
-\ssssect{iswspace函数}{lib.wctype.class.fct.iswspace}
-\ssssect{iswupper函数}{lib.wctype.class.fct.iswupper}
-\ssssect{iswxdigit函数}{lib.wctype.class.fct.iswxdigit}
+                                        \ssect{宽字符分类工具}{lib.wctype.class}
+                                   \sssect{宽字符分类函数}{lib.wctype.class.fct}
+                           \ssssect{iswalnum函数}{lib.wctype.class.fct.iswalnum}
+                           \ssssect{iswalpha函数}{lib.wctype.class.fct.iswalpha}
+                           \ssssect{iswblank函数}{lib.wctype.class.fct.iswblank}
+                           \ssssect{iswcntrl函数}{lib.wctype.class.fct.iswcntrl}
+                           \ssssect{iswdigit函数}{lib.wctype.class.fct.iswdigit}
+                           \ssssect{iswgraph函数}{lib.wctype.class.fct.iswgraph}
+                           \ssssect{iswlower函数}{lib.wctype.class.fct.iswlower}
+                           \ssssect{iswprint函数}{lib.wctype.class.fct.iswprint}
+                           \ssssect{iswpunct函数}{lib.wctype.class.fct.iswpunct}
+                           \ssssect{iswspace函数}{lib.wctype.class.fct.iswspace}
+                           \ssssect{iswupper函数}{lib.wctype.class.fct.iswupper}
+                         \ssssect{iswxdigit函数}{lib.wctype.class.fct.iswxdigit}
 
-\sssect{扩展宽字符分类函数}{lib.wctype.class.ext}
-\ssssect{iswctype函数}{lib.wctype.class.ext.iswctype}
-\ssssect{wctype函数}{lib.wctype.class.ext.wctype}
+                               \sssect{扩展宽字符分类函数}{lib.wctype.class.ext}
+                           \ssssect{iswctype函数}{lib.wctype.class.ext.iswctype}
+                               \ssssect{wctype函数}{lib.wctype.class.ext.wctype}
 
-\ssect{宽字符大小写映射工具}{lib.wctype.case}
-\sssect{宽字符大小写映射函数}{lib.wctype.case.fct}
-\ssssect{towlower函数}{lib.wctype.case.fct.towlower}
-\ssssect{towupper函数}{lib.wctype.case.fct.towupper}
+                                   \ssect{宽字符大小写映射工具}{lib.wctype.case}
+                              \sssect{宽字符大小写映射函数}{lib.wctype.case.fct}
+                            \ssssect{towlower函数}{lib.wctype.case.fct.towlower}
+                            \ssssect{towupper函数}{lib.wctype.case.fct.towupper}
 
-\sssect{扩展宽字符大小写映射函数}{lib.wctype.case.ext}
-\ssssect{towctrans函数}{lib.wctype.case.ext.towctrans}
-\ssssect{wctrans函数}{lib.wctype.case.ext.wctrans}
+                          \sssect{扩展宽字符大小写映射函数}{lib.wctype.case.ext}
+                          \ssssect{towctrans函数}{lib.wctype.case.ext.towctrans}
+                              \ssssect{wctrans函数}{lib.wctype.case.ext.wctrans}
 
-\sect{未来标准库方向}{lib.dir}
-\ssect{复算术<complex.h>}{lib.dir.cmplx}
-\ssect{字符处理<ctype.h>}{lib.dir.ctype}
-\ssect{错误处理<errno.h>}{lib.dir.errno}
-\ssect{浮点环境<fenv.h>}{lib.dir.fenv}
-\ssect{整型格式转换<inttypes.h>}{lib.dir.inttype}
-\ssect{语言环境<locale.h>}{lib.dir.locale}
-\ssect{信号处理<signal.h>}{lib.dir.sig}
-\ssect{原子<stdatomic.h>}{lib.dir.atom}
-\ssect{布尔类型与值<stdbool.h>}{lib.dir.bool}
-\ssect{整型<stdint.h>}{lib.dir.int}
-\ssect{输入/输出<stdio.h>}{lib.dir.io}
-\ssect{实用工具函数<stdlib.h>}{lib.dir.util}
-\ssect{字符串处理<string.h>}{lib.dir.str}
-\ssect{日期和时间<time.h>}{lib.dir.time}
-\ssect{线程<threads.h>}{lib.dir.thread}
-\ssect{扩展多字节和宽字符工具<wchar.h>}{lib.dir.wchar}
-\ssect{宽字符分类与映射工具<wctype.h>}{lib.dir.wctype}
+                                                  \sect{未来标准库方向}{lib.dir}
+                                        \ssect{复算术<complex.h>}{lib.dir.cmplx}
+                                        \ssect{字符处理<ctype.h>}{lib.dir.ctype}
+                                        \ssect{错误处理<errno.h>}{lib.dir.errno}
+                                          \ssect{浮点环境<fenv.h>}{lib.dir.fenv}
+                               \ssect{整型格式转换<inttypes.h>}{lib.dir.inttype}
+                                      \ssect{语言环境<locale.h>}{lib.dir.locale}
+                                         \ssect{信号处理<signal.h>}{lib.dir.sig}
+                                         \ssect{原子<stdatomic.h>}{lib.dir.atom}
+                                   \ssect{布尔类型与值<stdbool.h>}{lib.dir.bool}
+                                             \ssect{整型<stdint.h>}{lib.dir.int}
+                                          \ssect{输入/输出<stdio.h>}{lib.dir.io}
+                                    \ssect{实用工具函数<stdlib.h>}{lib.dir.util}
+                                       \ssect{字符串处理<string.h>}{lib.dir.str}
+                                        \ssect{日期和时间<time.h>}{lib.dir.time}
+                                         \ssect{线程<threads.h>}{lib.dir.thread}
+                          \ssect{扩展多字节和宽字符工具<wchar.h>}{lib.dir.wchar}
+                          \ssect{宽字符分类与映射工具<wctype.h>}{lib.dir.wctype}

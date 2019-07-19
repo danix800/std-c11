@@ -8,7 +8,7 @@ ISO 80000-2进行解释。
 
 \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
 
-\sect[]{访问}{defns.access}
+                                                     \sect[]{访问}{defns.access}
 \paragraph{}
 \texttt{access}
 \begin{itemize}
@@ -24,14 +24,14 @@ ISO 80000-2进行解释。
 \paragraph{}
 \notes 不发生计算的表达式不访问对象。
 
-\sect[]{对齐}{defns.align}
+                                                      \sect[]{对齐}{defns.align}
 \paragraph{}
 \texttt{alignment}
 \begin{itemize}
   \item[]{特定类型的对象位于具有特定倍数字节地址的存储边界上的要求}
 \end{itemize}
 
-\sect[]{实参}{defns.arg}
+                                                        \sect[]{实参}{defns.arg}
 \paragraph{}
 \texttt{argument}
 \begin{itemize}
@@ -41,14 +41,14 @@ ISO 80000-2进行解释。
     的一系列预处理标记，以函数式宏调用中的括号为界}
 \end{itemize}
 
-\sect[]{行为}{defns.behav}
+                                                      \sect[]{行为}{defns.behav}
 \paragraph{}
 \texttt{behavior}
 \begin{itemize}
   \item[]{外部表现或动作}
 \end{itemize}
 
-\ssect{实现定义行为}{defns.impldef}
+                                             \ssect{实现定义行为}{defns.impldef}
 \paragraph{}
 \texttt{implementation-defined behavior}
 \begin{itemize}
@@ -58,7 +58,7 @@ ISO 80000-2进行解释。
 \paragraph{}
 \ex* 实现定义行为的一个例子是当有符号整数右移时高阶位的传播。
 
-\ssect{语言环境特定行为}{defns.locale}
+                                          \ssect{语言环境特定行为}{defns.locale}
 \paragraph{}
 \texttt{locale-specific behavior}
 \begin{itemize}
@@ -69,7 +69,7 @@ ISO 80000-2进行解释。
 \ex* 语言环境特定行为的一个示例是\tm{islower}函数是否对除26个小写拉丁字母之外的
 字符返回真。
 
-\ssect{未定义行为}{defns.undef}
+                                                 \ssect{未定义行为}{defns.undef}
 \paragraph{}
 \texttt{undefined behavior}
 \begin{itemize}
@@ -84,7 +84,7 @@ ISO 80000-2进行解释。
 \paragraph{}
 \ex* 未定义行为的一个例子是整数溢出时的行为。
 
-\ssect{未指明行为}{defns.unspec}
+                                                \ssect{未指明行为}{defns.unspec}
 \paragraph{}
 \texttt{unspecified behavior}
 \begin{itemize}
@@ -95,7 +95,7 @@ ISO 80000-2进行解释。
 \paragraph{}
 \ex* 未指明行为的一个例子是函数参数的计算顺序。
 
-\sect[]{位}{defns.bit}
+                                                          \sect[]{位}{defns.bit}
 \paragraph{}
 \texttt{bit}
 \begin{itemize}
@@ -105,7 +105,7 @@ ISO 80000-2进行解释。
 \paragraph{}
 \notes* 不需要表示对象的每个独立的位地址。
 
-\sect[]{字节}{defns.byte}
+                                                       \sect[]{字节}{defns.byte}
 \paragraph{}
 \texttt{byte}
 \begin{itemize}
@@ -119,14 +119,14 @@ ISO 80000-2进行解释。
 \notes 字节由一个连续的位序列组成，其数目由实现定义。最低有效位称为\textit{低阶
 位}；最高有效位称为\textit{高阶位}。
 
-\sect[]{字符}{defns.achar}
+                                                      \sect[]{字符}{defns.achar}
 \paragraph{}
 \texttt{character}
 \begin{itemize}
   \item[]{「抽象」用于组织、控制或表示数据的一组元素的成员}
 \end{itemize}
 
-\ssect{字符}{defns.bchar}
+                                                       \ssect{字符}{defns.bchar}
 \paragraph{}
 \texttt{character}
 \begin{itemize}
@@ -134,7 +134,7 @@ ISO 80000-2进行解释。
   \item[]{「C」可存于字节中的位表示法}
 \end{itemize}
 
-\ssect{多字节字符}{defns.mbchar}
+                                                \ssect{多字节字符}{defns.mbchar}
 \paragraph{}
 \texttt{multibyte character}
 \begin{itemize}
@@ -144,21 +144,21 @@ ISO 80000-2进行解释。
 \paragraph{}
 \notes* 扩展字符集是基本字符集的超集。
 
-\ssect{宽字符}{defns.wchar}
+                                                     \ssect{宽字符}{defns.wchar}
 \paragraph{}
 \texttt{wide character}
 \begin{itemize}
   \item[]{可由\tm{wchar\_t}类型对象表示的值，能够表示当前区域设置中的任何字符}
 \end{itemize}
 
-\sect[]{约束}{defns.constr}
+                                                     \sect[]{约束}{defns.constr}
 \paragraph{}
 \texttt{constraint}
 \begin{itemize}
   \item[]{语法或语义上解释语言要素的限制}
 \end{itemize}
 
-\sect[]{恰当舍入结果}{defns.rnd}
+                                                \sect[]{恰当舍入结果}{defns.rnd}
 \paragraph{}
 \texttt{correctly rounded result}
 \begin{itemize}
@@ -166,21 +166,21 @@ ISO 80000-2进行解释。
     受限范围和精度}
 \end{itemize}
 
-\sect[]{诊断消息}{defns.diag}
+                                                   \sect[]{诊断消息}{defns.diag}
 \paragraph{}
 \texttt{diagnostic message}
 \begin{itemize}
   \item[]{属于由实现定义的输出信息子集中的信息}
 \end{itemize}
 
-\sect[]{前向引用}{defns.fwdref}
+                                                 \sect[]{前向引用}{defns.fwdref}
 \paragraph{}
 \texttt{forward reference}
 \begin{itemize}
   \item[]{引用本国际标准的后续子章节，其中包含与本章节相关的其他信息}
 \end{itemize}
 
-\sect[]{实现}{defns.impl}
+                                                       \sect[]{实现}{defns.impl}
 \paragraph{}
 \texttt{implementation}
 \begin{itemize}
@@ -188,14 +188,14 @@ ISO 80000-2进行解释。
     中的程序翻译并支持其中的函数执行}
 \end{itemize}
 
-\sect[]{实现限制}{defns.limit}
+                                                  \sect[]{实现限制}{defns.limit}
 \paragraph{}
 \texttt{implementation limit}
 \begin{itemize}
   \item[]{实现对程序施加的限制}
 \end{itemize}
 
-\sect[]{内存地址}{defns.loc}
+                                                    \sect[]{内存地址}{defns.loc}
 \paragraph{}
 \texttt{memory location}
 \begin{itemize}
@@ -226,7 +226,7 @@ ISO 80000-2进行解释。
 第4个内存地址。位字段\texttt{b}和\texttt{c}不能并发修改，但是\texttt{b}和
 \texttt{a}可以。
 
-\sect[]{对象}{defns.object}
+                                                     \sect[]{对象}{defns.object}
 \paragraph{}
 \texttt{object}
 \begin{itemize}
@@ -237,7 +237,7 @@ ISO 80000-2进行解释。
 \notes* 在引用对象时，可以将对象解释为具有某种特定类型；见
 \ref{lang.conv.other.desig}。
 
-\sect[]{形参}{defns.param}
+                                                      \sect[]{形参}{defns.param}
 \paragraph{}
 \texttt{parameter}
 \begin{itemize}
@@ -248,14 +248,14 @@ ISO 80000-2进行解释。
     限定。}
 \end{itemize}
 
-\sect[]{推荐实践}{defns.recprac}
+                                                \sect[]{推荐实践}{defns.recprac}
 \paragraph{}
 \texttt{recommended practice}
 \begin{itemize}
   \item[]{强烈建议以符合本标准意图的规范，但对于某些实现来说可能不实用。}
 \end{itemize}
 
-\sect[]{运行时约束}{defns.rtconstr}
+                                             \sect[]{运行时约束}{defns.rtconstr}
 \paragraph{}
 \texttt{runtime-constraint}
 \begin{itemize}
@@ -270,42 +270,42 @@ ISO 80000-2进行解释。
 \notes 支持附录\ref{bound}中扩展的实现需要确认程序是否违反库函数的运行时约束；
 见K.3.1.4。
 
-\sect[]{值}{defns.value}
+                                                        \sect[]{值}{defns.value}
 \paragraph{}
 \texttt{value}
 \begin{itemize}
   \item[]{当解释为特定类型时的对象内容的确切涵义}
 \end{itemize}
 
-\ssect{实现定义值}{defns.implval}
+                                               \ssect{实现定义值}{defns.implval}
 \paragraph{}
 \texttt{implementation-defined value}
 \begin{itemize}
   \item[]{未指明值，由实现文档说明如果选择}
 \end{itemize}
 
-\ssect{不确定值}{defns.indeterval}
+                                              \ssect{不确定值}{defns.indeterval}
 \paragraph{}
 \texttt{indeterminate value}
 \begin{itemize}
   \item[]{未指明值或陷阱值}
 \end{itemize}
 
-\ssect{未指明值}{defns.unspecval}
+                                               \ssect{未指明值}{defns.unspecval}
 \paragraph{}
 \texttt{unspecified value}
 \begin{itemize}
   \item[]{相关类型的有效值，本国际标准在任何情况下对选择哪个值不作要求}
 \end{itemize}
 
-\sect[]{陷阱表示}{defns.traprepr}
+                                               \sect[]{陷阱表示}{defns.traprepr}
 \paragraph{}
 \texttt{trap representation}
 \begin{itemize}
   \item[]{不一定表示对象类型值的一种对象表示}
 \end{itemize}
 
-\ssect{执行陷阱}{defns.trap}
+                                                    \ssect{执行陷阱}{defns.trap}
 \paragraph{}
 \texttt{perform a trap}
 \begin{itemize}
@@ -317,7 +317,7 @@ ISO 80000-2进行解释。
 \footnote{例如，``捕获或停止（如果支持）被禁用...''（F.8.2）。请注意，获取陷阱表
 示可能会执行陷阱，但不是必须执行（请参见\ref{lang.concept.repr.general}）。}
 
-\sect[]{\textit{x}上取整}{defns.ceil}
+                                           \sect[]{\textit{x}上取整}{defns.ceil}
 \paragraph{}
 \texttt{$\lceil x\rceil$}
 \begin{itemize}
@@ -327,7 +327,7 @@ ISO 80000-2进行解释。
 \paragraph{}
 \ex* $\lceil 2.4 \rceil = 3$，$\lceil -2.4 \rceil = -2$
 
-\sect[]{\textit{x}下取整}{defns.floor}
+                                          \sect[]{\textit{x}下取整}{defns.floor}
 \paragraph{}
 \texttt{$\lfloor x\rfloor$}
 \begin{itemize}

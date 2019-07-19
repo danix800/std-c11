@@ -3,8 +3,8 @@
 \paragraph{}
 \notes 语法记号在\ref{lang.notation}节中描述。
 
-\sect{词法}{synsum.lex}
-\ssect{词法元素}{synsum.lex.elem}
+                                                         \sect{词法}{synsum.lex}
+                                               \ssect{词法元素}{synsum.lex.elem}
 \synsymref{lang.lex}{token}
   \synprd{\nt{keyword}}
   \synprd{\nt{identifier}}
@@ -22,7 +22,7 @@
   \synprd[]{除以上所列的每一个非空白字符}
 
 
-\ssect{关键字}{synsum.lex.keyword}
+                                              \ssect{关键字}{synsum.lex.keyword}
 \synsymref[one of]{lang.lex.keyword}{keyword}
 \bgroup
 \newcommand{\kwgrp}[4][\linebreak]{\synprd[#1]{\makebox[24em]{
@@ -47,7 +47,7 @@
 \egroup
 
 
-\ssect{标识符}{synsum.lex.id}
+                                                   \ssect{标识符}{synsum.lex.id}
 \synsymref{lang.lex.id.general}{identifier}
 \synprd{\nt{identifier-nondigit}}
 \synprd{\nt{identifier identifier-nondigit}}
@@ -68,7 +68,7 @@
 \synprd[]{\tm{0 1 2 3 4 5 6 7 8 9}}
 
 
-\ssect{通用字符名}{synsum.lex.uchar}
+                                            \ssect{通用字符名}{synsum.lex.uchar}
 \synsymref{lang.lex.univ}{universal-character-name}
   \synprd{\tm{\bs{}u} \nt{hex-quad}}
   \synprd[]{\tm{\bs{}U} \nt{hex-quad hex-quad}}
@@ -78,7 +78,7 @@
                 hexadecimal-digit}}
 
 
-\ssect{常量}{synsum.lex.const}
+                                                  \ssect{常量}{synsum.lex.const}
 \synsymref{lang.lex.const}{constant}
   \synprd{\nt{integer-constant}}
   \synprd{\nt{floating-constant}}
@@ -214,7 +214,7 @@
   \synprd[]{\nt{hexadecimal-escape-sequence hexadecimal-digit}}
 
 
-\ssect{字符串字面值}{synsum.lex.str}
+                                            \ssect{字符串字面值}{synsum.lex.str}
 \synsymref{lang.lex.str}{string-literal}
   \synprd[]{\nt{encoding-prefix$_{opt}$}\tm{\dq}
           \nt{s-char-sequence$_{opt}$}\tm{\dq}}
@@ -234,7 +234,7 @@
   \synprd[]{\nt{escape-sequence}}
 
 
-\ssect{标点}{synsum.lex.punct}
+                                                  \ssect{标点}{synsum.lex.punct}
 \synsymref[one of]{lang.lex.punct}{punctuator}
   \synprd{\tm{[ ] ( ) \{ \} .\ ->}}
   \synprd{\tm{++ -\dsh\ \& * + - \~\ !}}
@@ -245,7 +245,7 @@
   \synprd[]{\tm{<:\ :> <\% \%> \%:\ \%:\%:}}
 
 
-\ssect{头名称}{synsum.lex.header}
+                                               \ssect{头名称}{synsum.lex.header}
 \synsymref{lang.lex.header}{header-name}
   \synprd{\tm{<} \nt{h-char-sequence} \tm{>}}
   \synprd[]{\tm{\dq} \nt{q-char-sequence} \tm{\dq}}
@@ -265,7 +265,7 @@
   \synprd[]{源字符集中除新行字符和\tm{\dq}以外的任何成员}
 
 
-\ssect{预处理数字}{synsum.lex.ppnum}
+                                            \ssect{预处理数字}{synsum.lex.ppnum}
 \synsymref{lang.lex.ppnum}{pp-number}
   \synprd{\nt{digit}}
   \synprd{\tm{.} \nt{digit}}
@@ -278,8 +278,8 @@
   \synprd[]{\nt{pp-number} \tm{.}}
 
 
-\sect{短语结构}{synsum.phrase}
-\ssect{表达式}{synsum.phrase.expr}
+                                                  \sect{短语结构}{synsum.phrase}
+                                              \ssect{表达式}{synsum.phrase.expr}
 \synsymref{lang.expr}{primary-expression}
   \synprd{\nt{identifier}}
   \synprd{\nt{constant}}
@@ -399,7 +399,7 @@
   \synprd[]{\nt{conditional-expression}}
 
 
-\ssect{声明}{synsum.phrase.dcl}
+                                                 \ssect{声明}{synsum.phrase.dcl}
 \synsymref{lang.dcl}{declaration}
   \synprd{\nt{declaration-specifiers init-declarator-list\tsub{opt}} \tm{;}}
   \synprd[]{\nt{static\_assert-declaration}}
@@ -591,7 +591,7 @@
     \nt{string-literal} \tm{) ;}}
 
 
-\ssect{语句}{synsum.phrase.stmt}
+                                                \ssect{语句}{synsum.phrase.stmt}
 \synsymref{lang.stmt}{statement}
   \synprd{\nt{labeled-statement}}
   \synprd{\nt{compound-statement}}
@@ -640,7 +640,7 @@
   \synprd[]{\tm{return} \nt{expression\tsub{opt}} \tm{;}}
 
 
-\ssect{外部定义}{synsum.phrase.extdef}
+                                          \ssect{外部定义}{synsum.phrase.extdef}
 \synsymref{lang.extn}{translation-unit}
   \synprd{\nt{external-declaration}}
   \synprd{\nt{translation-unit external-declaration}}
@@ -657,7 +657,7 @@
   \synprd{\nt{declaration}}
   \synprd[]{\nt{declaration-list declaration}}
 
-\sect{预处理指令}{synsum.pp}
+                                                    \sect{预处理指令}{synsum.pp}
 \synsymref{lang.ppdir}{preprocessing-file}
   \synprd[]{\nt{group\tsub{opt}}}
 

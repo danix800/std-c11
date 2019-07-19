@@ -3,7 +3,7 @@
 \paragraph{}
 本附录收集了该标准中出现的一些关于可移植性的信息。
 
-\sect{未指明行为}{port.unspec}
+                                                  \sect{未指明行为}{port.unspec}
 \paragraph{}
 以下为未指明行为：
 \begin{itemize} % 58
@@ -119,7 +119,7 @@
     G.6.4.2）。}
 \end{itemize}
 
-\sect{未定义行为}{port.undef}
+                                                   \sect{未定义行为}{port.undef}
 \paragraph{}
 以下情况下行为未定义：
 \begin{itemize} % 203
@@ -524,11 +524,11 @@
   调用\tm{towctrans}函数}{\ref{lib.wctype.case.ext.towctrans}}
 \end{itemize}
 
-\sect{实现定义行为}{port.impl}
+                                                  \sect{实现定义行为}{port.impl}
 \paragraph{}
 合规实现要求记录其在本节所列每个领域的行为选择。以下为实现定义：
 
-\ssect{翻译}{port.impl.trans}
+                                                   \ssect{翻译}{port.impl.trans}
 \begin{itemize} %2
   \item[\textbf{1}\hspace{5pt}---]{诊断如何识别（\ref{defns.diag}，
     \ref{env.concept.trans.diag}）。}
@@ -536,7 +536,7 @@
     替换（\ref{env.concept.trans.phase}）。}
 \end{itemize}
 
-\ssect{环境}{port.impl.env}
+                                                     \ssect{环境}{port.impl.env}
 \begin{itemize} % 12
   \item[\textbf{1}\hspace{5pt}---]{翻译阶段\ref{tpit1}中物理源文件多字节字符与源
     字符集之间的映射（\ref{env.concept.trans.phase}）。}
@@ -559,7 +559,7 @@
   \item{\tm{system}函数的字符串执行方式（\ref{lib.util.comm.sys}）。}
 \end{itemize}
 
-\ssect{标识符}{port.impl.id}
+                                                    \ssect{标识符}{port.impl.id}
 \begin{itemize} %2
   \item[\textbf{1}\hspace{5pt}---]{哪些额外宽字符可以出现在标识符中以及它们与通
     用字符名的对应关系（\ref{lang.lex.id}）。}
@@ -567,7 +567,7 @@
     \ref{lang.lex.id}）。}
 \end{itemize}
 
-\ssect{字符}{port.impl.char}
+                                                    \ssect{字符}{port.impl.char}
 \begin{itemize} % 13
   \item[\textbf{1}\hspace{5pt}---]{字节位数（\ref{defns.byte}）。}
   \item{执行字符集成员的值（\ref{env.env.charset}）。}
@@ -598,7 +598,7 @@
     （\ref{lang.ppdir.predef.env}）。}
 \end{itemize}
 
-\ssect{整型}{port.impl.int}
+                                                     \ssect{整型}{port.impl.int}
 \begin{itemize} % 5
   \item[\textbf{1}\hspace{5pt}---]{实现中的任何扩展整型
     （\ref{lang.concept.type}）。}
@@ -611,7 +611,7 @@
   \item{一些按位操作在有符号整型上的结果（\ref{lang.expr}）。}
 \end{itemize}
 
-\ssect{浮点}{port.impl.float}
+                                                   \ssect{浮点}{port.impl.float}
 \begin{itemize} % 11
   \item[\textbf{1}\hspace{5pt}---]{\tm{<math.h>}和\tm{<complex.h>}中返回浮点结果
     的库函数和浮点操作的准确性（\ref{env.env.limits.num.float}）。}
@@ -635,21 +635,21 @@
   \item{\tm{FP\_CONTRACT} pragma的缺省状态（\ref{lib.math.fpcont}）。}
 \end{itemize}
 
-\ssect{数组与函数}{port.impl.array}
+                                             \ssect{数组与函数}{port.impl.array}
 \begin{itemize}
   \item[\textbf{1}\hspace{5pt}---]{转换指针到整型或反之的结果
     （\ref{lang.conv.other.ptr}）。}
   \item{指向同一数组的两个元素的指针相减的结果大小（\ref{lang.expr.add}）。}
 \end{itemize}
 
-\ssect{提示}{port.impl.hint}
+                                                    \ssect{提示}{port.impl.hint}
 \begin{itemize}
   \item[\textbf{1}\hspace{5pt}---]{\tm{register}存储类说明符所推荐的有效程度
     （\ref{lang.dcl.stc}）。}
   \item{使用\tm{inline}函数说明符所作推荐的有效程度（\ref{lang.dcl.fct}）。}
 \end{itemize}
 
-\ssect{结构，联合，枚举和位字段}{port.impl.struct}
+                              \ssect{结构，联合，枚举和位字段}{port.impl.struct}
 \begin{itemize} % 7
   \item[\textbf{1}\hspace{5pt}---]{``普通''\tm{int}位字段是作为\tm{signed int}还
     是作为\tm{unsigned int}位字段（\ref{lang.dcl.type}，
@@ -664,13 +664,13 @@
   \item{与每一个枚举类型兼容的整型（\ref{lang.dcl.type.enum}）。}
 \end{itemize}
 
-\ssect{限定符}{port.impl.qual}
+                                                  \ssect{限定符}{port.impl.qual}
 \begin{itemize}
   \item[\textbf{1}\hspace{5pt}---]{volatile限定类型对象的访问的构成
     （\ref{lang.dcl.qual}）。}
 \end{itemize}
 
-\ssect{预处理指令}{port.impl.pp}
+                                                \ssect{预处理指令}{port.impl.pp}
 \begin{itemize} % 11
   \item[\textbf{1}\hspace{5pt}---]{\tm{\#pragma}指令中，识别头名预处理标记的位置
     （\ref{lang.lex}，\ref{lang.lex.header}）。}
@@ -693,7 +693,7 @@
     （\ref{lang.ppdir.predef.mand}）。}
 \end{itemize}
 
-\ssect{库函数}{port.impl.lib}
+                                                   \ssect{库函数}{port.impl.lib}
 \begin{itemize}
 \setcounter{itmcntr}{0}
 \newcommand{\itm}[2]{\stepcounter{itmcntr}\item{#1（#2）。
@@ -780,7 +780,7 @@
     向模式}{F.10}
 \end{itemize}
 
-\ssect{架构}{port.impl.arch}
+                                                    \ssect{架构}{port.impl.arch}
 \begin{itemize} %6
   \item[\textbf{1}\hspace{5pt}---]{赋给头\tm{<float.h>}，\tm{<limits.h>}和
     \tm{<stdint.h>}中所指定宏的值或表达式（\ref{env.env.limit.num}，
@@ -796,7 +796,7 @@
     （\ref{lang.expr.unary.sizeof}）。}
 \end{itemize}
 
-\sect{语言环境特定行为}{port.locale}
+                                            \sect{语言环境特定行为}{port.locale}
 \paragraph{}
 宿主环境的以下特性为语言环境特定的，且要求实现加以文档化：
 \begin{itemize} %15
@@ -830,45 +830,45 @@
   \item{\tm{iswctype}函数所支持的字符分类（\ref{lib.wctype.intro}）。}
 \end{itemize}
 
-\sect{通用扩展}{port.ext}
+                                                       \sect{通用扩展}{port.ext}
 \paragraph{}
 以下扩展在许多系统中被广泛使用，但并非可移植到所有实现中。包含任何可能导致严格合
 规程序失效的扩展将导致实现不合规。这些扩展的例子包括新的关键字、标准头中声明的额
 外库函数，或者名称不以下划线开头的预定义宏。
 
-\ssect{环境参数}{port.ext.args}
+                                                 \ssect{环境参数}{port.ext.args}
 \paragraph{}
 在宿主环境中，\tm{main}函数接收第三个参数\tm{char*envp[]}，该参数指向以零结尾的
 \tm{char}指针数组，每个指针指向一个字符串，该字符串提供有关程序执行环境的信息
 （\ref{env.concept.exec.hosted.start}）。
 
-\ssect{特殊标识符}{port.ext.specid}
+                                             \ssect{特殊标识符}{port.ext.specid}
 \paragraph{}
 除下划线\tm{\_}、字母和数字之外，不属于基本源字符集的字符（如美元符号\tm{\$}，或
 国家字符集中的字符）可能出现在标识符中（\ref{lang.lex.id}）。
 
-\ssect{标识符长度与大小写}{port.ext.idlen}
+                                      \ssect{标识符长度与大小写}{port.ext.idlen}
 \paragraph{}
 标识符中所有字符（无论是否为外部链接）均有效（\ref{lang.lex.id}）。
 
-\ssect{标识符作用域}{port.ext.scope}
+                                            \ssect{标识符作用域}{port.ext.scope}
 \paragraph{}
 函数标识符，或声明中包含关键字\tm{extern}的对象标识符，具有文件作用域
 （\ref{lang.concept.scope}）。
 
-\ssect{可写字符串文本}{port.ext.writable}
+                                       \ssect{可写字符串文本}{port.ext.writable}
 \paragraph{}
 字符串文本可写（这种情况下，等价字符串文本应该代表不同对象）
 （\ref{lang.lex.str}）。
 
-\ssect{其他算术类型}{port.ext.other}
+                                            \ssect{其他算术类型}{port.ext.other}
 \paragraph{}
 定义了其他算术类型，如\tm{\_\_int128}或\tm{double double}，以及它们的适当转换
 （\ref{lang.concept.type}、\ref{lang.conv.arith}）。与\tm{long double}相比，其他
 浮点类型的范围或精度可能更大，可用于计算其他浮点类型的表达式，也可用于定义
 \tm{float\_t}或\tm{double\_t}。其他浮点类型的范围或精度也可能小于\tm{float}。
 
-\ssect{函数指针转换}{port.ext.fctptr}
+                                           \ssect{函数指针转换}{port.ext.fctptr}
 \paragraph{}
 指向对象或\tm{void}的指针可以转换为指向函数的指针，从而允许作为函数以调用数据
 （\ref{lang.expr.cast}）。
@@ -877,44 +877,44 @@
 指向函数的指针可以转换为指向对象的指针或\tm{void}，从而允许检查或修改函数（如由
 调试器）（\ref{lang.expr.cast}）。
 
-\ssect{扩展位字段类型}{port.ext.extbf}
+                                          \ssect{扩展位字段类型}{port.ext.extbf}
 \paragraph{}
 位字段可以用除\tm{\_Bool}、\tm{unsigned int}或\tm{signed int}之外的类型声明，并
 具有适当的最大宽度（\ref{lang.dcl.type.struct}）。
 
-\ssect{fortan关键字}{port.ext.fortan}
+                                           \ssect{fortan关键字}{port.ext.fortan}
 \paragraph{}
 函数声明中可以使用\tm{fortran}函数说明符来指示应生成适用于FORTRAN的调用，或者生
 成外部名称的其他表示形式（\ref{lang.dcl.fct}）。
 
-\ssect{asm关键字}{port.ext.asm}
+                                                 \ssect{asm关键字}{port.ext.asm}
 \paragraph{}
 \tm{asm}关键字可用于将汇编语言直接插入转换器输出（\ref{lang.stmt}）。最常见的实
 现是通过如下形式的语句：                                                      \\
 \mbox{\hspace{4em}\tm{asm (} \nt{character-string-literal} \tm{);}}
 
-\ssect{多重外部定义}{port.ext.mulextn}
+                                          \ssect{多重外部定义}{port.ext.mulextn}
 \paragraph{}
 对象标识符的外部定义可以有多个，可以使用或不使用关键字\tm{extern}；如果定义不一
 致，或者初始化多个，则行为未定义（\ref{lang.extn.obj}）。
 
-\ssect{预定义宏名}{port.ext.predef}
+                                             \ssect{预定义宏名}{port.ext.predef}
 \paragraph{}
 翻译开始前由实现定义的描述翻译和执行环境的不以下划线开头的宏名称
 （\ref{lang.ppdir.predef}）。
 
-\ssect{浮点状态位}{port.ext.fpflag}
+                                             \ssect{浮点状态位}{port.ext.fpflag}
 \paragraph{}
 对由\tm{atexit}函数注册的函数进行所有调用后正常终止时，如果设置了任何浮点状态标
 志（请参见\ref{lib.util.comm.exit}），则实现会将一些指示此事实的诊断写入
 \tm{stderr}流，如果该流仍处于打开状态。
 
-\ssect{信号处理的额外参数}{port.ext.sigarg}
+                                     \ssect{信号处理的额外参数}{port.ext.sigarg}
 \paragraph{}
 除了信号号码之外，还使用其他参数调用特定信号的处理程序
 （\ref{lib.sig.spec.sgnl}）。
 
-\ssect{额外的流类型和文件打开模式}{port.ext.mode}
+                               \ssect{额外的流类型和文件打开模式}{port.ext.mode}
 \paragraph{}
 支持额外的文件到流的映射（\ref{lib.io.stream}，\ref{lib.io.stream}）。
 
@@ -922,12 +922,12 @@
 额外的文件打开模式可以由字符指定附加到\tm{fopen}函数的\tm{mode}参数中
 （\ref{lib.io.acc.open}）。
 
-\ssect{定义的文件位置指标}{port.ext.fpos}
+                                       \ssect{定义的文件位置指标}{port.ext.fpos}
 \paragraph{}
 对于文本流，每次成功调用\tm{ungetc}或\tm{ungetwc}函数时，文件位置指标都会递减，
 除非在调用之前其值为零（\ref{lib.io.char.ungetc}，\ref{lib.wchar.io.ungetwc}）。
 
-\ssect{数学错误报告}{port.ext.mathrpt}
+                                          \ssect{数学错误报告}{port.ext.mathrpt}
 \paragraph{}
 在\tm{<complex.h>}和\tm{<math.h>}中声明的函数引发\tm{SIGFPE}以报告错误，
 而不是设置\tm{errno}或引发浮点异常（\ref{lib.cmplx}，\ref{lib.math}）。
