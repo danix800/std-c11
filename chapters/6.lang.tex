@@ -1006,7 +1006,7 @@ $N$个值位，则$M \le N$）。如果符号位为零，则不会影响结果�
 \synsym[one of]{hexadecimal-prefix}
   \synprd{\tm{0x 0X}}
 \synsym[one of]{nonzero-digit}
-  \synprd{\tm{0 1 2 3 4 5 6 7 8 9}}
+  \synprd{\tm{1 2 3 4 5 6 7 8 9}}
 \synsym[one of]{octal-digit}
   \synprd{\tm{0 1 2 3 4 5 6 7}}
 \synsym[one of]{hexadecimal-digit}
@@ -1117,7 +1117,7 @@ $N$个值位，则$M \le N$）。如果符号位为零，则不会影响结果�
 \synsym{hexadecimal-fractional-constant}
   \synprd{\nt{hexadecimal-digit-sequence\tsub{opt}} \tm{.}
           \nt{hexadecimal-digit-sequence}}
-  \synprd{\nt{hexadecimal-digit-sequence\tsub{opt}} \tm{.}}
+  \synprd{\nt{hexadecimal-digit-sequence} \tm{.}}
 \synsym{binary-exponent-part}
   \synprd{\tm{p} \nt{sign\tsub{opt} digit-sequence}}
   \synprd{\tm{P} \nt{sign\tsub{opt} digit-sequence}}
@@ -4702,7 +4702,7 @@ volatile限定类型对象的访问的构成由实现定义。
 \syntax
 \paragraph{}
 \synsym{expression-statement}
-  \synprd[]{\nt{expression\tsub{opt} \tm{;}}}
+  \synprd[]{\nt{expression\tsub{opt}} \tm{;}}
 
 \semantic
 \paragraph{}
@@ -5572,14 +5572,14 @@ switch主体的任何部分。
 和组成参数的最后一个预处理标记之后的空白。否则，参数中每个预处理标记的原始拼写将
 保留在字符串文本中，但产生字符串文本和字符常量拼写的特殊处理除外：在字符常量或字
 符串文本的每个\tm{\dq}和\tm{\bs}字符之前插入一个\tm{\bs}字符（包括分隔符\tm{\dq}
-字符），但是否在\tm{\bs}字符开始通用字符名之前插入\tm{\bs}字符由实现定义。如果结
-果的替换不是有效的字符串文本，则行为未定义。与空参数对应的字符串文本为
+字符），但是否在\tm{\bs}字符开始通用字符名之前插入\tm{\bs}字符由实现定义。如果产
+生的替换不是有效的字符串文本，则行为未定义。与空参数对应的字符串文本为
 \tm{\dq\dq}。未指定\tm{\#}和\tm{\#\#}运算符的计算顺序。
 
                                     \sssect{\#\#运算符}{lang.ppdir.macro.concat}
 \constraint
 \paragraph{}
-任何一种宏定义形式的替换列表的开头或结尾都不应出现\tm{\#\#}预处理标记。
+\tm{\#\#}预处理标记不应出现任一种宏定义形式的替换列表的开头或结尾。
 
 \semantic
 \paragraph{}
@@ -5591,9 +5591,9 @@ switch主体的任何部分。
 \paragraph{}
 对于对象式宏调用和函数式宏调用，在重新检查替换列表以获取更多要替换的宏名称之前，
 将删除替换列表（不是从实参中）中的\tm{\#\#}预处理标记的每个实例，并将前面的预处
-理标记与下一个预处理标记连接。占位预处理标记特殊处理：两个占位的连接导致单个占位
-预处理标记，占位与非占位的连接导致非占位预处理标记。如果结果不是有效预处理标记，
-则行为未定义。生成的标记可用于进一步的宏替换。未指定运算符的计算顺序。
+理标记与下一个预处理标记连接。占位预处理标记特殊处理：两个占位标记的连接产生单个
+占位预处理标记，占位与非占位的连接导致非占位预处理标记。如果结果不是有效预处理标
+记，则行为未定义。生成的标记可用于进一步的宏替换。未指定运算符的计算顺序。
 
 \paragraph{}
 \ex* 以下片断中：
@@ -5620,22 +5620,22 @@ switch主体的任何部分。
                             \sssect{重扫描和进一步替换}{lang.ppdir.macro.rescan}
 \paragraph{}
 替换列表中的所有参数被替换并且\tm{\#}和\tm{\#\#}处理完成后，所有占位预处理标记都
-将被删除。然后，将重新扫描生成的预处理标记序列，以及源文件的所有后续预处理标记，
-以替换更多的宏名。
+将被删除。然后重新扫描生成的预处理标记序列，以及源文件的所有后续预处理标记，以替
+换更多的宏名。
 
 \paragraph{}
-如果在扫描替换列表期间找到要替换的宏的名称（不包括源文件的其余预处理标记），则不
-会替换该宏。此外，如果任何嵌套替换遇到要替换的宏的名称，则不会替换该宏。这些未替
-换的宏名预处理标记将不再用于进一步替换，即使这些标记稍后（重新）在宏名预处理标记
-将被替换的上下文中进行检查。
+如果在扫描替换列表期间找到已替换的宏名称（不包括源文件的其余预处理标记），不会替
+换该宏。此外，如果任何嵌套替换遇到已替换的宏名称，也不会替换该宏。这些不替换的宏
+名预处理标记将不再用于进一步替换，即使这些标记稍后（重新）在宏名预处理标记可能被
+替换的上下文中进行检查。
 
 \paragraph{}
-生成的完全宏替换的预处理标记序列不会作为预处理指令进行处理，即使它类似于预处理指
-令，但其中的所有pragma一元运算符表达式都将按照下面\ref{lang.ppdir.pragmaop}中的
+生成的完全宏替换后的预处理标记序列不会作为预处理指令进行处理，即使它类似于预处理
+指令，但其中的所有pragma一元运算符表达式都将按照下面\ref{lang.ppdir.pragmaop}中的
 规定进行处理。
 
 \paragraph{}
-\ex* 有些情况下，不清楚替换是否嵌套。例如，给定以下宏定义：
+\ex* 有些情况下不清楚替换是否嵌套。例如，给定以下宏定义：
 \begin{lstlisting}
     #define f(a) a*g
     #define g(a) f(a)
@@ -5652,12 +5652,12 @@ switch主体的任何部分。
 \begin{lstlisting}
     2*9*g
 \end{lstlisting}
-严格合规的程序不允许依赖于这种未指明的行为。
+严格合规程序不允许依赖于这种未指明行为。
 
                                    \sssect{宏定义作用域}{lang.ppdir.macro.scope}
 \paragraph{}
 宏定义持续（独立于块结构）直到遇到相应的\tm{\#undef}指令，或者（如果没有遇到）直
-到预处理翻译单元结束。翻译阶段\ref{tpit4}后，宏定义不再有意义。
+到预处理翻译单元结束。翻译阶段\ref{tpit4}之后，宏定义不再有意义。
 
 \paragraph{}
 形如                                                                          \\
@@ -5675,15 +5675,15 @@ switch主体的任何部分。
 \paragraph{}
 \ex 下面定义一个函数式宏，其值是其参数的最大值。它的优点是可以处理任何兼容类型的
 参数，并且可以生成内联代码，而不需要函数调用的开销。它的缺点是，第二次计算一个或
-另一个参数（包括副作用），如果多次调用，则生成的代码多于一个函数。它也不能有它的
-地址，因为它没有。
+另一个参数（包括副作用），如果多次调用，则生成的代码多于一个函数。也不能取其地址
+，因为它没有地址。
 \begin{lstlisting}
     #define max(a, b) ((a) > (b) ? (a) : (b))
 \end{lstlisting}
 括号确保参数和结果表达式正确绑定。
 
 \paragraph{}
-\ex 为了说明重定义和复检查的规则，序列
+\ex 为了说明重定义和重新检查的规则，序列
 \begin{lstlisting}
     #define x         3
     #define f(a)      f(x * (a))
@@ -5743,14 +5743,13 @@ switch主体的任何部分。
     "hello";
     "hello" ", world"
 \end{lstlisting}
-或才在字符串文本连接后，
+或者在字符串文本连接后，
 \begin{lstlisting}
     printf("x1= %d, x2= %s", x1, x2);
     fputs(
       "strncmp(\"abc\\0d\", \"abc\", '\\4') == 0: @\n",
       s);
-    #include "vers2.h"
-    (after macro replacement, before file access)
+    #include "vers2.h"   // (after macro replacement, before file access)
     "hello";
     "hello, world"
 \end{lstlisting}
@@ -5788,7 +5787,7 @@ switch主体的任何部分。
 \end{lstlisting}
 
 \paragraph{}
-\ex 最后，为显示变量参数列表宏工具：
+\ex 最后，为显示变量参数列表宏功能：
 \begin{lstlisting}
     #define debug(...)        fprintf(stderr, __VA_ARGS__)
     #define showlist(...)     puts(#__VA_ARGS__)
@@ -5811,7 +5810,8 @@ switch主体的任何部分。
                                                  \ssect{行控制}{lang.ppdir.line}
 \constraint
 \paragraph{}
-\tm{\#line}指令的字符串文本（如果存在）应为字符串文本。
+\tm{\#line}指令的字符串文本（string literal）（如果存在）应为字符串文本
+（character string literal）。
 
 \semantic
 \paragraph{}
@@ -5821,8 +5821,8 @@ switch主体的任何部分。
 \paragraph{}
 形如                                                                          \\
 \mbox{\hspace{4em}\tm{\# line} \nt{digit-sequence new-line}}                  \\
-的预处理指令使实现的行为类似于以下源行序列以具有由数字序列指定的行号（解释为十进
-制整数）的源行开始。数字序列不得指定零，也不得指定大于2147483647的数字。
+的预处理指令使实现的行为类似于以下源行序列以具有由数字序列指定行号（解释为十进制
+整数）的源行开始。数字序列不得指定零，也不得指定大于2147483647的数字。
 
 \paragraph{}
 形如                                                                          \\
@@ -5833,9 +5833,9 @@ switch主体的任何部分。
 \paragraph{}
 允许形如                                                                      \\
 \mbox{\hspace{4em}\tm{\# line} \nt{pp-tokens new-line}}                       \\
-（与前两种格式之一不匹配）的预处理指令。指令中\tm{line}后的预处理标记的处理与普
-通文本中的处理相同（当前定义为宏名的每个标识符都由其预处理标记的替换列表替换）。
-所有替换后产生的指令应与前两种形式中的一种相匹配，然后视情况进行处理。
+（与前两种格式不匹配）的预处理指令。指令中\tm{line}后的预处理标记的处理与普通文
+本中的处理相同（当前定义为宏名的每个标识符都由其预处理标记的替换列表替换）。所有
+替换后产生的指令应与前两种形式之一相匹配，然后视情况进行处理。
 
                                              \ssect{Error指令}{lang.ppdir.error}
 \semantic
@@ -5849,17 +5849,17 @@ switch主体的任何部分。
 \paragraph{}
 形如                                                                          \\
 \mbox{\hspace{4em}\tm{\# pragma} \nt{pp-tokens\tsub{opt} new-line}}           \\
-的预处理指令，如果预处理标记\tm{STDC}没有立即跟在指令中的\tm{pragma}（在任何宏替
-换之前）\footnote{实现不需要在\tm{pragma}中执行宏替换，但除了在标准\tm{pragma}中
-（其中\tm{STDC}紧跟\tm{pragma}），它是允许的。如果非标准pragma中宏替换的结果与标
-准pragma的形式相同，则行为仍由实现定义；允许实现的行为与标准pragma的行为相同，但
-不需要这样做。}之后，则会导致实现以实现定义方式运行。这种行为可能导致翻译失败，
-或者导致翻译器或结果程序的行为不一致。将忽略实现无法识别的任何此类\tm{pragma}。
+的预处理指令，如果预处理标记\tm{STDC}没有紧跟在指令中的\tm{pragma}（在任何宏替换
+之前）\footnote{不要求实现在\tm{pragma}中执行宏替换，但除了在标准\tm{pragma}中（
+其中\tm{STDC}紧跟\tm{pragma}）这是允许的。如果非标准pragma中宏替换的结果与标准
+pragma的形式相同，则行为仍由实现定义；允许实现的行为与标准pragma的行为相同，但不
+需要这样做。}之后，则会导致实现以实现定义方式运行。这种行为可能导致翻译失败，或
+者导致翻译器或所产生的程序行为不一致。忽略实现无法识别的任何\tm{pragma}。
 
 \paragraph{}
-如果预处理标记\tm{STDC}立即跟在指令中的pragma（在任何宏替换之前）之后，则不会对
-指令执行宏替换，并且指令应具有以下形式之一，\footnote{见``未来语言方向''
-（\ref{lang.dir.pragma}）。}其含义在别处描述：                                \\
+如果预处理标记\tm{STDC}紧跟在指令中的\tm{pragma}（在任何宏替换之前）之后，则不会
+对指令执行宏替换，并且指令应具有以下形式之一，\footnote{见``未来语言方向''
+（\ref{lang.dir.pragma}）。} 其含义在别处描述：                               \\
 \mbox{\hspace{4em}\tm{\#pragma STDC FP\_CONTRACT} \nt{on-off-switch}}         \\
 \mbox{\hspace{4em}\tm{\#pragma STDC FENV\_ACCESS} \nt{on-off-switch}}         \\
 \mbox{\hspace{4em}\tm{\#pragma STDC CX\_LIMITED\_RANGE} \nt{on-off-switch}}   \\
@@ -5881,8 +5881,8 @@ switch主体的任何部分。
 宏的值（除\tm{\_\_FILE\_\_}和\tm{\_\_LINE\_\_}外）在整个翻译单元中保持不变。
 
 \paragraph{}
-这些宏名或标识符\tm{defined}都不应是\tm{define}或\tm{undef}预处理指令的主体。任
-何其他预定义的宏名称都应以前导下划线开头，后跟一个大写字母或第二个下划线。
+这些宏名或标识符\tm{defined}都不应是\tm{\#define}或\tm{\#undef}预处理指令的主体
+。任何其他预定义的宏名称都应以前置下划线开头，后跟一个大写字母或第二个下划线。
 
 \paragraph{}
 实现不应预定义宏\tm{\_\_cplusplus}，也不应在任何标准头中定义它。
@@ -5904,7 +5904,7 @@ switch主体的任何部分。
 \end{minipage}
 }
 \mlst{\_\_DATE\_\_}{预处理翻译单元的翻译日期：格式为\tm{\dq{}Mmm dd yyyy\dq}的字
-符串文本，其中月份名称与\tm{ascTime}函数生成的名称相同，如果值小于10，则\tm{dd}
+符串文本，其中月份名称与\tm{asctime}函数生成的名称相同，如果值小于10，则\tm{dd}
 的第一个字符为空格字符。如果翻译日期不可用，应提供实现定义的有效日期。}
 \mlst{\_\_FILE\_\_}{当前源文件的推定名称（字符串文本）。\footnotemark}
 \footnotetext{\label{fn177}推定的源文件名和行号可以通过\tm{\#line}指令更改。}

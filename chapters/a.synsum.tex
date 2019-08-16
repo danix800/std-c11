@@ -86,9 +86,9 @@
   \synprd[]{\nt{character-constant}}
 
 \synsymref{lang.lex.const.int}{integer-constant}
-  \synprd{\nt{decimal-constant integer-suffix$_{opt}$}}
-  \synprd{\nt{octal-constant integer-suffix$_{opt}$}}
-  \synprd[]{\nt{hexadecimal-constant integer-suffix$_{opt}$}}
+  \synprd{\nt{decimal-constant integer-suffix\tsub{opt}}}
+  \synprd{\nt{octal-constant integer-suffix\tsub{opt}}}
+  \synprd[]{\nt{hexadecimal-constant integer-suffix\tsub{opt}}}
 
 \synsymref{lang.lex.const.int}{decimal-constant}
   \synprd{\nt{nonzero-digit}}
@@ -106,7 +106,7 @@
   \synprd[]{\tm{0x 0X}}
 
 \synsymref[one of]{lang.lex.const.int}{nonzero-digit}
-  \synprd[]{\tm{0 1 2 3 4 5 6 7 8 9}}
+  \synprd[]{\tm{1 2 3 4 5 6 7 8 9}}
 
 \synsymref[one of]{lang.lex.const.int}{octal-digit}
   \synprd[]{\tm{0 1 2 3 4 5 6 7}}
@@ -117,10 +117,10 @@
   \synprd[]{\tm{A B C D E F}}
 
 \synsymref{lang.lex.const.int}{integer-suffix}
-  \synprd{\nt{unsigned-suffix long-suffix$_{opt}$}}
+  \synprd{\nt{unsigned-suffix long-suffix\tsub{opt}}}
   \synprd{\nt{unsigned-suffix long-long-suffix}}
-  \synprd{\nt{long-suffix unsigned-suffix$_{opt}$}}
-  \synprd[]{\nt{long-long-suffix unsigned-suffix$_{opt}$}}
+  \synprd{\nt{long-suffix unsigned-suffix\tsub{opt}}}
+  \synprd[]{\nt{long-long-suffix unsigned-suffix\tsub{opt}}}
 
 \synsymref[one of]{lang.lex.const.int}{unsigned-suffix}
   \synprd[]{\tm{u U}}
@@ -136,23 +136,23 @@
   \synprd[]{\nt{hexadecimal-floating-constant}}
 
 \synsymref{lang.lex.const.float}{decimal-floating-constant}
-  \synprd{\nt{fractional-constant exponent-part$_{opt}$
-              floating-suffix$_{opt}$}}
-  \synprd[]{\nt{digit-sequence exponent-part floating-suffix$_{opt}$}}
+  \synprd{\nt{fractional-constant exponent-part\tsub{opt}
+              floating-suffix\tsub{opt}}}
+  \synprd[]{\nt{digit-sequence exponent-part floating-suffix\tsub{opt}}}
 
 \synsymref{lang.lex.const.float}{hexadecimal-floating-constant}
   \synprd{\nt{hexadecimal-prefix hexadecimal-fractional-constant}}
-  \synprd{\hspace{6em}\nt{binary-exponent-part floating-suffix$_{opt}$}}
+  \synprd{\hspace{6em}\nt{binary-exponent-part floating-suffix\tsub{opt}}}
   \synprd{\nt{hexadecimal-prefix hexadecimal-digit-sequence}}
-  \synprd[]{\hspace{6em}\nt{binary-exponent-part floating-suffix$_{opt}$}}
+  \synprd[]{\hspace{6em}\nt{binary-exponent-part floating-suffix\tsub{opt}}}
 
 \synsymref{lang.lex.const.float}{fractional-constant}
-  \synprd{\nt{digit-sequence$_{opt}$} \tm{.} \nt{digit-sequence}}
+  \synprd{\nt{digit-sequence\tsub{opt}} \tm{.} \nt{digit-sequence}}
   \synprd[]{\nt{digit-sequence} \tm{.}}
 
 \synsymref{lang.lex.const.float}{exponent-part}
-  \synprd{\tm{e} \nt{sign$_{opt}$ digit-sequence}}
-  \synprd[]{\tm{E} \nt{sign$_{opt}$ digit-sequence}}
+  \synprd{\tm{e} \nt{sign\tsub{opt} digit-sequence}}
+  \synprd[]{\tm{E} \nt{sign\tsub{opt} digit-sequence}}
 
 \synsymref[one of]{lang.lex.const.float}{sign}
   \synprd[]{\tm{+ -}}
@@ -162,13 +162,13 @@
   \synprd[]{\nt{digit-sequence digit}}
 
 \synsymref{lang.lex.const.float}{hexadecimal-fractional-constant}
-  \synprd{\nt{hexadecimal-digit-sequence$_{opt}$} \tm{.}
+  \synprd{\nt{hexadecimal-digit-sequence\tsub{opt}} \tm{.}
           \nt{hexadecimal-digit-sequence}}
-  \synprd[]{\nt{hexadecimal-digit-sequence$_{opt}$} \tm{.}}
+  \synprd[]{\nt{hexadecimal-digit-sequence} \tm{.}}
 
 \synsymref{lang.lex.const.float}{binary-exponent-part}
-  \synprd{\tm{p} \nt{sign$_{opt}$ digit-sequence}}
-  \synprd[]{\tm{P} \nt{sign$_{opt}$ digit-sequence}}
+  \synprd{\tm{p} \nt{sign\tsub{opt} digit-sequence}}
+  \synprd[]{\tm{P} \nt{sign\tsub{opt} digit-sequence}}
 
 \synsymref{lang.lex.const.float}{hexadecimal-digit-sequence}
   \synprd{\nt{hexadecimal-digit}}
@@ -216,8 +216,8 @@
 
                                             \ssect{字符串字面值}{synsum.lex.str}
 \synsymref{lang.lex.str}{string-literal}
-  \synprd[]{\nt{encoding-prefix$_{opt}$}\tm{\dq}
-          \nt{s-char-sequence$_{opt}$}\tm{\dq}}
+  \synprd[]{\nt{encoding-prefix\tsub{opt}} \tm{\dq}
+          \nt{s-char-sequence\tsub{opt}} \tm{\dq}}
 
 \synsymref{lang.lex.str}{encoding-prefix}
   \synprd{\tm{u8}}
@@ -296,13 +296,13 @@
   \synprd{\nt{generic-assoc-list} \tm{,} \nt{generic-association}}
 
 \synsymref{lang.expr.prim.generic}{generic-association}
-  \synprd{\nt{generic-association} \tm{:} \nt{association-expression}}
+  \synprd{\nt{type-name} \tm{:} \nt{association-expression}}
   \synprd[]{\tm{default} \tm{:} \nt{assignment-expression}}
 
 \synsymref{lang.expr.post}{postfix-expression}
   \synprd{\nt{primary-expression}}
   \synprd{\nt{postfix-expression} \tm{[} \nt{expression} \tm{]}}
-  \synprd{\nt{postfix-expression} \tm{(} \nt{argument-expression-list$_{opt}$}
+  \synprd{\nt{postfix-expression} \tm{(} \nt{argument-expression-list\tsub{opt}}
     \tm{)}}
   \synprd{\nt{postfix-expression} \tm{.} \nt{identifier}}
   \synprd{\nt{postfix-expression} \tm{->} \nt{identifier}}
@@ -475,7 +475,7 @@
 
 \synsymref{lang.dcl.type.enum}{enum-specifier}
   \synprd{\tm{enum} \nt{identifier\tsub{opt}} \tm{\{} \nt{enumerator-list} \tm{\}}}
-  \synprd{\tm{enum} \nt{identifier\tsub{opt}} \tm{\{} \nt{enumerator-list} \tm{,\}}}
+  \synprd{\tm{enum} \nt{identifier\tsub{opt}} \tm{\{} \nt{enumerator-list} \tm{, \}}}
   \synprd[]{\tm{enum} \nt{identifier}}
 
 \synsymref{lang.dcl.type.enum}{enumerator-list}
@@ -554,7 +554,7 @@
 \synsymref{lang.dcl.typename}{direct-abstract-declarator}
   \synprd{\tm{(} \nt{abstract-declarator} \tm{)}}
   \synprd{\nt{direct-abstract-declarator\tsub{opt}} \tm{[}
-    \nt{type-qualifier-list\tsub{opt} assignment-expression} \tm{]}}
+    \nt{type-qualifier-list\tsub{opt} assignment-expression\tsub{opt}} \tm{]}}
   \synprd{\nt{direct-abstract-declarator\tsub{opt}} \tm{[ static}
     \nt{type-qualifier-list\tsub{opt} assignment-expression} \tm{]}}
   \synprd{\nt{direct-abstract-declarator\tsub{opt}} \tm{[}
@@ -617,7 +617,7 @@
   \synprd[]{\nt{statement}}
 
 \synsymref{lang.stmt.expr}{expression-statement}
-  \synprd[]{\nt{expression\tsub{opt} \tm{;}}}
+  \synprd[]{\nt{expression\tsub{opt}} \tm{;}}
 
 \synsymref{lang.stmt.sel}{selection-statement}
   \synprd{\tm{if (} \nt{expression} \tm{)} \nt{statement}}
@@ -681,7 +681,7 @@
   \ppdprd{ifdef}{\nt{identifier new-line group\tsub{opt}}}
   \ppdprd[]{ifndef}{\nt{identifier new-line group\tsub{opt}}}
 
-\synsymref{lang.ppdir}{elif-group}
+\synsymref{lang.ppdir}{elif-groups}
   \synprd{\nt{elif-group}}
   \synprd[]{\nt{elif-groups elif-group}}
 
