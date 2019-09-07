@@ -1,7 +1,7 @@
 \chptr{术语、定义和符号}{defns}
 
 \paragraph{}
-本文档使用以下术语和定义。其他术语在\textit{斜体}类型或语法规则左侧出现时定义。
+在本文档中使用下列术语和定义，而其他术语在\textit{斜体}类型或语法规则左侧出现时定义。
 本国际标准中明确定义的术语不得推定为暗指其他地方定义的类似术语。本国际标准中未定
 义的术语应根据ISO/IEC 2382-1进行解释。本国际标准中未定义的数学符号应根据
 ISO 80000-2进行解释。
@@ -16,13 +16,13 @@ ISO 80000-2进行解释。
 \end{itemize}
 
 \paragraph{}
-\notes 如果只有这两个操作中的一个则用``读''或``修改''。
+\notes 当只有这两个操作中的一个时，使用``读''或``修改''。
 
 \paragraph{}
 \notes ``修改''包括所存的值与之前的值相同的情形。
 
 \paragraph{}
-\notes 不发生计算的表达式不访问对象。
+\notes 未发生计算的表达式不访问对象。
 
                                                       \sect[]{对齐}{defns.align}
 \paragraph{}
@@ -35,10 +35,9 @@ ISO 80000-2进行解释。
 \paragraph{}
 \texttt{argument}
 \begin{itemize}
-  \item[]{实际参数}
-  \item[]{实际参数（parameter）（弃用）}
-  \item[]{逗号分隔列表中的表达式，以函数调用表达式中的括号为界，或逗号分隔列表中
-    的一系列预处理标记，以函数式宏调用中的括号为界}
+  \item[]{实际参数（actual argument）}
+  \item[]{实际参数（actual parameter）（弃用）}
+  \item[]{函数或函数式宏调用括号中，逗号分隔列表中的表达式}
 \end{itemize}
 
                                                       \sect[]{行为}{defns.behav}
@@ -67,7 +66,7 @@ ISO 80000-2进行解释。
 
 \paragraph{}
 \ex* 语言环境特定行为的一个示例是\tm{islower}函数是否对除26个小写拉丁字母之外的
-字符返回真。
+字符返回true。
 
                                                  \ssect{未定义行为}{defns.undef}
 \paragraph{}
@@ -78,7 +77,7 @@ ISO 80000-2进行解释。
 
 \paragraph{}
 \notes* 可能的未定义行为包括从完全忽略具有不可预知结果的情况，到在翻译或程序执行
-过程中以文件化的方式表现环境特征（有或无诊断消息）的行为，到终止翻译或执行（有诊
+过程中以文档化的方式表现环境特征（有无诊断消息）的行为，到终止翻译或执行（有诊
 断消息）。
 
 \paragraph{}
@@ -162,7 +161,7 @@ ISO 80000-2进行解释。
 \paragraph{}
 \texttt{correctly rounded result}
 \begin{itemize}
-  \item[]{受限于当前的舍入模式，结果格式中最接近值的表示，该表示下的结果将给出不
+  \item[]{受限于当前的舍入模式，以结果格式中最接近值的表示，且该表示下的结果将给出不
     受限范围和精度}
 \end{itemize}
 
@@ -252,7 +251,7 @@ ISO 80000-2进行解释。
 \paragraph{}
 \texttt{recommended practice}
 \begin{itemize}
-  \item[]{强烈建议以符合本标准意图的规范，但对于某些实现来说可能不实用。}
+  \item[]{强烈建议符合本标准意图的规范，但对于某些实现来说可能不实用。}
 \end{itemize}
 
                                              \sect[]{运行时约束}{defns.rtconstr}
@@ -274,7 +273,7 @@ ISO 80000-2进行解释。
 \paragraph{}
 \texttt{value}
 \begin{itemize}
-  \item[]{当解释为特定类型时的对象内容的确切涵义}
+  \item[]{当解释为特定类型时的对象内容的精确含义}
 \end{itemize}
 
                                                \ssect{实现定义值}{defns.implval}
