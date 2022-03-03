@@ -7,12 +7,14 @@
         sed -i 's:main$:main non-free contrib:;' /etc/apt/sources.list
       fi
       apt-get update
-      local -p pkgs
+      local -a pkgs
       pkgs+=(graphviz)
       pkgs+=(texlive-fonts-extra)
+      pkgs+=(texlive-fonts-recommended)
       pkgs+=(texlive-lang-chinese)
       pkgs+=(texlive-latex-extra)
       pkgs+=(texlive-latex-recommended)
+      pkgs+=(texlive-plain-generic)
       pkgs+=(texlive-xetex)
       apt-get install --no-install-recommends -y "${pkgs[@]}"
     }
@@ -31,3 +33,4 @@ build:
     - xelatex c11.tex
   tags:
     - xelatex
+  image: debian:bullseye

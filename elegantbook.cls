@@ -226,7 +226,7 @@
 \linespread{1.3}
 \RequirePackage{graphicx}
 %\RequirePackage{enumerate}
-\RequirePackage{amsmath,mathrsfs,amsfonts,amssymb}
+\RequirePackage{amsmath,mathrsfs,amsfonts}
 \RequirePackage{booktabs}
 \RequirePackage{multicol}
 \RequirePackage{xcolor}
