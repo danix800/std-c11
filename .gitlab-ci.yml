@@ -1,9 +1,11 @@
 .prepare_env: &prepare_env
   - |
     function install_texlive() {
-      sed -i 's:deb.debian.org:mirrors.163.com:;' /etc/apt/sources.list
-      sed -i 's:security.debian.org:mirrors.163.com:;' /etc/apt/sources.list
-      sed -i 's:main$:main non-free contrib:;' /etc/apt/sources.list
+      if [[ -n "${APT_MIRROR:-}" ]]; then
+        sed -i "s:deb.debian.org:${APT_MIRROR}:" /etc/apt/sources.list
+        sed -i "s:security.debian.org:${APT_MIRROR}:" /etc/apt/sources.list
+        sed -i 's:main$:main non-free contrib:;' /etc/apt/sources.list
+      fi
       apt-get update
       local -p pkgs
       pkgs+=(graphviz)
@@ -12,7 +14,7 @@
       pkgs+=(texlive-latex-extra)
       pkgs+=(texlive-latex-recommended)
       pkgs+=(texlive-xetex)
-      apt-get install -y "${pkgs[@]}"
+      apt-get install --no-install-recommends -y "${pkgs[@]}"
     }
     install_texlive
 
