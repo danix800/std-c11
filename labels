@@ -816,7 +816,7 @@ J.5.5 port.ext.writable
 J.5.6 port.ext.other
 J.5.7 port.ext.fctptr
 J.5.8 port.ext.extbf
-J.5.9 port.ext.fortan
+J.5.9 port.ext.fortran
 J.5.10 port.ext.asm
 J.5.11 port.ext.mulextn
 J.5.12 port.ext.predef
