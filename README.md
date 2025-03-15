@@ -17,3 +17,7 @@ C11标准的中文翻译。此翻译使用ElegantBook LaTeX模板。 感谢Elega
 
 *   `chapters/`: 包含C11翻译的各个章节。
 *   `figure/`: 包含文档中使用的图像。
+
+## 下载
+
+[V1](https://github.com/danix800/std-c11/releases/download/V1/c11.pdf)
